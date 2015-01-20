@@ -28,6 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.tsMainToolbar = new System.Windows.Forms.ToolStrip();
+            this.tsiOpen = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsiOpenSalesQuote = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsiTile = new System.Windows.Forms.ToolStripButton();
+            this.tsiLayer = new System.Windows.Forms.ToolStripButton();
+            this.tsiCascade = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsiAbout = new System.Windows.Forms.ToolStripButton();
+            this.tsiExit = new System.Windows.Forms.ToolStripButton();
             this.msMainMenu = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFileOpen = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,120 +50,9 @@
             this.mnuWindowCascade = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsMainToolbar = new System.Windows.Forms.ToolStrip();
-            this.tsiOpen = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tsiOpenSalesQuote = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsiTile = new System.Windows.Forms.ToolStripButton();
-            this.tsiLayer = new System.Windows.Forms.ToolStripButton();
-            this.tsiCascade = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsiAbout = new System.Windows.Forms.ToolStripButton();
-            this.tsiExit = new System.Windows.Forms.ToolStripButton();
-            this.msMainMenu.SuspendLayout();
             this.tsMainToolbar.SuspendLayout();
+            this.msMainMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // msMainMenu
-            // 
-            this.msMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuFile,
-            this.mnuWindow,
-            this.mnuHelp});
-            this.msMainMenu.Location = new System.Drawing.Point(0, 0);
-            this.msMainMenu.Name = "msMainMenu";
-            this.msMainMenu.Size = new System.Drawing.Size(284, 24);
-            this.msMainMenu.TabIndex = 1;
-            this.msMainMenu.Text = "menuStrip1";
-            // 
-            // mnuFile
-            // 
-            this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuFileOpen,
-            this.toolStripMenuItem1,
-            this.mnuFileExit});
-            this.mnuFile.Name = "mnuFile";
-            this.mnuFile.Size = new System.Drawing.Size(37, 20);
-            this.mnuFile.Text = "&File";
-            // 
-            // mnuFileOpen
-            // 
-            this.mnuFileOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuFileOpenSalesQuote});
-            this.mnuFileOpen.Image = global::NETChrisUsick.Properties.Resources.open;
-            this.mnuFileOpen.Name = "mnuFileOpen";
-            this.mnuFileOpen.Size = new System.Drawing.Size(152, 22);
-            this.mnuFileOpen.Text = "&Open";
-            // 
-            // mnuFileOpenSalesQuote
-            // 
-            this.mnuFileOpenSalesQuote.Image = global::NETChrisUsick.Properties.Resources.quote;
-            this.mnuFileOpenSalesQuote.Name = "mnuFileOpenSalesQuote";
-            this.mnuFileOpenSalesQuote.Size = new System.Drawing.Size(136, 22);
-            this.mnuFileOpenSalesQuote.Text = "Sales Quote";
-            this.mnuFileOpenSalesQuote.Click += new System.EventHandler(this.mnuFileOpenSalesQuote_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // mnuFileExit
-            // 
-            this.mnuFileExit.Image = global::NETChrisUsick.Properties.Resources.exit;
-            this.mnuFileExit.Name = "mnuFileExit";
-            this.mnuFileExit.Size = new System.Drawing.Size(152, 22);
-            this.mnuFileExit.Text = "E&xit";
-            this.mnuFileExit.Click += new System.EventHandler(this.mnuFileExit_Click);
-            // 
-            // mnuWindow
-            // 
-            this.mnuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuWindowTile,
-            this.mnuWindowLayer,
-            this.mnuWindowCascade});
-            this.mnuWindow.Name = "mnuWindow";
-            this.mnuWindow.Size = new System.Drawing.Size(63, 20);
-            this.mnuWindow.Text = "&Window";
-            // 
-            // mnuWindowTile
-            // 
-            this.mnuWindowTile.Image = global::NETChrisUsick.Properties.Resources.tile;
-            this.mnuWindowTile.Name = "mnuWindowTile";
-            this.mnuWindowTile.Size = new System.Drawing.Size(118, 22);
-            this.mnuWindowTile.Text = "&Tile";
-            this.mnuWindowTile.Click += new System.EventHandler(this.mnuWindowTile_Click);
-            // 
-            // mnuWindowLayer
-            // 
-            this.mnuWindowLayer.Image = global::NETChrisUsick.Properties.Resources.layer;
-            this.mnuWindowLayer.Name = "mnuWindowLayer";
-            this.mnuWindowLayer.Size = new System.Drawing.Size(118, 22);
-            this.mnuWindowLayer.Text = "&Layer";
-            this.mnuWindowLayer.Click += new System.EventHandler(this.mnuWindowLayer_Click);
-            // 
-            // mnuWindowCascade
-            // 
-            this.mnuWindowCascade.Image = global::NETChrisUsick.Properties.Resources.cascade;
-            this.mnuWindowCascade.Name = "mnuWindowCascade";
-            this.mnuWindowCascade.Size = new System.Drawing.Size(118, 22);
-            this.mnuWindowCascade.Text = "&Cascade";
-            this.mnuWindowCascade.Click += new System.EventHandler(this.mnuWindowCascade_Click);
-            // 
-            // mnuHelp
-            // 
-            this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuHelpAbout});
-            this.mnuHelp.Name = "mnuHelp";
-            this.mnuHelp.Size = new System.Drawing.Size(44, 20);
-            this.mnuHelp.Text = "&Help";
-            // 
-            // mnuHelpAbout
-            // 
-            this.mnuHelpAbout.Image = global::NETChrisUsick.Properties.Resources.about;
-            this.mnuHelpAbout.Name = "mnuHelpAbout";
-            this.mnuHelpAbout.Size = new System.Drawing.Size(107, 22);
-            this.mnuHelpAbout.Text = "&About";
             // 
             // tsMainToolbar
             // 
@@ -250,6 +149,107 @@
             this.tsiExit.Text = "Exit";
             this.tsiExit.Click += new System.EventHandler(this.mnuFileExit_Click);
             // 
+            // msMainMenu
+            // 
+            this.msMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuFile,
+            this.mnuWindow,
+            this.mnuHelp});
+            this.msMainMenu.Location = new System.Drawing.Point(0, 0);
+            this.msMainMenu.Name = "msMainMenu";
+            this.msMainMenu.Size = new System.Drawing.Size(284, 24);
+            this.msMainMenu.TabIndex = 4;
+            this.msMainMenu.Text = "menuStrip1";
+            // 
+            // mnuFile
+            // 
+            this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuFileOpen,
+            this.toolStripMenuItem1,
+            this.mnuFileExit});
+            this.mnuFile.Name = "mnuFile";
+            this.mnuFile.Size = new System.Drawing.Size(37, 20);
+            this.mnuFile.Text = "&File";
+            // 
+            // mnuFileOpen
+            // 
+            this.mnuFileOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuFileOpenSalesQuote});
+            this.mnuFileOpen.Image = global::NETChrisUsick.Properties.Resources.open;
+            this.mnuFileOpen.Name = "mnuFileOpen";
+            this.mnuFileOpen.Size = new System.Drawing.Size(152, 22);
+            this.mnuFileOpen.Text = "&Open";
+            // 
+            // mnuFileOpenSalesQuote
+            // 
+            this.mnuFileOpenSalesQuote.Image = global::NETChrisUsick.Properties.Resources.quote;
+            this.mnuFileOpenSalesQuote.Name = "mnuFileOpenSalesQuote";
+            this.mnuFileOpenSalesQuote.Size = new System.Drawing.Size(152, 22);
+            this.mnuFileOpenSalesQuote.Text = "Sales Quote";
+            this.mnuFileOpenSalesQuote.Click += new System.EventHandler(this.mnuFileOpenSalesQuote_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // mnuFileExit
+            // 
+            this.mnuFileExit.Image = global::NETChrisUsick.Properties.Resources.exit;
+            this.mnuFileExit.Name = "mnuFileExit";
+            this.mnuFileExit.Size = new System.Drawing.Size(152, 22);
+            this.mnuFileExit.Text = "E&xit";
+            this.mnuFileExit.Click += new System.EventHandler(this.mnuFileExit_Click);
+            // 
+            // mnuWindow
+            // 
+            this.mnuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuWindowTile,
+            this.mnuWindowLayer,
+            this.mnuWindowCascade});
+            this.mnuWindow.Name = "mnuWindow";
+            this.mnuWindow.Size = new System.Drawing.Size(63, 20);
+            this.mnuWindow.Text = "&Window";
+            // 
+            // mnuWindowTile
+            // 
+            this.mnuWindowTile.Image = global::NETChrisUsick.Properties.Resources.tile;
+            this.mnuWindowTile.Name = "mnuWindowTile";
+            this.mnuWindowTile.Size = new System.Drawing.Size(152, 22);
+            this.mnuWindowTile.Text = "&Tile";
+            this.mnuWindowTile.Click += new System.EventHandler(this.mnuWindowTile_Click);
+            // 
+            // mnuWindowLayer
+            // 
+            this.mnuWindowLayer.Image = global::NETChrisUsick.Properties.Resources.layer;
+            this.mnuWindowLayer.Name = "mnuWindowLayer";
+            this.mnuWindowLayer.Size = new System.Drawing.Size(152, 22);
+            this.mnuWindowLayer.Text = "&Layer";
+            this.mnuWindowLayer.Click += new System.EventHandler(this.mnuWindowLayer_Click);
+            // 
+            // mnuWindowCascade
+            // 
+            this.mnuWindowCascade.Image = global::NETChrisUsick.Properties.Resources.cascade;
+            this.mnuWindowCascade.Name = "mnuWindowCascade";
+            this.mnuWindowCascade.Size = new System.Drawing.Size(152, 22);
+            this.mnuWindowCascade.Text = "&Cascade";
+            this.mnuWindowCascade.Click += new System.EventHandler(this.mnuWindowCascade_Click);
+            // 
+            // mnuHelp
+            // 
+            this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuHelpAbout});
+            this.mnuHelp.Name = "mnuHelp";
+            this.mnuHelp.Size = new System.Drawing.Size(44, 20);
+            this.mnuHelp.Text = "&Help";
+            // 
+            // mnuHelpAbout
+            // 
+            this.mnuHelpAbout.Image = global::NETChrisUsick.Properties.Resources.about;
+            this.mnuHelpAbout.Name = "mnuHelpAbout";
+            this.mnuHelpAbout.Size = new System.Drawing.Size(152, 22);
+            this.mnuHelpAbout.Text = "&About";
+            // 
             // frmFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -258,14 +258,15 @@
             this.Controls.Add(this.tsMainToolbar);
             this.Controls.Add(this.msMainMenu);
             this.IsMdiContainer = true;
+            this.MainMenuStrip = this.msMainMenu;
             this.Name = "frmFrame";
-            this.Text = "RRC Automotive Group";
+            this.Text = "form 1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmFrame_Load);
-            this.msMainMenu.ResumeLayout(false);
-            this.msMainMenu.PerformLayout();
             this.tsMainToolbar.ResumeLayout(false);
             this.tsMainToolbar.PerformLayout();
+            this.msMainMenu.ResumeLayout(false);
+            this.msMainMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,6 +274,16 @@
 
         #endregion
 
+        private System.Windows.Forms.ToolStrip tsMainToolbar;
+        private System.Windows.Forms.ToolStripDropDownButton tsiOpen;
+        private System.Windows.Forms.ToolStripMenuItem tsiOpenSalesQuote;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton tsiTile;
+        private System.Windows.Forms.ToolStripButton tsiLayer;
+        private System.Windows.Forms.ToolStripButton tsiCascade;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton tsiAbout;
+        private System.Windows.Forms.ToolStripButton tsiExit;
         private System.Windows.Forms.MenuStrip msMainMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuFile;
         private System.Windows.Forms.ToolStripMenuItem mnuFileOpen;
@@ -285,16 +296,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuWindowCascade;
         private System.Windows.Forms.ToolStripMenuItem mnuHelp;
         private System.Windows.Forms.ToolStripMenuItem mnuHelpAbout;
-        private System.Windows.Forms.ToolStrip tsMainToolbar;
-        private System.Windows.Forms.ToolStripDropDownButton tsiOpen;
-        private System.Windows.Forms.ToolStripMenuItem tsiOpenSalesQuote;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton tsiTile;
-        private System.Windows.Forms.ToolStripButton tsiLayer;
-        private System.Windows.Forms.ToolStripButton tsiCascade;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton tsiAbout;
-        private System.Windows.Forms.ToolStripButton tsiExit;
     }
 }
 

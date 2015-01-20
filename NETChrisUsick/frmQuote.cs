@@ -9,10 +9,17 @@ using System.Windows.Forms;
 
 namespace NETChrisUsick
 {
+    /// <summary>
+    /// Sales quote form
+    /// </summary>
     public partial class frmQuote : Form
     {
+        /// <summary>
+        /// constructs an instance of this form
+        /// </summary>
         public frmQuote()
         {
+            /// initialize the design
             InitializeComponent();
         }
     }
