@@ -50,6 +50,7 @@ namespace NETChrisUsick
 
         private void frmFrame_Load(object sender, EventArgs e)
         {
+            // TODO set text here
             this.Icon = NETChrisUsick.Properties.Resources.appicon;
         }
     }
