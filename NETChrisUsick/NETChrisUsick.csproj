@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomotiveManager.cs" />
     <Compile Include="frmFrame.cs">
       <SubType>Form</SubType>
     </Compile>
