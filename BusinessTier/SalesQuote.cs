@@ -28,7 +28,17 @@ namespace BusinessTier
 
         public enum ExteriorFinish
         {
-            None
+            None,
+            Standard,
+            Pearlized,
+            Custom
+        }
+
+        public static class Finish
+        {
+            public const double STANDARD = 0;
+            public const double PEARLIZED = 404.04;
+            public const double CUSTOM = 606.06;
         }
         private double vehicleSalePrice;
         private double tradeInValue;
@@ -77,12 +87,23 @@ namespace BusinessTier
         {
             get
             {
-                double cost;
-                switch
+                double cost = 0;
+                switch (exteriorFinishChosen)
                 {
-                    case()
+                    case ExteriorFinish.None:
+                        cost = 0;
+                        break;
+                    case ExteriorFinish.Standard:
+                        cost = Finish.STANDARD;
+                        break;
+                    case ExteriorFinish.Pearlized:
+                        cost = Finish.PEARLIZED;
+                        break;
+                    case ExteriorFinish.Custom:
+                        cost = Finish.CUSTOM;
+                        break;
                 }
-                return 0;
+                return cost;
             }
         }
 
@@ -90,10 +111,33 @@ namespace BusinessTier
         {
             get
             {
-                return 0;
+                return (vehicleSalePrice + AccessoryCost + FinishCost);
             }
         }
 
+        public double SalesTax
+        {
+            get
+            {
+                return salesTaxRate * SubTotal;
+            }
+        }
+
+        public double Total
+        {
+            get
+            {
+                return SalesTax + SubTotal;
+            }
+        }
+
+        public double AmountDue
+        {
+            get
+            {
+                return Total - tradeInValue;
+            }
+        }
         public SalesQuote(double vehicleSalePrice, double tradeInValue, double salesTaxRate, Accessories accessoriesChosen, ExteriorFinish exteriorFinshChosen)
         {
             this.vehicleSalePrice = vehicleSalePrice;

@@ -83,5 +83,95 @@ namespace ChrisUsickTest
             double expected = SalesQuote.Accessory.STEREO_SYSTEM + SalesQuote.Accessory.COMPUTER_NAVIGATION;
             Assert.AreEqual(expected, actual);
         }
+
+        /// <summary>
+        ///A test for FinishCost
+        ///</summary>
+        [TestMethod()]
+        public void FinishCostTest()
+        {
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F; 
+            double salesTaxRate = 0F; 
+            SalesQuote.Accessories accessoriesChosen = new SalesQuote.Accessories();
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.Custom;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.FinishCost;
+            double expected = SalesQuote.Finish.CUSTOM;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for SubTotal
+        ///</summary>
+        [TestMethod()]
+        public void SubTotalTest()
+        {
+            double vehicleSalePrice = 100;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.LeatherInterior;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.Custom;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.SubTotal;
+            double expected = SalesQuote.Finish.CUSTOM + SalesQuote.Accessory.LEATHER_INTERIOR + 100;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for SalesTax
+        ///</summary>
+        [TestMethod()]
+        public void SalesTaxTest()
+        {
+            double vehicleSalePrice = 100;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0.1;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.None;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.Standard;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.SalesTax;
+            double expected = 100 * salesTaxRate;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for Total
+        ///</summary>
+        [TestMethod()]
+        public void TotalTest()
+        {
+            double vehicleSalePrice = 100;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0.1;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.None;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.Standard;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.Total;
+            double expected = vehicleSalePrice * salesTaxRate + vehicleSalePrice;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for AmountDue
+        ///</summary>
+        [TestMethod()]
+        public void AmountDueTest()
+        {
+            double vehicleSalePrice = 100;
+            double tradeInValue = 10;
+            double salesTaxRate = 0.1;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.None;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.Standard;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.AmountDue;
+            double expected = vehicleSalePrice * salesTaxRate + vehicleSalePrice - tradeInValue;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
