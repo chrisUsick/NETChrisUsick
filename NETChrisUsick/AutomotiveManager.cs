@@ -39,7 +39,9 @@ namespace NETChrisUsick
         /// <returns>true if the string contains only numeric characters</returns>
         public static bool IsNumeric(string stringValue)
         {
+            // a variable to use as the out value for tryParse
             double maybeDouble;
+            // return the value of TryParse
             return Double.TryParse(stringValue, out maybeDouble);
         }
 
@@ -58,6 +60,7 @@ namespace NETChrisUsick
         /// <returns>the payment for the annuity</returns>
         public static double Payment(double rate, double numberOfPaymentPeriods, double presentValue, double futureValue = 0, double type = 0)
         {
+            // return the calculated price of an annuity
             return (rate == 0) ? presentValue / numberOfPaymentPeriods : 
                 rate * (futureValue + presentValue * Math.Pow(1 + rate, numberOfPaymentPeriods)) / ((Math.Pow(1 + rate, numberOfPaymentPeriods) - 1) * (1 +rate * type));
         }
@@ -73,6 +76,7 @@ namespace NETChrisUsick
         /// <returns>the value of the message box</returns>
         public static DialogResult ShowMessage(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.Information, MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button1)
         {
+            // if the class is being tested return messagBoxResult, display a message box
             return isBeingTested ? messageBoxResult : MessageBox.Show(text, caption, buttons, icon, defaultButton);
         }
     }

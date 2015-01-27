@@ -1,18 +1,17 @@
-﻿using NETChrisUsick;
+﻿using BusinessTier;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Windows.Forms;
 
 namespace ChrisUsickTest
 {
     
     
     /// <summary>
-    ///This is a test class for AutomotiveManagerTest and is intended
-    ///to contain all AutomotiveManagerTest Unit Tests
+    ///This is a test class for SalesQuoteTest and is intended
+    ///to contain all SalesQuoteTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class AutomotiveManagerTest
+    public class SalesQuoteTest
     {
 
 
@@ -65,40 +64,23 @@ namespace ChrisUsickTest
         #endregion
 
 
-        /// <summary>
-        ///A test for IsNumeric
-        ///</summary>
-        [TestMethod()]
-        public void IsNumericTest()
-        {
-            string stringValue = "123f"; 
-            bool expected = false; 
-            bool actual;
-            actual = AutomotiveManager.IsNumeric(stringValue);
-            Assert.AreEqual(expected, actual);
-        }
+
 
         /// <summary>
-        ///A test for IsBeingTested
+        ///A test for AccessoryCost
         ///</summary>
         [TestMethod()]
-        public void IsBeingTestedTest()
+        public void AccessoryCostTest()
         {
-            bool actual;
-            actual = AutomotiveManager.IsBeingTested;
-            bool expected = false;
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>
-        ///A test for MessageBoxResult
-        ///</summary>
-        [TestMethod()]
-        public void MessageBoxResultTest()
-        {
-            DialogResult actual;
-            actual = AutomotiveManager.MessageBoxResult;
-            DialogResult expected = DialogResult.OK;
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F; 
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.StereoAndNavigation; 
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.None; 
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen); 
+            double actual;
+            actual = target.AccessoryCost;
+            double expected = SalesQuote.Accessory.STEREO_SYSTEM + SalesQuote.Accessory.COMPUTER_NAVIGATION;
             Assert.AreEqual(expected, actual);
         }
     }
