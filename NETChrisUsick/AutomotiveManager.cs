@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace NETChrisUsick
 {
+    /// <summary>
+    /// A utility class with functionality to be used throughout the entire application
+    /// </summary>
     public class AutomotiveManager
     {
         // true if the class is being unit tested
@@ -72,7 +75,7 @@ namespace NETChrisUsick
         /// <param name="caption">caption of the message box</param>
         /// <param name="buttons">buttons to use in the message box. Default: MessageBoxButtons.OK</param>
         /// <param name="icon">icon to use in the message box. Default: MessageBoxIcon.Information</param>
-        /// <param name="defaultButton">default button of the message box. Default: MessageBoxDefaultButton.Button1</param>
+        /// <param name="defaultButton">default button of the message box. Default: MessageBoxDefaultButton.Botton1</param>
         /// <returns>the value of the message box</returns>
         public static DialogResult ShowMessage(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.Information, MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button1)
         {

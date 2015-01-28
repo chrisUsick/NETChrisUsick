@@ -173,5 +173,24 @@ namespace ChrisUsickTest
             double expected = vehicleSalePrice * salesTaxRate + vehicleSalePrice - tradeInValue;
             Assert.AreEqual(expected, actual);
         }
+
+        /// <summary>
+        ///A test for SalesQuote Constructor
+        ///</summary>
+        [TestMethod()]
+        public void SalesQuoteConstructorTest()
+        {
+            double vehicleSalePrice = 0F; 
+            double tradeInValue = 0F; 
+            double salesTaxRate = 0F; 
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.None; 
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.Custom;
+            SalesQuote_Accessor target = new SalesQuote_Accessor(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            Assert.AreEqual(vehicleSalePrice, target.vehicleSalePrice);
+            Assert.AreEqual(tradeInValue, target.tradeInValue);
+            Assert.AreEqual(salesTaxRate, target.salesTaxRate);
+            Assert.AreEqual(accessoriesChosen, target.AccessoriesChosen);
+            Assert.AreEqual(exteriorFinshChosen, target.exteriorFinishChosen);
+        }
     }
 }

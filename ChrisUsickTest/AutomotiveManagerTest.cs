@@ -66,15 +66,27 @@ namespace ChrisUsickTest
 
 
         /// <summary>
-        ///A test for IsNumeric
+        ///A test for IsNumeric with non-numeric input
         ///</summary>
         [TestMethod()]
-        public void IsNumericTest()
+        public void IsNumericTestNonNumeric()
         {
             string stringValue = "123f"; 
             bool expected = false; 
             bool actual;
             actual = AutomotiveManager.IsNumeric(stringValue);
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for IsNumeric with a number
+        ///</summary>
+        [TestMethod()]
+        public void IsNumericTestNumeric()
+        {
+            string stringValue = "386";
+            bool expected = true;
+            bool actual = AutomotiveManager.IsNumeric(stringValue);
             Assert.AreEqual(expected, actual);
         }
 
