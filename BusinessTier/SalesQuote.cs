@@ -181,7 +181,11 @@ namespace BusinessTier
         /// <param name="salesTaxRate">the sales tax rate for this sale (harmonized)</param>
         /// <param name="accessoriesChosen">the accessories chosen for this vehicle</param>
         /// <param name="exteriorFinshChosen">The exterior finish chosen for this vehicle</param>
-        public SalesQuote(double vehicleSalePrice, double tradeInValue, double salesTaxRate, Accessories accessoriesChosen, ExteriorFinish exteriorFinshChosen)
+        public SalesQuote(double vehicleSalePrice, 
+                          double tradeInValue, 
+                          double salesTaxRate, 
+                          Accessories accessoriesChosen, 
+                          ExteriorFinish exteriorFinshChosen)
         {
             this.vehicleSalePrice = vehicleSalePrice;
             this.tradeInValue = tradeInValue;

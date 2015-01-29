@@ -189,7 +189,7 @@ namespace ChrisUsickTest
             Assert.AreEqual(vehicleSalePrice, target.vehicleSalePrice);
             Assert.AreEqual(tradeInValue, target.tradeInValue);
             Assert.AreEqual(salesTaxRate, target.salesTaxRate);
-            Assert.AreEqual(accessoriesChosen, target.AccessoriesChosen);
+            Assert.AreEqual(accessoriesChosen, target.accessoriesChosen);
             Assert.AreEqual(exteriorFinshChosen, target.exteriorFinishChosen);
         }
     }
