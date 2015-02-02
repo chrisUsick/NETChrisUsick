@@ -22,5 +22,6 @@ namespace NETChrisUsick
             /// initialize the design
             InitializeComponent();
         }
+
     }
 }
