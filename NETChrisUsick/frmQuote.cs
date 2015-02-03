@@ -23,5 +23,20 @@ namespace NETChrisUsick
             InitializeComponent();
         }
 
+        /// <summary>
+        /// execute setting to me set when this form loads
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmQuote_Load(object sender, EventArgs e)
+        {
+            // set the icon
+            this.Icon = NETChrisUsick.Properties.Resources.quoteicon;
+
+            // remove lnkReset from tab order.
+            lnkReset.TabStop = false;
+
+        }
+
     }
 }

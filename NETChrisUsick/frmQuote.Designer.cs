@@ -163,7 +163,7 @@
             this.grpFinish.Location = new System.Drawing.Point(28, 243);
             this.grpFinish.Name = "grpFinish";
             this.grpFinish.Size = new System.Drawing.Size(218, 129);
-            this.grpFinish.TabIndex = 6;
+            this.grpFinish.TabIndex = 5;
             this.grpFinish.TabStop = false;
             this.grpFinish.Text = "Exterior Finish";
             // 
@@ -174,7 +174,6 @@
             this.radCustomDetail.Name = "radCustomDetail";
             this.radCustomDetail.Size = new System.Drawing.Size(104, 17);
             this.radCustomDetail.TabIndex = 2;
-            this.radCustomDetail.TabStop = true;
             this.radCustomDetail.Text = "Custom &Detailing";
             this.radCustomDetail.UseVisualStyleBackColor = true;
             // 
@@ -185,7 +184,6 @@
             this.radPearlized.Name = "radPearlized";
             this.radPearlized.Size = new System.Drawing.Size(68, 17);
             this.radPearlized.TabIndex = 1;
-            this.radPearlized.TabStop = true;
             this.radPearlized.Text = "Pearli&zed";
             this.radPearlized.UseVisualStyleBackColor = true;
             // 
@@ -208,7 +206,6 @@
             this.lnkReset.Name = "lnkReset";
             this.lnkReset.Size = new System.Drawing.Size(61, 13);
             this.lnkReset.TabIndex = 7;
-            this.lnkReset.TabStop = true;
             this.lnkReset.Text = "Reset Form";
             // 
             // btnCalculate
@@ -217,7 +214,7 @@
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.btnCalculate.Size = new System.Drawing.Size(113, 31);
-            this.btnCalculate.TabIndex = 8;
+            this.btnCalculate.TabIndex = 6;
             this.btnCalculate.Text = "&Calculate Quote";
             this.btnCalculate.UseVisualStyleBackColor = true;
             // 
@@ -384,7 +381,7 @@
             this.grpFinance.Location = new System.Drawing.Point(298, 314);
             this.grpFinance.Name = "grpFinance";
             this.grpFinance.Size = new System.Drawing.Size(313, 121);
-            this.grpFinance.TabIndex = 10;
+            this.grpFinance.TabIndex = 8;
             this.grpFinance.TabStop = false;
             this.grpFinance.Text = "Finance";
             // 
@@ -413,7 +410,7 @@
             this.hsbNoYears.Minimum = 1;
             this.hsbNoYears.Name = "hsbNoYears";
             this.hsbNoYears.Size = new System.Drawing.Size(63, 17);
-            this.hsbNoYears.TabIndex = 2;
+            this.hsbNoYears.TabIndex = 0;
             this.hsbNoYears.Value = 1;
             // 
             // label12
@@ -442,7 +439,7 @@
             this.hsbInterestRate.Maximum = 2500;
             this.hsbInterestRate.Name = "hsbInterestRate";
             this.hsbInterestRate.Size = new System.Drawing.Size(65, 17);
-            this.hsbInterestRate.TabIndex = 5;
+            this.hsbInterestRate.TabIndex = 1;
             // 
             // label13
             // 
@@ -481,7 +478,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmQuote";
-            this.Text = " ";
+            this.Text = " Sales Quote";
+            this.Load += new System.EventHandler(this.frmQuote_Load);
             this.grpAccessories.ResumeLayout(false);
             this.grpAccessories.PerformLayout();
             this.grpFinish.ResumeLayout(false);
