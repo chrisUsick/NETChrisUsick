@@ -9,7 +9,7 @@ namespace NETChrisUsick
     /// <summary>
     /// A utility class with functionality to be used throughout the entire application
     /// </summary>
-    public class AutomotiveManager
+    public static class AutomotiveManager
     {
         // true if the class is being unit tested
         private static bool isBeingTested = false;

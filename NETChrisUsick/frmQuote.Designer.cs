@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSalePrice = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,6 +45,8 @@
             this.lnkReset = new System.Windows.Forms.LinkLabel();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.grpSummary = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblAmountDue = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblTradeIn = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -56,21 +59,21 @@
             this.lblOptions = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblSalePrice = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblAmountDue = new System.Windows.Forms.Label();
             this.grpFinance = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblNoYears = new System.Windows.Forms.Label();
-            this.hsbNoYears = new System.Windows.Forms.HScrollBar();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lblMonthlyPayment = new System.Windows.Forms.Label();
-            this.hsbInterestRate = new System.Windows.Forms.HScrollBar();
-            this.label13 = new System.Windows.Forms.Label();
             this.lblInterestRate = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.hsbInterestRate = new System.Windows.Forms.HScrollBar();
+            this.lblMonthlyPayment = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.hsbNoYears = new System.Windows.Forms.HScrollBar();
+            this.lblNoYears = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpAccessories.SuspendLayout();
             this.grpFinish.SuspendLayout();
             this.grpSummary.SuspendLayout();
             this.grpFinance.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -88,6 +91,11 @@
             this.txtSalePrice.Name = "txtSalePrice";
             this.txtSalePrice.Size = new System.Drawing.Size(114, 20);
             this.txtSalePrice.TabIndex = 1;
+            this.txtSalePrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSalePrice.TextChanged += new System.EventHandler(this.textbox_TextChanged);
+            this.txtSalePrice.Enter += new System.EventHandler(this.textbox_Enter);
+            this.txtSalePrice.Validating += new System.ComponentModel.CancelEventHandler(this.textboxIsNumeric_Validating);
+            this.txtSalePrice.Validated += new System.EventHandler(this.control_Validated);
             // 
             // label2
             // 
@@ -104,6 +112,13 @@
             this.txtTradeIn.Name = "txtTradeIn";
             this.txtTradeIn.Size = new System.Drawing.Size(113, 20);
             this.txtTradeIn.TabIndex = 3;
+            this.txtTradeIn.Text = "0";
+            this.txtTradeIn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTradeIn.TextChanged += new System.EventHandler(this.textbox_TextChanged);
+            this.txtTradeIn.VisibleChanged += new System.EventHandler(this.control_Validated);
+            this.txtTradeIn.Enter += new System.EventHandler(this.textbox_Enter);
+            this.txtTradeIn.Validating += new System.ComponentModel.CancelEventHandler(this.textboxIsNumeric_Validating);
+            this.txtTradeIn.Validated += new System.EventHandler(this.control_Validated);
             // 
             // grpAccessories
             // 
@@ -206,6 +221,7 @@
             this.lnkReset.Name = "lnkReset";
             this.lnkReset.Size = new System.Drawing.Size(61, 13);
             this.lnkReset.TabIndex = 7;
+            this.lnkReset.TabStop = true;
             this.lnkReset.Text = "Reset Form";
             // 
             // btnCalculate
@@ -217,6 +233,7 @@
             this.btnCalculate.TabIndex = 6;
             this.btnCalculate.Text = "&Calculate Quote";
             this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // grpSummary
             // 
@@ -234,12 +251,31 @@
             this.grpSummary.Controls.Add(this.lblOptions);
             this.grpSummary.Controls.Add(this.label4);
             this.grpSummary.Controls.Add(this.lblSalePrice);
-            this.grpSummary.Location = new System.Drawing.Point(298, 12);
+            this.grpSummary.Location = new System.Drawing.Point(297, 12);
             this.grpSummary.Name = "grpSummary";
             this.grpSummary.Size = new System.Drawing.Size(313, 285);
             this.grpSummary.TabIndex = 9;
             this.grpSummary.TabStop = false;
             this.grpSummary.Text = "Summary";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(106, 239);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 13);
+            this.label10.TabIndex = 13;
+            this.label10.Text = "Amount Due: ";
+            // 
+            // lblAmountDue
+            // 
+            this.lblAmountDue.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblAmountDue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblAmountDue.Location = new System.Drawing.Point(184, 235);
+            this.lblAmountDue.Name = "lblAmountDue";
+            this.lblAmountDue.Size = new System.Drawing.Size(100, 20);
+            this.lblAmountDue.TabIndex = 12;
+            this.lblAmountDue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label9
             // 
@@ -349,25 +385,6 @@
             this.lblSalePrice.TabIndex = 0;
             this.lblSalePrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(106, 239);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 13);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "Amount Due: ";
-            // 
-            // lblAmountDue
-            // 
-            this.lblAmountDue.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lblAmountDue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblAmountDue.Location = new System.Drawing.Point(184, 235);
-            this.lblAmountDue.Name = "lblAmountDue";
-            this.lblAmountDue.Size = new System.Drawing.Size(100, 20);
-            this.lblAmountDue.TabIndex = 12;
-            this.lblAmountDue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // grpFinance
             // 
             this.grpFinance.Controls.Add(this.lblInterestRate);
@@ -378,6 +395,7 @@
             this.grpFinance.Controls.Add(this.hsbNoYears);
             this.grpFinance.Controls.Add(this.lblNoYears);
             this.grpFinance.Controls.Add(this.label11);
+            this.grpFinance.Enabled = false;
             this.grpFinance.Location = new System.Drawing.Point(298, 314);
             this.grpFinance.Name = "grpFinance";
             this.grpFinance.Size = new System.Drawing.Size(313, 121);
@@ -385,22 +403,50 @@
             this.grpFinance.TabStop = false;
             this.grpFinance.Text = "Finance";
             // 
-            // label11
+            // lblInterestRate
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 26);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(66, 13);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "No. of Years";
+            this.lblInterestRate.Location = new System.Drawing.Point(126, 53);
+            this.lblInterestRate.Name = "lblInterestRate";
+            this.lblInterestRate.Size = new System.Drawing.Size(63, 20);
+            this.lblInterestRate.TabIndex = 7;
+            this.lblInterestRate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblNoYears
+            // label13
             // 
-            this.lblNoYears.Location = new System.Drawing.Point(19, 53);
-            this.lblNoYears.Name = "lblNoYears";
-            this.lblNoYears.Size = new System.Drawing.Size(63, 20);
-            this.lblNoYears.TabIndex = 1;
-            this.lblNoYears.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(207, 26);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(88, 13);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "Monthly Payment";
+            // 
+            // hsbInterestRate
+            // 
+            this.hsbInterestRate.LargeChange = 25;
+            this.hsbInterestRate.Location = new System.Drawing.Point(124, 87);
+            this.hsbInterestRate.Maximum = 2500;
+            this.hsbInterestRate.Name = "hsbInterestRate";
+            this.hsbInterestRate.Size = new System.Drawing.Size(65, 17);
+            this.hsbInterestRate.TabIndex = 1;
+            // 
+            // lblMonthlyPayment
+            // 
+            this.lblMonthlyPayment.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblMonthlyPayment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblMonthlyPayment.Location = new System.Drawing.Point(207, 53);
+            this.lblMonthlyPayment.Name = "lblMonthlyPayment";
+            this.lblMonthlyPayment.Size = new System.Drawing.Size(88, 20);
+            this.lblMonthlyPayment.TabIndex = 4;
+            this.lblMonthlyPayment.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(121, 26);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(68, 13);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Interest Rate";
             // 
             // hsbNoYears
             // 
@@ -413,56 +459,34 @@
             this.hsbNoYears.TabIndex = 0;
             this.hsbNoYears.Value = 1;
             // 
-            // label12
+            // lblNoYears
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(121, 26);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(68, 13);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "Interest Rate";
+            this.lblNoYears.Location = new System.Drawing.Point(19, 53);
+            this.lblNoYears.Name = "lblNoYears";
+            this.lblNoYears.Size = new System.Drawing.Size(63, 20);
+            this.lblNoYears.TabIndex = 1;
+            this.lblNoYears.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblMonthlyPayment
+            // label11
             // 
-            this.lblMonthlyPayment.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lblMonthlyPayment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblMonthlyPayment.Location = new System.Drawing.Point(207, 53);
-            this.lblMonthlyPayment.Name = "lblMonthlyPayment";
-            this.lblMonthlyPayment.Size = new System.Drawing.Size(88, 20);
-            this.lblMonthlyPayment.TabIndex = 4;
-            this.lblMonthlyPayment.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 26);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(66, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "No. of Years";
             // 
-            // hsbInterestRate
+            // errorProvider
             // 
-            this.hsbInterestRate.LargeChange = 25;
-            this.hsbInterestRate.Location = new System.Drawing.Point(124, 87);
-            this.hsbInterestRate.Maximum = 2500;
-            this.hsbInterestRate.Name = "hsbInterestRate";
-            this.hsbInterestRate.Size = new System.Drawing.Size(65, 17);
-            this.hsbInterestRate.TabIndex = 1;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(207, 26);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(88, 13);
-            this.label13.TabIndex = 6;
-            this.label13.Text = "Monthly Payment";
-            // 
-            // lblInterestRate
-            // 
-            this.lblInterestRate.Location = new System.Drawing.Point(126, 53);
-            this.lblInterestRate.Name = "lblInterestRate";
-            this.lblInterestRate.Size = new System.Drawing.Size(63, 20);
-            this.lblInterestRate.TabIndex = 7;
-            this.lblInterestRate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
             // 
             // frmQuote
             // 
             this.AcceptButton = this.btnCalculate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(636, 460);
             this.Controls.Add(this.grpFinance);
             this.Controls.Add(this.grpSummary);
@@ -488,6 +512,7 @@
             this.grpSummary.PerformLayout();
             this.grpFinance.ResumeLayout(false);
             this.grpFinance.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -534,6 +559,7 @@
         private System.Windows.Forms.Label lblMonthlyPayment;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblInterestRate;
+        private System.Windows.Forms.ErrorProvider errorProvider;
 
     }
 }
