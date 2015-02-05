@@ -87,6 +87,7 @@
             // 
             // txtSalePrice
             // 
+            this.errorProvider.SetIconPadding(this.txtSalePrice, 3);
             this.txtSalePrice.Location = new System.Drawing.Point(132, 20);
             this.txtSalePrice.Name = "txtSalePrice";
             this.txtSalePrice.Size = new System.Drawing.Size(114, 20);
@@ -108,6 +109,7 @@
             // 
             // txtTradeIn
             // 
+            this.errorProvider.SetIconPadding(this.txtTradeIn, 3);
             this.txtTradeIn.Location = new System.Drawing.Point(133, 57);
             this.txtTradeIn.Name = "txtTradeIn";
             this.txtTradeIn.Size = new System.Drawing.Size(113, 20);

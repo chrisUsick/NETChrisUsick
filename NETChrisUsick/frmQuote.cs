@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using BusinessTier;
 
 namespace NETChrisUsick
 {
@@ -135,20 +136,101 @@ namespace NETChrisUsick
         {
             if (this.ValidateChildren())
             {
+                // create a sales quote object
+                double salePrice = double.Parse(txtSalePrice.Text),
+                       tradIn    = double.Parse(txtTradeIn.Text),
+                       taxRate   = 0;
+                SalesQuote.Accessories accessories;
+                SalesQuote.ExteriorFinish finish;
+                bool[] accesoryCheckboxes = {chkLeather.Checked, chkNavigation.Checked, chkStereo.Checked};
+                RadioButton[] finishRadios = {radCustomDetail, radPearlized, radStandard};
 
+                
+                //if (accesoryCheckboxes.SequenceEqual(new[] {true, true, true}))
+                //{
+                //    accessories = SalesQuote.Accessories.All;
+                //}
+                //else if (accesoryCheckboxes.SequenceEqual(new[] {true, false, true}))
+                //{
+                //    accessories = SalesQuote.Accessories.StereoAndLeather;
+                //}
+                //else if (accesoryCheckboxes.SequenceEqual(new[] {true, true, false}))
+                //{
+                //    accessories = SalesQuote.Accessories.LeatherAndNavigation;
+                //}
+                //else if (accesoryCheckboxes.SequenceEqual(new[] {false, true, true}))
+                //{
+                //    accessories = SalesQuote.Accessories.StereoAndNavigation;
+                //}
+                //else if (accesoryCheckboxes.SequenceEqual(new[] {true, false, true}))
+                //{
+                //    accessories = SalesQuote.Accessories
+                //}
+                accessories = getAccessories();
+                //SalesQuote quote = new SalesQuote(
             }
             else
             {
+                // clear summary
+                clearSummary();
+                grpFinance.Enabled = false;
                 // select the first item with an error;
                 if (errorProvider.GetError(txtSalePrice) == String.Empty)
                 {
-                    txtTradeIn.SelectAll();
+                    refocus(txtTradeIn);
                 }
                 else
                 {
-                    txtSalePrice.SelectAll();
+                    refocus(txtSalePrice);
                 }
             }
+        }
+
+        /// <summary>
+        /// get accessories for a vehicle
+        /// </summary>
+        /// <returns>the Accesories the vehicle has</returns>
+        private SalesQuote.Accessories getAccessories()
+        {
+            int result = 0;
+            CheckBox[] boxes = new[] {chkNavigation, chkLeather, chkStereo};
+            // items in the array have the same index as their corresponding enumeration in 
+            // SalesQuote.Accessories
+            HashSet<CheckBox>[] combinations = {new HashSet<CheckBox>(new CheckBox[] {}),
+                              new HashSet<CheckBox>( new[] { chkStereo }),
+                              new HashSet<CheckBox>(new[] {chkLeather}),
+                              new HashSet<CheckBox>(new[] {chkStereo, chkLeather}),
+                              new HashSet<CheckBox>(new[] {chkNavigation}),
+                              new HashSet<CheckBox>(new[] {chkStereo, chkNavigation}),
+                              new HashSet<CheckBox>(new[] {chkLeather,chkNavigation}),
+                              new HashSet<CheckBox>(boxes)};
+
+            IEnumerable<CheckBox> areChecked = 
+                from box in boxes
+                where box.Checked
+                select box;
+
+            for (int i = 0; i < combinations.Length; i++)
+            {
+                HashSet<CheckBox> set = combinations[i];
+                if (set.SetEquals(new HashSet<CheckBox>(areChecked)))
+                {
+                    result = i;
+                }
+            }
+            return (SalesQuote.Accessories)result;
+        }
+
+        /// <summary>
+        /// reset the focus of textbox
+        /// </summary>
+        /// <param name="textbox">textbox to refocus to</param>
+        private void refocus(TextBox textbox)
+        {
+            // temorarily focus on something else
+            lnkReset.Focus();
+            // focus on textbox
+            textbox.Focus();
         }
     }
 }

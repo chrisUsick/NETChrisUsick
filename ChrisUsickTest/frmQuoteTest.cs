@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using BusinessTier;
 
 namespace ChrisUsickTest
 {
@@ -151,6 +152,36 @@ namespace ChrisUsickTest
             string expected = String.Empty;
             string actual = target.errorProvider.GetError(sender);
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for refocus
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void refocusTest()
+        {
+            frmQuote_Accessor target = new frmQuote_Accessor(); // TODO: Initialize to an appropriate value
+            TextBox textbox = target.txtSalePrice; // TODO: Initialize to an appropriate value
+            target.refocus(textbox);
+            bool expected = true;
+            bool actual = target.txtSalePrice.Focused;
+            //Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for getAccessories
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void getAccessoriesTest()
+        {
+            frmQuote_Accessor target = new frmQuote_Accessor(); // TODO: Initialize to an appropriate value
+            SalesQuote.Accessories expected = SalesQuote.Accessories.None; // TODO: Initialize to an appropriate value
+            SalesQuote.Accessories actual;
+            actual = target.getAccessories();
+            Assert.AreEqual(expected, actual);
+            
         }
     }
 }

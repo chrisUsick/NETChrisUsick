@@ -140,6 +140,12 @@
   <ItemGroup>
     <None Include="Resources\serviceicon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessTier\BusinessTier.csproj">
+      <Project>{81F48F76-0552-4CA2-9A8F-16F9D619BC04}</Project>
+      <Name>BusinessTier</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
