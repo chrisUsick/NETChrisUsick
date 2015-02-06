@@ -143,6 +143,7 @@
             this.chkNavigation.TabIndex = 2;
             this.chkNavigation.Text = "Computer &Navigation";
             this.chkNavigation.UseVisualStyleBackColor = true;
+            this.chkNavigation.Click += new System.EventHandler(this.chkOrRadio_Click);
             // 
             // chkLeather
             // 
@@ -153,6 +154,7 @@
             this.chkLeather.TabIndex = 1;
             this.chkLeather.Text = "Leather &Interior";
             this.chkLeather.UseVisualStyleBackColor = true;
+            this.chkLeather.Click += new System.EventHandler(this.chkOrRadio_Click);
             // 
             // chkStereo
             // 
@@ -163,6 +165,7 @@
             this.chkStereo.TabIndex = 0;
             this.chkStereo.Text = "S&tereo System";
             this.chkStereo.UseVisualStyleBackColor = true;
+            this.chkStereo.Click += new System.EventHandler(this.chkOrRadio_Click);
             // 
             // label3
             // 
@@ -193,6 +196,7 @@
             this.radCustomDetail.TabIndex = 2;
             this.radCustomDetail.Text = "Custom &Detailing";
             this.radCustomDetail.UseVisualStyleBackColor = true;
+            this.radCustomDetail.Click += new System.EventHandler(this.chkOrRadio_Click);
             // 
             // radPearlized
             // 
@@ -203,6 +207,7 @@
             this.radPearlized.TabIndex = 1;
             this.radPearlized.Text = "Pearli&zed";
             this.radPearlized.UseVisualStyleBackColor = true;
+            this.radPearlized.Click += new System.EventHandler(this.chkOrRadio_Click);
             // 
             // radStandard
             // 
@@ -215,6 +220,7 @@
             this.radStandard.TabStop = true;
             this.radStandard.Text = "&Standard";
             this.radStandard.UseVisualStyleBackColor = true;
+            this.radStandard.Click += new System.EventHandler(this.chkOrRadio_Click);
             // 
             // lnkReset
             // 
@@ -225,6 +231,7 @@
             this.lnkReset.TabIndex = 7;
             this.lnkReset.TabStop = true;
             this.lnkReset.Text = "Reset Form";
+            this.lnkReset.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkReset_LinkClicked);
             // 
             // btnCalculate
             // 
@@ -426,10 +433,12 @@
             // 
             this.hsbInterestRate.LargeChange = 25;
             this.hsbInterestRate.Location = new System.Drawing.Point(124, 87);
-            this.hsbInterestRate.Maximum = 2500;
+            this.hsbInterestRate.Maximum = 2524;
             this.hsbInterestRate.Name = "hsbInterestRate";
             this.hsbInterestRate.Size = new System.Drawing.Size(65, 17);
             this.hsbInterestRate.TabIndex = 1;
+            this.hsbInterestRate.Value = 500;
+            this.hsbInterestRate.ValueChanged += new System.EventHandler(this.hsbInterestRate_ValueChanged);
             // 
             // lblMonthlyPayment
             // 
@@ -459,7 +468,8 @@
             this.hsbNoYears.Name = "hsbNoYears";
             this.hsbNoYears.Size = new System.Drawing.Size(63, 17);
             this.hsbNoYears.TabIndex = 0;
-            this.hsbNoYears.Value = 1;
+            this.hsbNoYears.Value = 3;
+            this.hsbNoYears.ValueChanged += new System.EventHandler(this.hsbNoYears_ValueChanged);
             // 
             // lblNoYears
             // 

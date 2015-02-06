@@ -15,6 +15,12 @@ namespace NETChrisUsick
     /// </summary>
     public partial class frmQuote : Form
     {
+        // object to hold the sales quote
+        private SalesQuote quote;
+
+        // true if summary has been set; used by chkOrRadio_Click
+        private bool summaryIsSet = false;
+
         /// <summary>
         /// constructs an instance of this form
         /// </summary>
@@ -129,45 +135,65 @@ namespace NETChrisUsick
         /// </summary>
         private void clearSummary()
         {
+            // set summaryIsSet to false
+            summaryIsSet = false;
             // clear lbls in summary group
+            foreach (Label label in grpSummary.Controls)
+            {
+                if (label.Name.StartsWith("lbl"))
+                {
+                    label.Text = String.Empty;
+                }
+            }
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             if (this.ValidateChildren())
             {
+                // set summaryIsSet to true
+                summaryIsSet = true;
+
                 // create a sales quote object
                 double salePrice = double.Parse(txtSalePrice.Text),
-                       tradIn    = double.Parse(txtTradeIn.Text),
+                       tradeIn    = double.Parse(txtTradeIn.Text),
                        taxRate   = 0;
                 SalesQuote.Accessories accessories;
                 SalesQuote.ExteriorFinish finish;
                 bool[] accesoryCheckboxes = {chkLeather.Checked, chkNavigation.Checked, chkStereo.Checked};
-                RadioButton[] finishRadios = {radCustomDetail, radPearlized, radStandard};
+                RadioButton[] finishRadios = {radStandard, radPearlized, radCustomDetail};
 
-                
-                //if (accesoryCheckboxes.SequenceEqual(new[] {true, true, true}))
-                //{
-                //    accessories = SalesQuote.Accessories.All;
-                //}
-                //else if (accesoryCheckboxes.SequenceEqual(new[] {true, false, true}))
-                //{
-                //    accessories = SalesQuote.Accessories.StereoAndLeather;
-                //}
-                //else if (accesoryCheckboxes.SequenceEqual(new[] {true, true, false}))
-                //{
-                //    accessories = SalesQuote.Accessories.LeatherAndNavigation;
-                //}
-                //else if (accesoryCheckboxes.SequenceEqual(new[] {false, true, true}))
-                //{
-                //    accessories = SalesQuote.Accessories.StereoAndNavigation;
-                //}
-                //else if (accesoryCheckboxes.SequenceEqual(new[] {true, false, true}))
-                //{
-                //    accessories = SalesQuote.Accessories
-                //}
+                // have to add 1 because ExteriorFinish has the option of None
+                finish = (SalesQuote.ExteriorFinish)Array.IndexOf(
+                    finishRadios,
+                    // select the first radio that is checked
+                    finishRadios.Where(rad => rad.Checked).First()) + 1;
+
                 accessories = getAccessories();
-                //SalesQuote quote = new SalesQuote(
+                quote = new SalesQuote(salePrice, tradeIn, taxRate, accessories, finish);
+
+                // set the summary labels
+                lblSalePrice.Text = salePrice.ToString("c");;
+                lblOptions.Text = (quote.AccessoryCost + quote.FinishCost).ToString("F2");
+                lblSubtotal.Text = quote.SubTotal.ToString("c");
+                lblSaleTax.Text = quote.SalesTax.ToString("F2");
+                lblTotal.Text = quote.Total.ToString("c");
+                lblTradeIn.Text = (tradeIn * -1).ToString("F2");
+                lblAmountDue.Text = quote.AmountDue.ToString("c");
+
+                // refocus to the sales textbox
+                refocus(txtSalePrice);
+
+                // enable finance section if amount due is greater than 0
+                if (quote.AmountDue > 0)
+                {
+                    grpFinance.Enabled = true;
+                    setFinanceSection();
+
+                    // initially display the noYears and interest rate
+                    hsbNoYears_ValueChanged(null, null);
+                    hsbInterestRate_ValueChanged(null, null);
+                }
             }
             else
             {
@@ -184,6 +210,32 @@ namespace NETChrisUsick
                     refocus(txtSalePrice);
                 }
             }
+        }
+
+        /// <summary>
+        /// set the finance section
+        /// </summary>
+        private void setFinanceSection()
+        {
+            // number of monthly periods
+            int periods = hsbNoYears.Value * 12;
+            
+            // set the scrollbar values to get them displayed.
+            //hsbNoYears_ValueChanged(null, null);
+            //hsbInterestRate_ValueChanged(null, null);
+
+            // set the monthly pament
+            lblMonthlyPayment.Text = AutomotiveManager.Payment(getInterestRate(), periods, quote.AmountDue).ToString("C");
+        }
+
+        /// <summary>
+        /// get the interest rate as a decimal
+        /// </summary>
+        /// <returns>the decimal interest rate</returns>
+        private double getInterestRate()
+        {
+            // divide by 100 * 100 to get to a decimal
+            return (double)hsbInterestRate.Value / 10000.00;
         }
 
         /// <summary>
@@ -232,5 +284,63 @@ namespace NETChrisUsick
             // focus on textbox
             textbox.Focus();
         }
+
+        private void hsbInterestRate_ValueChanged(object sender, EventArgs e)
+        {
+            lblInterestRate.Text = getInterestRate().ToString("p2");
+            setFinanceSection();
+        }
+
+        private void hsbNoYears_ValueChanged(object sender, EventArgs e)
+        {
+            lblNoYears.Text = hsbNoYears.Value.ToString();
+            setFinanceSection();
+        }
+
+        private void lnkReset_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // prompt the user if they want to reset the form
+            DialogResult close = AutomotiveManager.ShowMessage(
+                "Would you want to reset this sales quote?", 
+                "Sales Quote",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button2);
+            if (close == DialogResult.OK)
+            {
+                // clear summary
+                clearSummary();
+                
+                // reset finance section
+                lblNoYears.Text = String.Empty;
+                lblInterestRate.Text = String.Empty;
+                grpFinance.Enabled = true;
+
+                // set the correct default values
+                hsbNoYears.Value = 3;
+                hsbInterestRate.Value = 500;
+
+                // reset textboxes
+                TextBox[] txtboxes = new[] { txtSalePrice, txtTradeIn };
+                txtboxes.ToList().ForEach(textbox => textbox.Text = String.Empty);
+                
+                // reset checkboxes
+                CheckBox[] chkboxes = new[] { chkLeather, chkNavigation, chkStereo };
+                chkboxes.ToList().ForEach(box => box.Checked = false);
+                
+                // reset radio buttons
+                radStandard.Checked = true;
+            }
+        }
+
+        private void chkOrRadio_Click(object sender, EventArgs e)
+        {
+            if (summaryIsSet)
+            {
+                btnCalculate_Click(null, null);
+            }
+        }
+
+        
     }
 }
