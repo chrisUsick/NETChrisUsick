@@ -72,11 +72,15 @@ namespace NETChrisUsick
             // check for numeric
             if (!AutomotiveManager.IsNumeric(textbox.Text))
             {
+                // show the error message
                 errorProvider.SetError(textbox, "Must be numeric");
+
+                // cancel validating event 
                 e.Cancel = true;
             }
             else
             {
+                // input is numeric; remove the error message
                 errorProvider.SetError(textbox, String.Empty);
             }
         }
@@ -88,9 +92,14 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void txtSalePrice_Validating(object sender, CancelEventArgs e)
         {
+            // if the error on this element is empty, then the number is numeric
+            // also check that salePrice is greater than 0
             if (errorProvider.GetError(txtSalePrice) == String.Empty  && double.Parse(txtSalePrice.Text) <= 0)
             {
+                // show the error message
                 errorProvider.SetError(txtSalePrice, "Input must be greater than zero");
+
+                // cancel validating event
                 e.Cancel = true;
             }
         }
@@ -102,9 +111,14 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void txtTradeIn_Validating(object sender, CancelEventArgs e)
         {
+            // if the error is emtpy, then the input is numeric
+            // also, check if the input is greater than 0
             if (errorProvider.GetError(txtTradeIn) == String.Empty && double.Parse(txtTradeIn.Text) < 0)
             {
+                // show error message
                 errorProvider.SetError(txtTradeIn, "Input must be equal to or greater than 0");
+                
+                // cancel validating event
                 e.Cancel = true;
             }
         }
@@ -116,6 +130,7 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void control_Validated(object sender, EventArgs e)
         {
+            // clear validating error.
             errorProvider.SetError((TextBox)sender, String.Empty);
         }
 
@@ -304,7 +319,7 @@ namespace NETChrisUsick
                 "Would you want to reset this sales quote?", 
                 "Sales Quote",
                 MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Information,
+                MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2);
             if (close == DialogResult.OK)
             {
