@@ -63,16 +63,48 @@ namespace ChrisUsickTest
         //
         #endregion
 
+        /// <summary>
+        ///A test for FinishCost
+        ///</summary>
+        [TestMethod()]
+        public void FinishCostTestStandard()
+        {
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = new SalesQuote.Accessories();
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.Standard;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.FinishCost;
+            double expected = SalesQuote.Finish.STANDARD;
+            Assert.AreEqual(expected, actual);
+        }
 
-
-
+        /// <summary>
+        ///A test for FinishCost
+        ///</summary>
+        [TestMethod()]
+        public void FinishCostTestPearlized()
+        {
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = new SalesQuote.Accessories();
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.Pearlized;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.FinishCost;
+            double expected = SalesQuote.Finish.PEARLIZED;
+            Assert.AreEqual(expected, actual);
+        }
         
 
         /// <summary>
         ///A test for FinishCost
         ///</summary>
         [TestMethod()]
-        public void FinishCostTest()
+        public void FinishCostTestCustom()
         {
             double vehicleSalePrice = 0F;
             double tradeInValue = 0F; 
