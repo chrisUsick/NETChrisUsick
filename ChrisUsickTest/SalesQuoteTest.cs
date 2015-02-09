@@ -66,23 +66,7 @@ namespace ChrisUsickTest
 
 
 
-        /// <summary>
-        ///A test for AccessoryCost
-        ///</summary>
-        [TestMethod()]
-        public void AccessoryCostTest()
-        {
-            double vehicleSalePrice = 0F;
-            double tradeInValue = 0F; 
-            double salesTaxRate = 0F;
-            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.StereoAndNavigation; 
-            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.None; 
-            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen); 
-            double actual;
-            actual = target.AccessoryCost;
-            double expected = SalesQuote.Accessory.STEREO_SYSTEM + SalesQuote.Accessory.COMPUTER_NAVIGATION;
-            Assert.AreEqual(expected, actual);
-        }
+        
 
         /// <summary>
         ///A test for FinishCost
@@ -191,6 +175,152 @@ namespace ChrisUsickTest
             Assert.AreEqual(salesTaxRate, target.salesTaxRate);
             Assert.AreEqual(accessoriesChosen, target.accessoriesChosen);
             Assert.AreEqual(exteriorFinshChosen, target.exteriorFinishChosen);
+        }
+
+        /// <summary>
+        ///A test for AccessoryCost
+        ///</summary>
+        [TestMethod()]
+        public void AccessoryCostTestNone()
+        {
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.None;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.None;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.AccessoryCost;
+            double expected = 0;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for AccessoryCost
+        ///</summary>
+        [TestMethod()]
+        public void AccessoryCostTestStereoSystem()
+        {
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.StereoSystem;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.None;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.AccessoryCost;
+            double expected = SalesQuote.Accessory.STEREO_SYSTEM;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for AccessoryCost
+        ///</summary>
+        [TestMethod()]
+        public void AccessoryCostTestLeather()
+        {
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.LeatherInterior;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.None;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.AccessoryCost;
+            double expected = SalesQuote.Accessory.LEATHER_INTERIOR;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for AccessoryCost
+        ///</summary>
+        [TestMethod()]
+        public void AccessoryCostTestStereoLeather()
+        {
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.StereoAndLeather;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.None;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.AccessoryCost;
+            double expected = SalesQuote.Accessory.STEREO_SYSTEM + SalesQuote.Accessory.LEATHER_INTERIOR;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for AccessoryCost
+        ///</summary>
+        [TestMethod()]
+        public void AccessoryCostTestNavigation()
+        {
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.ComputerNavigation;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.None;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.AccessoryCost;
+            double expected = SalesQuote.Accessory.COMPUTER_NAVIGATION;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for AccessoryCost
+        ///</summary>
+        [TestMethod()]
+        public void AccessoryCostTestStereoAndNavigation()
+        {
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.StereoAndNavigation;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.None;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.AccessoryCost;
+            double expected = SalesQuote.Accessory.STEREO_SYSTEM + SalesQuote.Accessory.COMPUTER_NAVIGATION;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for AccessoryCost
+        ///</summary>
+        [TestMethod()]
+        public void AccessoryCostTestLeatherNav()
+        {
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.LeatherAndNavigation;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.None;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.AccessoryCost;
+            double expected = SalesQuote.Accessory.LEATHER_INTERIOR + SalesQuote.Accessory.COMPUTER_NAVIGATION;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for AccessoryCost
+        ///</summary>
+        [TestMethod()]
+        public void AccessoryCostTestAll()
+        {
+            double vehicleSalePrice = 0F;
+            double tradeInValue = 0F;
+            double salesTaxRate = 0F;
+            SalesQuote.Accessories accessoriesChosen = SalesQuote.Accessories.All;
+            SalesQuote.ExteriorFinish exteriorFinshChosen = SalesQuote.ExteriorFinish.None;
+            SalesQuote target = new SalesQuote(vehicleSalePrice, tradeInValue, salesTaxRate, accessoriesChosen, exteriorFinshChosen);
+            double actual;
+            actual = target.AccessoryCost;
+            double expected = SalesQuote.Accessory.LEATHER_INTERIOR + 
+                SalesQuote.Accessory.COMPUTER_NAVIGATION + 
+                SalesQuote.Accessory.STEREO_SYSTEM;
+            Assert.AreEqual(expected, actual);
         }
     }
 }

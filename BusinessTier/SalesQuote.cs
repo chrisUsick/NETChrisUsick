@@ -63,7 +63,9 @@ namespace BusinessTier
         private Accessories accessoriesChosen;
         private ExteriorFinish exteriorFinishChosen;
 
-        // read only property to get the cost of the accessory for this quote
+        /// <summary>
+        /// read only property to get the cost of the accessory for this quote
+        /// </summary>
         public double AccessoryCost
         {
             get
@@ -103,8 +105,10 @@ namespace BusinessTier
                 return cost; 
             }
         }
-
-        // read only property to get the cost of the exterior finish of the quote
+         
+        /// <summary>
+        /// read only property to get the cost of the exterior finish of the quote
+        /// </summary>
         public double FinishCost
         {
             get
@@ -133,8 +137,10 @@ namespace BusinessTier
                 return cost;
             }
         }
-
-        // read only property to get the sub total price of the quote
+        
+        /// <summary>
+        /// read only property to get the sub total price of the quote
+        /// </summary>
         public double SubTotal
         {
             get
@@ -144,7 +150,9 @@ namespace BusinessTier
             }
         }
 
-        // read-only property to get the sales tax
+        /// <summary>
+        /// read-only property to get the sales tax
+        /// </summary>
         public double SalesTax
         {
             get
@@ -154,7 +162,9 @@ namespace BusinessTier
             }
         }
 
-        // read-only property to get the Total cost of the quote
+        /// <summary>
+        ///  read-only property to get the Total cost of the quote
+        /// </summary>
         public double Total
         {
             get
@@ -164,7 +174,9 @@ namespace BusinessTier
             }
         }
 
-        // read ony property to get the amount due for the quote
+        /// <summary>
+        /// read ony property to get the amount due for the quote
+        /// </summary>
         public double AmountDue
         {
             get

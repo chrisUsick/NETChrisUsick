@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using BusinessTier;
+using System.Configuration;
 
 namespace NETChrisUsick
 {
@@ -15,10 +16,14 @@ namespace NETChrisUsick
     /// </summary>
     public partial class frmQuote : Form
     {
-        // object to hold the sales quote
+        /// <summary>
+        /// object to hold the sales quote
+        /// </summary>
         private SalesQuote quote;
 
-        // true if summary has been set; used by chkOrRadio_Click
+        /// <summary>
+        /// true if summary has been set; used by chkOrRadio_Click
+        /// </summary>
         private bool summaryIsSet = false;
 
         /// <summary>
@@ -141,8 +146,11 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void textbox_TextChanged(object sender, EventArgs e)
         {
+            // clear summary labels
             clearSummary();
-            grpFinance.Enabled = false;
+
+            // disable finance section
+            clearFinanceSection();
         }
 
         /// <summary>
@@ -152,40 +160,60 @@ namespace NETChrisUsick
         {
             // set summaryIsSet to false
             summaryIsSet = false;
+
             // clear lbls in summary group
             foreach (Label label in grpSummary.Controls)
             {
+                // the labels that need to be cleared have names
+                // starting with `lbl`
                 if (label.Name.StartsWith("lbl"))
                 {
+                    // clear the text in the label
                     label.Text = String.Empty;
                 }
             }
         }
 
+        /// <summary>
+        /// event handler to trigger the validation, create a new quote, 
+        /// and enable the finance section
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCalculate_Click(object sender, EventArgs e)
         {
+            // try to validate the textboxes
             if (this.ValidateChildren())
             {
                 // set summaryIsSet to true
                 summaryIsSet = true;
 
-                // create a sales quote object
+                # region create sales quote object 
+
+                // sales quote parameters
                 double salePrice = double.Parse(txtSalePrice.Text),
                        tradeIn    = double.Parse(txtTradeIn.Text),
-                       taxRate   = 0;
+                       taxRate   = Double.Parse(ConfigurationManager.AppSettings.Get("salesTaxRate"));
                 SalesQuote.Accessories accessories;
                 SalesQuote.ExteriorFinish finish;
-                bool[] accesoryCheckboxes = {chkLeather.Checked, chkNavigation.Checked, chkStereo.Checked};
+
+                // array of radio buttons
                 RadioButton[] finishRadios = {radStandard, radPearlized, radCustomDetail};
 
+                // get the finish from the radio buttons
                 // have to add 1 because ExteriorFinish has the option of None
                 finish = (SalesQuote.ExteriorFinish)Array.IndexOf(
                     finishRadios,
                     // select the first radio that is checked
                     finishRadios.Where(rad => rad.Checked).First()) + 1;
 
+                // get the selected accessories
                 accessories = getAccessories();
+
+                // create the sales quote object
                 quote = new SalesQuote(salePrice, tradeIn, taxRate, accessories, finish);
+
+                #endregion
 
                 // set the summary labels
                 lblSalePrice.Text = salePrice.ToString("c");;
@@ -214,17 +242,34 @@ namespace NETChrisUsick
             {
                 // clear summary
                 clearSummary();
-                grpFinance.Enabled = false;
+
+                // clear and disable finance section
+                clearFinanceSection();
+
                 // select the first item with an error;
                 if (errorProvider.GetError(txtSalePrice) == String.Empty)
                 {
+                    // set focus to txtTradeIn
                     refocus(txtTradeIn);
                 }
                 else
                 {
+                    // set focus to txtSalePrice
                     refocus(txtSalePrice);
                 }
             }
+        }
+
+        /// <summary>
+        /// disable finance groupbox, clear payment section
+        /// </summary>
+        private void clearFinanceSection()
+        {
+            // disable finance groupbox
+            grpFinance.Enabled = false;
+
+            // clear the payment lable
+            lblMonthlyPayment.Text = String.Empty;
         }
 
         /// <summary>
@@ -234,10 +279,6 @@ namespace NETChrisUsick
         {
             // number of monthly periods
             int periods = hsbNoYears.Value * 12;
-            
-            // set the scrollbar values to get them displayed.
-            //hsbNoYears_ValueChanged(null, null);
-            //hsbInterestRate_ValueChanged(null, null);
 
             // set the monthly pament
             lblMonthlyPayment.Text = AutomotiveManager.Payment(getInterestRate(), periods, quote.AmountDue).ToString("C");
@@ -259,10 +300,15 @@ namespace NETChrisUsick
         /// <returns>the Accesories the vehicle has</returns>
         private SalesQuote.Accessories getAccessories()
         {
-            int result = 0;
+            // result as an int
+            int result = -1;
+
+            // the check boxes to be tested
             CheckBox[] boxes = new[] {chkNavigation, chkLeather, chkStereo};
+
             // items in the array have the same index as their corresponding enumeration in 
-            // SalesQuote.Accessories
+            // SalesQuote.Accessories e.g. combinations[2] is a HashSet of chkLeather.
+            // casting 2 to the Accessories enumeration is the Leather option
             HashSet<CheckBox>[] combinations = {new HashSet<CheckBox>(new CheckBox[] {}),
                               new HashSet<CheckBox>( new[] { chkStereo }),
                               new HashSet<CheckBox>(new[] {chkLeather}),
@@ -272,19 +318,29 @@ namespace NETChrisUsick
                               new HashSet<CheckBox>(new[] {chkLeather,chkNavigation}),
                               new HashSet<CheckBox>(boxes)};
 
+            // a collection of the accessories that are set;
             IEnumerable<CheckBox> areChecked = 
                 from box in boxes
                 where box.Checked
                 select box;
 
-            for (int i = 0; i < combinations.Length; i++)
+            // the Hashset of selected accessories
+            HashSet<CheckBox> areCheckedHash = new HashSet<CheckBox>(areChecked);
+
+            // loop through the possible combinations
+            for (int i = 0; i < combinations.Length && result == -1; i++)
             {
+                // the current set to be compared the areCheckedHash
                 HashSet<CheckBox> set = combinations[i];
-                if (set.SetEquals(new HashSet<CheckBox>(areChecked)))
+
+                // if the current set and arecheckedHash are equals set result to the index
+                if (set.SetEquals(areCheckedHash))
                 {
                     result = i;
                 }
             }
+
+            // return the result casted to an Accessory
             return (SalesQuote.Accessories)result;
         }
 
@@ -296,32 +352,56 @@ namespace NETChrisUsick
         {
             // temorarily focus on something else
             lnkReset.Focus();
+
             // focus on textbox
             textbox.Focus();
         }
 
+        /// <summary>
+        /// handle the hsbInterestRate changed event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void hsbInterestRate_ValueChanged(object sender, EventArgs e)
         {
+            // set the text of get lblInterestRate to a percent with 2 degrees of percision
             lblInterestRate.Text = getInterestRate().ToString("p2");
+
+            // updates the payment field in the finance section
             setFinanceSection();
         }
 
+        /// <summary>
+        /// handle the hsbNoYears changed event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void hsbNoYears_ValueChanged(object sender, EventArgs e)
         {
+            // set the text of lblNoYears
             lblNoYears.Text = hsbNoYears.Value.ToString();
+
+            // update then payment field in the finance section
             setFinanceSection();
         }
 
+        /// <summary>
+        /// handle reseting the the sales quote form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lnkReset_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // prompt the user if they want to reset the form
-            DialogResult close = AutomotiveManager.ShowMessage(
+            DialogResult result = AutomotiveManager.ShowMessage(
                 "Would you want to reset this sales quote?", 
                 "Sales Quote",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2);
-            if (close == DialogResult.OK)
+
+            // if result is ok then reset the form
+            if (result == DialogResult.OK)
             {
                 // clear summary
                 clearSummary();
@@ -329,9 +409,10 @@ namespace NETChrisUsick
                 // reset finance section
                 lblNoYears.Text = String.Empty;
                 lblInterestRate.Text = String.Empty;
-                grpFinance.Enabled = true;
+                clearFinanceSection();
 
                 // set the correct default values
+                // for finance section
                 hsbNoYears.Value = 3;
                 hsbInterestRate.Value = 500;
 
@@ -348,10 +429,17 @@ namespace NETChrisUsick
             }
         }
 
+        /// <summary>
+        /// click event for handling click on checkboxes or radio buttons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chkOrRadio_Click(object sender, EventArgs e)
         {
+            // if the summary has been set
             if (summaryIsSet)
             {
+                // recalculate the quote
                 btnCalculate_Click(null, null);
             }
         }
