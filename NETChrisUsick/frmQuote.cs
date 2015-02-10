@@ -22,6 +22,22 @@ namespace NETChrisUsick
         private SalesQuote quote;
 
         /// <summary>
+        /// private variable to set whether the class is being tested or not
+        /// </summary>
+        private bool isBeingTested = false;
+
+        /// <summary>
+        /// public read only property to show if the class is being tested.
+        /// </summary>
+        public bool IsBeingTested
+        {
+            get
+            {
+                return isBeingTested;
+            }
+        }
+
+        /// <summary>
         /// true if summary has been set; used by chkOrRadio_Click
         /// </summary>
         private bool summaryIsSet = false;
@@ -393,7 +409,7 @@ namespace NETChrisUsick
         private void lnkReset_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // prompt the user if they want to reset the form
-            DialogResult result = AutomotiveManager.ShowMessage(
+            DialogResult result = (IsBeingTested) ? DialogResult.OK : AutomotiveManager.ShowMessage(
                 "Would you want to reset this sales quote?", 
                 "Sales Quote",
                 MessageBoxButtons.OKCancel,
@@ -417,8 +433,8 @@ namespace NETChrisUsick
                 hsbInterestRate.Value = 500;
 
                 // reset textboxes
-                TextBox[] txtboxes = new[] { txtSalePrice, txtTradeIn };
-                txtboxes.ToList().ForEach(textbox => textbox.Text = String.Empty);
+                txtSalePrice.Text = String.Empty;
+                txtTradeIn.Text = "0";
                 
                 // reset checkboxes
                 CheckBox[] chkboxes = new[] { chkLeather, chkNavigation, chkStereo };

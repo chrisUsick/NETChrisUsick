@@ -3,7 +3,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Linq;
 using BusinessTier;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace ChrisUsickTest
 {
@@ -468,7 +471,7 @@ namespace ChrisUsickTest
             //2. txtSalePrice is focussed
             bool FocusExpected = true;
             bool focusActual = target.txtSalePrice.Focused;
-            Assert.AreEqual(FocusExpected, focusActual);
+            Assert.AreEqual(FocusExpected, focusActual, "txtSalePrice isn't focused");
         }
 
         /// <summary> 
@@ -650,8 +653,104 @@ namespace ChrisUsickTest
             frmQuote_Accessor target = new frmQuote_Accessor(); // TODO: Initialize to an appropriate value
             object sender = null; // TODO: Initialize to an appropriate value
             EventArgs e = null; // TODO: Initialize to an appropriate value
+
+            // initial value
+            string notExpected = target.lblNoYears.Text;
+            string paymentNotExpected = target.lblMonthlyPayment.Text;
+
+            target.txtSalePrice.Text = "100";
+            target.btnCalculate_Click(null, null);
+
             target.hsbNoYears_ValueChanged(sender, e);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+
+            // value after text changed
+            string actual = target.lblNoYears.Text;
+            Assert.AreNotEqual(notExpected, actual, "lblNoYears didn't change");
+
+            // make sure payment changed
+            string paymentActual = target.lblMonthlyPayment.Text;
+            Assert.AreNotEqual(paymentNotExpected, paymentActual, "lblMonthly payment didn't change");
+            
+        }
+
+        /// <summary>
+        ///A test for lnkReset_LinkClicked
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void lnkReset_LinkClickedTest()
+        {
+            frmQuote_Accessor target = new frmQuote_Accessor();
+            target.isBeingTested = true;
+            object sender = null;
+            LinkLabelLinkClickedEventArgs e = null;
+            target.lnkReset_LinkClicked(sender, e);
+
+            // finance section
+            string emtpyExpected = String.Empty;
+            Assert.AreEqual(emtpyExpected, target.lblNoYears.Text, "no years label is wrong");
+            Assert.AreEqual(emtpyExpected, target.lblInterestRate.Text, "interest rate label is wrong");
+
+            int noYearsExpected = 3;
+            int interestRateExpected = 500;
+            Assert.AreEqual(noYearsExpected, target.hsbNoYears.Value, "no years HSB is wrong");
+            Assert.AreEqual(interestRateExpected, target.hsbInterestRate.Value, "interest rate HSB is wrong");
+
+            // text boxes
+            Assert.AreEqual(emtpyExpected, target.txtSalePrice.Text, "sale price is wrong");
+            string tradeInExpected = "0";
+            Assert.AreEqual(tradeInExpected, target.txtTradeIn.Text, "trade in is wrong");
+
+            // checkboxes
+            CheckBox[] checkboxes = new[] { target.chkLeather, target.chkNavigation, target.chkStereo };
+            int expectedLength = 0;
+            int actualLength = checkboxes.ToList().FindAll(elem => elem.Checked).Count;
+            Assert.AreEqual(expectedLength, actualLength, "checkboxes weren't reset correctly");
+
+            // radio buttons
+            IEnumerable<RadioButton> radios = new[] {target.radStandard, target.radPearlized, target.radCustomDetail};
+            RadioButton radioExpected = target.radStandard;
+            RadioButton radioActual = radios.First(rad => rad.Checked);
+            Assert.AreEqual(radioExpected, radioActual, "radio buttons weren't reset correctly");
+        }
+
+        /// <summary>
+        ///A test for IsBeingTested
+        ///</summary>
+        [TestMethod()]
+        public void IsBeingTestedTest()
+        {
+            frmQuote target = new frmQuote(); // TODO: Initialize to an appropriate value
+            bool expected = false;
+            bool actual;
+            actual = target.IsBeingTested;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for chkOrRadio_Click
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void chkOrRadio_ClickTest()
+        {
+            frmQuote_Accessor target = new frmQuote_Accessor(); 
+            object sender = null; 
+            EventArgs e = null;
+            // set the sale price
+            target.txtSalePrice.Text = "100";
+
+            // create a qote
+            target.btnCalculate_Click(null, null);
+            double notExpected = double.Parse(target.lblAmountDue.Text,NumberStyles.Currency);
+
+            // simulate a click event
+            target.radCustomDetail.Checked = true;
+
+            target.chkOrRadio_Click(sender, e);
+            // ensure there the old Amount due doesn't equal the new.
+            double actual = Double.Parse(target.lblAmountDue.Text, NumberStyles.Currency);
+            Assert.AreNotEqual(notExpected, actual); ;
         }
     }
 }
