@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using BusinessTier;
 using System.Configuration;
+using System.Globalization;
 
 namespace NETChrisUsick
 {
@@ -67,6 +68,14 @@ namespace NETChrisUsick
             // add textbox specific event handlers
             txtSalePrice.Validating += txtSalePrice_Validating;
             txtTradeIn.Validating += txtTradeIn_Validating;
+
+            // set the sale tax label
+            string formatString = "Sales Tax ({0}):";
+            string tax = Double.Parse(ConfigurationManager.AppSettings.Get("salesTaxRate")).ToString("p0");
+
+            // have to do this to get rid of space before percent symbol;
+            tax = tax.Replace(" ", "");
+            lblSalesTaxLabel.Text = String.Format(formatString, tax);
 
         }
 
@@ -297,11 +306,11 @@ namespace NETChrisUsick
             int periods = hsbNoYears.Value * 12;
 
             // set the monthly pament
-            lblMonthlyPayment.Text = AutomotiveManager.Payment(getInterestRate(), periods, quote.AmountDue).ToString("C");
+            lblMonthlyPayment.Text = AutomotiveManager.Payment(getInterestRate()/12, periods, quote.AmountDue).ToString("C");
         }
 
         /// <summary>
-        /// get the interest rate as a decimal
+        /// get the annual interest rate as a decimal
         /// </summary>
         /// <returns>the decimal interest rate</returns>
         private double getInterestRate()
@@ -410,7 +419,7 @@ namespace NETChrisUsick
         {
             // prompt the user if they want to reset the form
             DialogResult result = (IsBeingTested) ? DialogResult.OK : AutomotiveManager.ShowMessage(
-                "Would you want to reset this sales quote?", 
+                "Do you want to reset this sales quote?", 
                 "Sales Quote",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question,

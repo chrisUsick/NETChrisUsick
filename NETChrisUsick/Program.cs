@@ -15,7 +15,7 @@ namespace NETChrisUsick
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmQuote());
+            Application.Run(new frmFrame());
         }
     }
 }

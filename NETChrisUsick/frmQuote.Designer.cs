@@ -51,7 +51,7 @@
             this.lblTradeIn = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblSalesTaxLabel = new System.Windows.Forms.Label();
             this.lblSaleTax = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblSubtotal = new System.Windows.Forms.Label();
@@ -252,7 +252,7 @@
             this.grpSummary.Controls.Add(this.lblTradeIn);
             this.grpSummary.Controls.Add(this.label6);
             this.grpSummary.Controls.Add(this.lblTotal);
-            this.grpSummary.Controls.Add(this.label8);
+            this.grpSummary.Controls.Add(this.lblSalesTaxLabel);
             this.grpSummary.Controls.Add(this.lblSaleTax);
             this.grpSummary.Controls.Add(this.label7);
             this.grpSummary.Controls.Add(this.lblSubtotal);
@@ -322,14 +322,14 @@
             this.lblTotal.TabIndex = 8;
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label8
+            // lblSalesTaxLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(89, 135);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Sales Tax (13%): ";
+            this.lblSalesTaxLabel.AutoSize = true;
+            this.lblSalesTaxLabel.Location = new System.Drawing.Point(89, 135);
+            this.lblSalesTaxLabel.Name = "lblSalesTaxLabel";
+            this.lblSalesTaxLabel.Size = new System.Drawing.Size(60, 13);
+            this.lblSalesTaxLabel.TabIndex = 7;
+            this.lblSalesTaxLabel.Text = "Sales Tax: ";
             // 
             // lblSaleTax
             // 
@@ -511,6 +511,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSalePrice);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmQuote";
@@ -552,7 +553,7 @@
         private System.Windows.Forms.Label lblTradeIn;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblTotal;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblSalesTaxLabel;
         private System.Windows.Forms.Label lblSaleTax;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblSubtotal;
