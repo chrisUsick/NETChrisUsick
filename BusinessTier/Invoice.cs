@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BusinessTier
 {
-    abstract class Invoice
+    public abstract class Invoice
     {
         /// <summary>
         /// read only property to get the PST applied to this sale

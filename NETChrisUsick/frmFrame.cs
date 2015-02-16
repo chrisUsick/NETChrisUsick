@@ -94,5 +94,22 @@ namespace NETChrisUsick
             // set the title of the form to the info in appConfig
             this.Text = ConfigurationManager.AppSettings.Get("applicationName");
         }
+
+        /// <summary>
+        /// open a new service form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuFileOpenService_Click(object sender, EventArgs e)
+        {
+            // create a new service form
+            frmService serviceForm = new frmService();
+
+            // set the parent
+            serviceForm.MdiParent = this;
+
+            // show form
+            serviceForm.Show();
+        }
     }
 }

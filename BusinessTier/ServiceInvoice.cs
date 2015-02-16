@@ -8,19 +8,29 @@ namespace BusinessTier
     public class ServiceInvoice : Invoice
     {
         /// <summary>
+        /// the different types of cost to add
+        /// </summary>
+        public enum CostType
+        {
+            Labour,
+            Part,
+            Material
+        }
+
+        /// <summary>
         /// the cost of labour for this invoice
         /// </summary>
-        public double LabourCost { get; set; }
+        public double LabourCost { get; private set; }
 
         /// <summary>
         /// the cost of parts for this invoice
         /// </summary>
-        public double PartsCost { get; set; }
+        public double PartsCost { get; private set; }
 
         /// <summary>
         /// the cost of materials for this invoice
         /// </summary>
-        public double MaterialCost { get; set; }
+        public double MaterialCost { get; private set; }
 
         /// <summary>
         /// read only propertythe PST charged on this invoice
@@ -75,5 +85,29 @@ namespace BusinessTier
         /// <param name="gstRate">the GST to apply</param>
         public ServiceInvoice(double pstRate, double gstRate)
             : base(pstRate, gstRate) { }
+
+
+        /// <summary>
+        /// add cost to the invoice
+        /// </summary>
+        /// <param name="costType">type of cost to add</param>
+        /// <param name="cost">cost to add</param>
+        public void AddCost(CostType costType, double cost)
+        {
+            switch (costType)
+            {
+                case CostType.Labour:
+                    LabourCost += cost;
+                    break;
+                case CostType.Material:
+                    MaterialCost += cost;
+                    break;
+                case CostType.Part:
+                    PartsCost += cost;
+                    break;
+            }
+        }
     }
+
+    
 }

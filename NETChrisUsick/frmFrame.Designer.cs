@@ -50,6 +50,8 @@
             this.mnuWindowCascade = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileOpenService = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiOpenService = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMainToolbar.SuspendLayout();
             this.msMainMenu.SuspendLayout();
             this.SuspendLayout();
@@ -75,7 +77,8 @@
             // 
             this.tsiOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsiOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsiOpenSalesQuote});
+            this.tsiOpenSalesQuote,
+            this.tsiOpenService});
             this.tsiOpen.Image = global::NETChrisUsick.Properties.Resources.open;
             this.tsiOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsiOpen.Name = "tsiOpen";
@@ -86,7 +89,7 @@
             // 
             this.tsiOpenSalesQuote.Image = global::NETChrisUsick.Properties.Resources.quote;
             this.tsiOpenSalesQuote.Name = "tsiOpenSalesQuote";
-            this.tsiOpenSalesQuote.Size = new System.Drawing.Size(136, 22);
+            this.tsiOpenSalesQuote.Size = new System.Drawing.Size(152, 22);
             this.tsiOpenSalesQuote.Text = "Sales Quote";
             this.tsiOpenSalesQuote.Click += new System.EventHandler(this.mnuFileOpenSalesQuote_Click);
             // 
@@ -174,7 +177,8 @@
             // mnuFileOpen
             // 
             this.mnuFileOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuFileOpenSalesQuote});
+            this.mnuFileOpenSalesQuote,
+            this.mnuFileOpenService});
             this.mnuFileOpen.Image = global::NETChrisUsick.Properties.Resources.open;
             this.mnuFileOpen.Name = "mnuFileOpen";
             this.mnuFileOpen.Size = new System.Drawing.Size(152, 22);
@@ -215,7 +219,7 @@
             // 
             this.mnuWindowTile.Image = global::NETChrisUsick.Properties.Resources.tile;
             this.mnuWindowTile.Name = "mnuWindowTile";
-            this.mnuWindowTile.Size = new System.Drawing.Size(152, 22);
+            this.mnuWindowTile.Size = new System.Drawing.Size(118, 22);
             this.mnuWindowTile.Text = "&Tile";
             this.mnuWindowTile.Click += new System.EventHandler(this.mnuWindowTile_Click);
             // 
@@ -223,7 +227,7 @@
             // 
             this.mnuWindowLayer.Image = global::NETChrisUsick.Properties.Resources.layer;
             this.mnuWindowLayer.Name = "mnuWindowLayer";
-            this.mnuWindowLayer.Size = new System.Drawing.Size(152, 22);
+            this.mnuWindowLayer.Size = new System.Drawing.Size(118, 22);
             this.mnuWindowLayer.Text = "&Layer";
             this.mnuWindowLayer.Click += new System.EventHandler(this.mnuWindowLayer_Click);
             // 
@@ -231,7 +235,7 @@
             // 
             this.mnuWindowCascade.Image = global::NETChrisUsick.Properties.Resources.cascade;
             this.mnuWindowCascade.Name = "mnuWindowCascade";
-            this.mnuWindowCascade.Size = new System.Drawing.Size(152, 22);
+            this.mnuWindowCascade.Size = new System.Drawing.Size(118, 22);
             this.mnuWindowCascade.Text = "&Cascade";
             this.mnuWindowCascade.Click += new System.EventHandler(this.mnuWindowCascade_Click);
             // 
@@ -247,8 +251,24 @@
             // 
             this.mnuHelpAbout.Image = global::NETChrisUsick.Properties.Resources.about;
             this.mnuHelpAbout.Name = "mnuHelpAbout";
-            this.mnuHelpAbout.Size = new System.Drawing.Size(152, 22);
+            this.mnuHelpAbout.Size = new System.Drawing.Size(107, 22);
             this.mnuHelpAbout.Text = "&About";
+            // 
+            // mnuFileOpenService
+            // 
+            this.mnuFileOpenService.Image = global::NETChrisUsick.Properties.Resources.service;
+            this.mnuFileOpenService.Name = "mnuFileOpenService";
+            this.mnuFileOpenService.Size = new System.Drawing.Size(152, 22);
+            this.mnuFileOpenService.Text = "Service";
+            this.mnuFileOpenService.Click += new System.EventHandler(this.mnuFileOpenService_Click);
+            // 
+            // tsiOpenService
+            // 
+            this.tsiOpenService.Image = global::NETChrisUsick.Properties.Resources.service;
+            this.tsiOpenService.Name = "tsiOpenService";
+            this.tsiOpenService.Size = new System.Drawing.Size(152, 22);
+            this.tsiOpenService.Text = "Service";
+            this.tsiOpenService.Click += new System.EventHandler(this.mnuFileOpenService_Click);
             // 
             // frmFrame
             // 
@@ -296,6 +316,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuWindowCascade;
         private System.Windows.Forms.ToolStripMenuItem mnuHelp;
         private System.Windows.Forms.ToolStripMenuItem mnuHelpAbout;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileOpenService;
+        private System.Windows.Forms.ToolStripMenuItem tsiOpenService;
     }
 }
 
