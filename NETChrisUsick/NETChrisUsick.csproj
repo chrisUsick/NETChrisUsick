@@ -34,6 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -54,6 +56,12 @@
     <Compile Include="frmFrame.Designer.cs">
       <DependentUpon>frmFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInvoice.Designer.cs">
+      <DependentUpon>frmInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmQuote.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,16 +74,28 @@
     <Compile Include="frmService.Designer.cs">
       <DependentUpon>frmService.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmServiceInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServiceInvoice.Designer.cs">
+      <DependentUpon>frmServiceInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmFrame.resx">
       <DependentUpon>frmFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInvoice.resx">
+      <DependentUpon>frmInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmQuote.resx">
       <DependentUpon>frmQuote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmService.resx">
       <DependentUpon>frmService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServiceInvoice.resx">
+      <DependentUpon>frmServiceInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

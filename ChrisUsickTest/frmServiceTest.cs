@@ -2,6 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.ComponentModel;
+using BusinessTier;
+using System.Windows.Forms;
 
 namespace ChrisUsickTest
 {
@@ -301,10 +303,15 @@ namespace ChrisUsickTest
         {
             frmService_Accessor target = new frmService_Accessor(); 
             object sender = null;
-            EventArgs e = null;  
+            EventArgs e = null;
+            target.txtDescription.Text = "foo";
+            target.txtCost.Text = "10";
+            target.cboType.SelectedIndex = 0;
+            int rowsExpected = target.dgvServices.Rows.Count + 1;
             target.btnAdd_Click(sender, e);
-
+            int rowsActual = target.dgvServices.Rows.Count;
             // item added to data grid
+            Assert.AreEqual(rowsExpected, rowsActual, "row not added");
 
             // labels set
 
@@ -317,6 +324,182 @@ namespace ChrisUsickTest
             // can't test this because having an event handler on the enter event has strange side effects in
             // a testing environment. See frmSalesQuoteTest.btnCalculate_ClickTestValidates()
             //Assert.AreEqual(true, target.txtDescription.Focused, "didn't focus on txtDescription");
+        }
+
+        /// <summary>
+        ///A test for updateSummaryLabels
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void updateSummaryLabelsTest()
+        {
+            frmService_Accessor target = new frmService_Accessor(); // TODO: Initialize to an appropriate value
+            ServiceInvoice invoice = new ServiceInvoice(0.05, 0.08);
+            target.invoice = invoice;
+            // add a row to the datagrid
+            // this triggers the RowAdded event which calls updateSummaryLabels
+            target.dgvServices.Rows.Add(new[] { "1", "foo", target.cboType.Items[0].ToString(), "10" });
+            //target.updateSummaryLabels();
+
+            // make sure labels were set
+            string notExpected = string.Empty;
+            Assert.AreNotEqual(notExpected, target.lblSubtotal.Text);
+            Assert.AreNotEqual(notExpected, target.lblGST.Text);
+            Assert.AreNotEqual(notExpected, target.lblPST.Text);
+            Assert.AreNotEqual(notExpected, target.lblTotal);
+
+            // ensure row was added to invoice
+            double expected = 10;
+            double actual = invoice.SubTotal;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        /// <summary>
+        ///A test for dgvServices_RowsAdded
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void dgvServices_RowsAddedTest()
+        {
+            frmService_Accessor target = new frmService_Accessor(); // TODO: Initialize to an appropriate value
+            object sender = null; // TODO: Initialize to an appropriate value
+            DataGridViewRowsAddedEventArgs e = null; // TODO: Initialize to an appropriate value
+            target.invoice = new ServiceInvoice(0, 0);
+            target.dgvServices.Rows.Add(new[] { "1", "df", "Labour", "10" });
+            target.dgvServices_RowsAdded(sender, e);
+            bool expected = true;
+            bool actual = target.mnuServiceGenerateInvoice.Enabled;
+            
+            // items are enabled
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, target.mnuContextClear.Enabled); 
+            // assert summary label is updated.
+            string notExpected = string.Empty;
+            string subtotal = target.lblSubtotal.Text;
+            Assert.AreNotEqual(notExpected, subtotal);
+
+        }
+
+        /// <summary>
+        ///A test for dgvServices_RowsRemoved labels cleard
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void dgvServices_RowsRemovedTestClearLabels()
+        {
+            frmService_Accessor target = new frmService_Accessor(); // TODO: Initialize to an appropriate value
+            object sender = null; // TODO: Initialize to an appropriate value
+            DataGridViewRowsRemovedEventArgs e = null; // TODO: Initialize to an appropriate value
+            try
+            {
+                target.dgvServices.Rows.Add(new string[] { });
+            }
+            catch (NullReferenceException ex)
+            {
+            }
+            target.dgvServices_RowsRemoved(sender, e);
+            string expected = string.Empty;
+            string actual = target.lblSubtotal.Text;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for dgvServices_RowsRemoved rows left
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void dgvServices_RowsRemovedTestRowsLeft()
+        {
+            frmService_Accessor target = new frmService_Accessor(); // TODO: Initialize to an appropriate value
+            object sender = null; // TODO: Initialize to an appropriate value
+            DataGridViewRowsRemovedEventArgs e = null; // TODO: Initialize to an appropriate value
+            try
+            {
+                target.dgvServices.Rows.Add(new string[] { });
+                target.dgvServices.Rows.Add(new string[] { });
+            }
+            catch (NullReferenceException ex)
+            {
+            }
+            target.dgvServices_RowsRemoved(sender, e);
+            bool expected = true;
+            bool actualInvoice = target.mnuServiceGenerateInvoice.Enabled;
+            bool actualClear = target.mnuContextClear.Enabled;
+            Assert.AreEqual(expected, actualClear);
+            Assert.AreEqual(expected, actualInvoice);
+        }
+
+        /// <summary>
+        ///A test for dgvServices_RowsRemoved no rows left
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void dgvServices_RowsRemovedTestNoRowsLeft()
+        {
+            frmService_Accessor target = new frmService_Accessor(); // TODO: Initialize to an appropriate value
+            object sender = null; // TODO: Initialize to an appropriate value
+            DataGridViewRowsRemovedEventArgs e = null; // TODO: Initialize to an appropriate value
+            target.dgvServices_RowsRemoved(sender, e);
+            bool expected = false;
+            bool actualInvoice = target.mnuServiceGenerateInvoice.Enabled;
+            bool actualClear = target.mnuContextClear.Enabled;
+            Assert.AreEqual(expected, actualClear);
+            Assert.AreEqual(expected, actualInvoice);
+            
+        }
+
+        /// <summary>
+        ///A test for dgvServices_SelectionChanged
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void dgvServices_SelectionChangedTest()
+        {
+            frmService_Accessor target = new frmService_Accessor(); // TODO: Initialize to an appropriate value
+            object sender = null; // TODO: Initialize to an appropriate value
+            EventArgs e = null; // TODO: Initialize to an appropriate value
+            target.invoice = new ServiceInvoice(0, 0);
+            target.dgvServices.Rows.Add(new[] { "1", "foo", "Labour", "10" });
+            target.dgvServices.Rows[0].Cells[0].Selected = true;
+            int expected = 0;
+            target.dgvServices_SelectionChanged(sender, e);
+            int actual = target.dgvServices.SelectedCells.Count;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for mnuContextClear_Click
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void mnuContextClear_ClickTest()
+        {
+            frmService_Accessor target = new frmService_Accessor(); // TODO: Initialize to an appropriate value
+            object sender = null; // TODO: Initialize to an appropriate value
+            EventArgs e = null; // TODO: Initialize to an appropriate value
+            target.invoice = new ServiceInvoice(0, 0);
+            target.dgvServices.Rows.Add(new string[] {"1", "asdf", "Labour", "10"});
+            target.mnuContextClear_Click(sender, e);
+            double expected = 0;
+            double actual = target.dgvServices.Rows.Count;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for clearSummaryLabels
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("NETChrisUsick.exe")]
+        public void clearSummaryLabelsTest()
+        {
+            frmService_Accessor target = new frmService_Accessor(); // TODO: Initialize to an appropriate value
+            target.clearSummaryLabels();
+            string expected = string.Empty;
+            Assert.AreEqual(expected, target.lblSubtotal.Text);
+            Assert.AreEqual(expected, target.lblGST.Text);
+            Assert.AreEqual(expected, target.lblPST.Text);
+            Assert.AreEqual(expected, target.lblTotal.Text);
         }
     }
 }

@@ -41,6 +41,8 @@
             this.colItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCostType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colItemCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmsDgvService = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuContextClear = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblGST = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,6 +56,7 @@
             this.mnuService = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuServiceGenerateInvoice = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).BeginInit();
+            this.cmsDgvService.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.msServiceMenu.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +86,6 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(243, 20);
             this.txtDescription.TabIndex = 2;
-            this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
             this.txtDescription.Enter += new System.EventHandler(this.textbox_Enter);
             this.txtDescription.Validating += new System.ComponentModel.CancelEventHandler(this.txtDescription_Validating);
@@ -148,6 +150,7 @@
             this.colItemDescription,
             this.colCostType,
             this.colItemCost});
+            this.dgvServices.ContextMenuStrip = this.cmsDgvService;
             this.dgvServices.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvServices.Location = new System.Drawing.Point(13, 130);
             this.dgvServices.MultiSelect = false;
@@ -158,12 +161,16 @@
             this.dgvServices.Size = new System.Drawing.Size(495, 192);
             this.dgvServices.TabIndex = 7;
             this.dgvServices.TabStop = false;
+            this.dgvServices.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvServices_RowsAdded);
+            this.dgvServices.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvServices_RowsRemoved);
+            this.dgvServices.SelectionChanged += new System.EventHandler(this.dgvServices_SelectionChanged);
             // 
             // colItemNumber
             // 
             this.colItemNumber.HeaderText = "#";
             this.colItemNumber.Name = "colItemNumber";
             this.colItemNumber.ReadOnly = true;
+            this.colItemNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colItemNumber.Width = 40;
             // 
             // colItemDescription
@@ -171,6 +178,7 @@
             this.colItemDescription.HeaderText = "Description";
             this.colItemDescription.Name = "colItemDescription";
             this.colItemDescription.ReadOnly = true;
+            this.colItemDescription.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colItemDescription.Width = 235;
             // 
             // colCostType
@@ -178,6 +186,7 @@
             this.colCostType.HeaderText = "Type";
             this.colCostType.Name = "colCostType";
             this.colCostType.ReadOnly = true;
+            this.colCostType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colCostType.Width = 120;
             // 
             // colItemCost
@@ -185,6 +194,22 @@
             this.colItemCost.HeaderText = "Cost";
             this.colItemCost.Name = "colItemCost";
             this.colItemCost.ReadOnly = true;
+            this.colItemCost.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // cmsDgvService
+            // 
+            this.cmsDgvService.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuContextClear});
+            this.cmsDgvService.Name = "cmsDgvService";
+            this.cmsDgvService.Size = new System.Drawing.Size(102, 26);
+            // 
+            // mnuContextClear
+            // 
+            this.mnuContextClear.Enabled = false;
+            this.mnuContextClear.Name = "mnuContextClear";
+            this.mnuContextClear.Size = new System.Drawing.Size(101, 22);
+            this.mnuContextClear.Text = "Clear";
+            this.mnuContextClear.Click += new System.EventHandler(this.mnuContextClear_Click);
             // 
             // lblTotal
             // 
@@ -273,6 +298,7 @@
             this.msServiceMenu.Size = new System.Drawing.Size(520, 24);
             this.msServiceMenu.TabIndex = 16;
             this.msServiceMenu.Text = "menuStrip1";
+            this.msServiceMenu.Visible = false;
             // 
             // mnuService
             // 
@@ -290,6 +316,7 @@
             this.mnuServiceGenerateInvoice.Name = "mnuServiceGenerateInvoice";
             this.mnuServiceGenerateInvoice.Size = new System.Drawing.Size(162, 22);
             this.mnuServiceGenerateInvoice.Text = "Generate &Invoice";
+            this.mnuServiceGenerateInvoice.Click += new System.EventHandler(this.mnuServiceGenerateInvoice_Click);
             // 
             // frmService
             // 
@@ -320,9 +347,10 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmService";
-            this.Text = "frmService";
+            this.Text = "Service";
             this.Load += new System.EventHandler(this.frmService_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).EndInit();
+            this.cmsDgvService.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.msServiceMenu.ResumeLayout(false);
             this.msServiceMenu.PerformLayout();
@@ -349,13 +377,15 @@
         private System.Windows.Forms.Label lblSubtotal;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colItemNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colItemDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCostType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colItemCost;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.MenuStrip msServiceMenu;
         private System.Windows.Forms.ToolStripMenuItem mnuService;
         private System.Windows.Forms.ToolStripMenuItem mnuServiceGenerateInvoice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItemNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItemDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCostType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItemCost;
+        private System.Windows.Forms.ContextMenuStrip cmsDgvService;
+        private System.Windows.Forms.ToolStripMenuItem mnuContextClear;
     }
 }

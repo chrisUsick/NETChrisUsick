@@ -39,7 +39,7 @@ namespace BusinessTier
         {
             get 
             {
-                return SubTotal * PSTRate;
+                return (MaterialCost + PartsCost) * PSTRate;
             }
         }
 

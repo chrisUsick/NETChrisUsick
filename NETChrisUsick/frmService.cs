@@ -6,13 +6,25 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using BusinessTier;
+using System.Configuration;
+using System.Globalization;
 
 namespace NETChrisUsick
 {
     public partial class frmService : Form
     {
+        /// <summary>
+        /// variable to hold an invoice
+        /// </summary>
+        ServiceInvoice invoice;
+
+        /// <summary>
+        /// constructs a service form
+        /// </summary>
         public frmService()
         {
+            // initialize the UI
             InitializeComponent();
         }
 
@@ -115,7 +127,7 @@ namespace NETChrisUsick
         }
 
         /// <summary>
-        /// add a service to the 
+        /// add a service to the data grid view
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -123,17 +135,138 @@ namespace NETChrisUsick
         {
             if (this.ValidateChildren())
             {
+                // create an invoice
+                invoice = new ServiceInvoice(
+                    double.Parse(ConfigurationManager.AppSettings.Get("PST")),
+                    double.Parse(ConfigurationManager.AppSettings.Get("GST")));
+
                 // add item to data grid
+                int rowNum = dgvServices.Rows.Count + 1;
+                dgvServices.Rows.Add(new[] { 
+                    rowNum.ToString(), 
+                    txtDescription.Text, 
+                    cboType.SelectedItem.ToString(), 
+                    txtCost.Text.ToString() 
+                });
+
+                
 
                 // clear inputs
                 List<TextBox> tboxes = new List<TextBox>(new[] { txtCost, txtDescription });
                 tboxes.ForEach(textbox => textbox.Text = string.Empty);
 
+                // deselect the options in the combobox
                 cboType.SelectedIndex = -1;
 
                 // reset focus
                 txtDescription.Focus();
             }
+        }
+
+        /// <summary>
+        /// update summary labels 
+        /// </summary>
+        /// <exception cref="NullReferenceException">Throws if the columns of a given row weren't set</exception>
+        private void updateSummaryLabels()
+        {
+            // iterate over all rows in the datagridview
+            foreach (DataGridViewRow row in dgvServices.Rows)
+            {
+                // get values from row
+                string costTypeStr = row.Cells[2].Value.ToString();
+                double cost = double.Parse(row.Cells[3].Value.ToString());
+
+                // use new array to ensure proper casting. Can't rely on cbo.Types.Items
+                string[] typeItems = new[] {"Labour", "Parts", "Material"};
+
+                // index of the type from the row in the typeItems[]
+                int costTypePosition = Array.IndexOf(typeItems, costTypeStr);
+
+                // add the cost to the invoice
+                invoice.AddCost((ServiceInvoice.CostType)costTypePosition, cost);
+            }
+
+            // update labels
+            lblSubtotal.Text = invoice.SubTotal.ToString();
+            lblPST.Text = invoice.PSTCharged.ToString();
+            lblGST.Text = invoice.PSTCharged.ToString();
+            lblTotal.Text = invoice.Total.ToString();
+        }
+
+        /// <summary>
+        /// enable the generate invoice menu item if it doesn't exist already
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvServices_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            // enable generate invoice
+            mnuServiceGenerateInvoice.Enabled = true;
+
+            // endable context menu
+            mnuContextClear.Enabled = true;
+
+            // update summary labels
+            updateSummaryLabels();
+        }
+
+        /// <summary>
+        /// disable the generate invoice menu item if there are no more rows
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvServices_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            // if the count is greater than 0, enable the menu item
+            mnuServiceGenerateInvoice.Enabled = mnuContextClear.Enabled = (dgvServices.Rows.Count > 0);
+
+            // clear summary labels
+            clearSummaryLabels();
+        }
+
+        private void clearSummaryLabels()
+        {
+            List<Label> labels = new List<Label>(new[] { lblSubtotal, lblTotal, lblPST, lblGST });
+            labels.ForEach(label => label.Text = string.Empty); 
+        }
+
+        /// <summary>
+        /// prevent cell selection from displaying on dgvServices
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvServices_SelectionChanged(object sender, EventArgs e)
+        {
+            // clear selection
+            dgvServices.ClearSelection(); 
+        }
+
+        /// <summary>
+        /// clear rows from  the data grid view. Also refocus cursor and clear sumary labels
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuContextClear_Click(object sender, EventArgs e)
+        {
+            // remove rows
+            dgvServices.Rows.Clear();
+        }
+
+        /// <summary>
+        /// create a new invoice form display it in the MDI fram
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuServiceGenerateInvoice_Click(object sender, EventArgs e)
+        {
+            // create form
+            frmInvoice invoiceForm = new frmServiceInvoice(invoice);
+
+            // set parent
+            invoiceForm.MdiParent = MdiParent;
+            
+            // show the new form
+            invoiceForm.Show();
         }
     }
 }

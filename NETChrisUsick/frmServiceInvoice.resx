@@ -117,25 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="errorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="colItemNumber.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="colItemDescription.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="colCostType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="colItemCost.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cmsDgvService.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>294, 19</value>
-  </metadata>
-  <metadata name="msServiceMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>140, 17</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAA
+        AAD///8A////ADQ0DlkyMgx3Li4JHjIyDHcuLgkeMjIMdy4uCR4yMgx3Li4JHjIyDHc0NA5Z////AP//
+        /wD///8A////AP///wBFRR90+fnp/zU1EHbz8+L/NTUQdvPz4v81NRB28/Pi/zU1EHb5+en/RUUfdP//
+        /wD///8A////AP///wD///8AXV02cfT05P/09OT/6OjY//T05P/o6Nj/9PTk/+jo2P/09OT/9PTk/11d
+        NnH///8A////AP///wD///8A////AGxsRW/09Ob/6enb/+np2//p6dv/6enb/+np2//p6dv/6enb//T0
+        5v9sbEVv////AP///wD///8A////AP///wBzc0tu9fXo/+vr3v/r697/6+ve/+vr3v/r697/6+ve/+vr
+        3v/19ej/c3NLbv///wD///8A////AP///wD///8AeXlRbfb26/+9vaz/vb2s/87Ovf/GxrX/7e3h/+3t
+        4f/t7eH/9vbr/3l5UW3///8A////AP///wD///8A////AH9/V2z4+O3/4eHQ/+Hh0P/h4dD/4eHQ//Dw
+        5f/w8OX/8PDl//j47f9/f1ds////AP///wD///8A////AP///wCFhV1r+fnw/8LCsf/CwrH/wsKx/8LC
+        sf/T08L/09PC/8vLuv/5+fD/hYVda////wD///8A////AP///wD///8Ai4tia/r68v/m5tX/5ubV/+bm
+        1f/m5tX/5ubV/+bm1f/m5tX/+vry/4uLYmv///8A////AP///wD///8A////AJGRZ2r7+/X/x8e2/9jY
+        x//Hx7b/x8e2/8fHtv/Y2Mf/0NC///v79f+RkWdq////AP///wD///8A////AP///wCWlmxp/Pz4/+zs
+        2//s7Nv/7Ozb/+zs2//5+fT/+fn0//n59P/8/Pj/lpZsaf///wD///8A////AP///wD///8AmppxaP39
+        +v/MzLv/zMy7/93dzP/V1cT/+/v3//v79//7+/f//f36/5qacWj///8A////AP///wD///8A////AJ+f
+        dWj+/vz//Pz6//z8+v/8/Pr//Pz6//z8+v/8/Pr//Pz6//7+/P+fn3Vo////AP///wD///8A////AP//
+        /wCjo3ln///+//7+/f/+/v3//v79//7+/f/+/v3//v79//7+/f////7/o6N5Z////wD///8A////AP//
+        /wD///8Ap6d9Z/////9+flRm/////35+VGb/////fn5UZv////9+flRm/////6enfWf///8A////AP//
+        /wD///8A////AKqqgE2qqoBmqqqAGqqqgGaqqoAaqqqAZqqqgBqqqoBmqqqAGqqqgGaqqoBN////AP//
+        /wD///8AwAcAAMAHAADABwAAwAcAAMAHAADABwAAwAcAAMAHAADABwAAwAcAAMAHAADABwAAwAcAAMAH
+        AADABwAAwAcAAA==
+</value>
+  </data>
 </root>

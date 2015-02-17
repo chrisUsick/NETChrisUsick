@@ -120,6 +120,7 @@ namespace ChrisUsickTest
             double gstRate = 0F; // TODO: Initialize to an appropriate value
             ServiceInvoice target = new ServiceInvoice(pstRate, gstRate); // TODO: Initialize to an appropriate value
             target.AddCost(ServiceInvoice.CostType.Labour, 10);
+            target.AddCost(ServiceInvoice.CostType.Part, 10);
             double expected = 10 * 0.1;
             double actual;
             actual = target.PSTCharged;
@@ -221,7 +222,7 @@ namespace ChrisUsickTest
             ServiceInvoice target = new ServiceInvoice(pstRate, gstRate); // TODO: Initialize to an appropriate value
             target.AddCost(ServiceInvoice.CostType.Labour, 10);
             target.AddCost(ServiceInvoice.CostType.Material, 10);
-            double expected = 20 * 1.1;
+            double expected = 10 * 1.1 + 10;
             double actual;
             actual = target.Total;
             Assert.AreEqual(expected, actual);
