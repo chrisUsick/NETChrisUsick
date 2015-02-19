@@ -5,6 +5,9 @@ using System.Text;
 
 namespace BusinessTier
 {
+    /// <summary>
+    /// An abstract class to represent an invoice
+    /// </summary>
     public abstract class Invoice
     {
         /// <summary>

@@ -12,6 +12,9 @@ using System.Globalization;
 
 namespace NETChrisUsick
 {
+    /// <summary>
+    /// a form for creating a service invoice
+    /// </summary>
     public partial class frmService : Form
     {
         /// <summary>
@@ -60,7 +63,7 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void txtDescription_Validating(object sender, CancelEventArgs e)
         {
-            if (txtDescription.Text == string.Empty)
+            if (txtDescription.Text.Trim() == string.Empty)
             {
                 errorProvider.SetError(txtDescription, "Please enter a description");
                 e.Cancel = true;
@@ -76,17 +79,6 @@ namespace NETChrisUsick
         {
             // clear the error;
             errorProvider.SetError((Control)sender, string.Empty);
-        }
-
-        /// <summary>
-        /// remove whitespace from txtDescription
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtDescription_TextChanged(object sender, EventArgs e)
-        {
-            // trim all white-space
-            txtDescription.Text = txtDescription.Text.Trim();
         }
 
         /// <summary>
@@ -144,9 +136,9 @@ namespace NETChrisUsick
                 int rowNum = dgvServices.Rows.Count + 1;
                 dgvServices.Rows.Add(new[] { 
                     rowNum.ToString(), 
-                    txtDescription.Text, 
+                    txtDescription.Text.Trim(), 
                     cboType.SelectedItem.ToString(), 
-                    txtCost.Text.ToString() 
+                    double.Parse(txtCost.Text).ToString("c") 
                 });
 
                 
@@ -174,7 +166,7 @@ namespace NETChrisUsick
             {
                 // get values from row
                 string costTypeStr = row.Cells[2].Value.ToString();
-                double cost = double.Parse(row.Cells[3].Value.ToString());
+                double cost = double.Parse(row.Cells[3].Value.ToString(), NumberStyles.Currency);
 
                 // use new array to ensure proper casting. Can't rely on cbo.Types.Items
                 string[] typeItems = new[] {"Labour", "Parts", "Material"};
@@ -187,10 +179,10 @@ namespace NETChrisUsick
             }
 
             // update labels
-            lblSubtotal.Text = invoice.SubTotal.ToString();
-            lblPST.Text = invoice.PSTCharged.ToString();
-            lblGST.Text = invoice.PSTCharged.ToString();
-            lblTotal.Text = invoice.Total.ToString();
+            lblSubtotal.Text = invoice.SubTotal.ToString("c");
+            lblPST.Text = invoice.PSTCharged.ToString("f2");
+            lblGST.Text = invoice.PSTCharged.ToString("f2");
+            lblTotal.Text = invoice.Total.ToString("c");
         }
 
         /// <summary>

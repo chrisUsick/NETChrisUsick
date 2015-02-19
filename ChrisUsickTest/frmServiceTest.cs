@@ -169,23 +169,6 @@ namespace ChrisUsickTest
         }
 
         /// <summary>
-        ///A test for txtDescription_TextChanged
-        ///</summary>
-        [TestMethod()]
-        [DeploymentItem("NETChrisUsick.exe")]
-        public void txtDescription_TextChangedTest()
-        {
-            frmService_Accessor target = new frmService_Accessor(); // TODO: Initialize to an appropriate value
-            object sender = null; // TODO: Initialize to an appropriate value
-            EventArgs e = null; // TODO: Initialize to an appropriate value
-            target.txtDescription.Text = "  d ";
-            int expected = 1;
-            target.txtDescription_TextChanged(sender, e);
-            int actual = target.txtDescription.Text.Length;
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>
         ///A test for cboType_Validating fail
         ///</summary>
         [TestMethod()]
@@ -304,7 +287,7 @@ namespace ChrisUsickTest
             frmService_Accessor target = new frmService_Accessor(); 
             object sender = null;
             EventArgs e = null;
-            target.txtDescription.Text = "foo";
+            target.txtDescription.Text = "  foo";
             target.txtCost.Text = "10";
             target.cboType.SelectedIndex = 0;
             int rowsExpected = target.dgvServices.Rows.Count + 1;
@@ -313,7 +296,10 @@ namespace ChrisUsickTest
             // item added to data grid
             Assert.AreEqual(rowsExpected, rowsActual, "row not added");
 
-            // labels set
+            // make sure description was trimmed
+            int expectedLength = 3;
+            int actualLength = target.dgvServices.Rows[0].Cells[1].Value.ToString().Length;
+            Assert.AreEqual(expectedLength, actualLength);
 
             // inputs cleared
             Assert.AreEqual(string.Empty, target.txtDescription.Text);
@@ -374,7 +360,7 @@ namespace ChrisUsickTest
             // items are enabled
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expected, target.mnuContextClear.Enabled); 
-            // assert summary label is updated.
+            // assert summary labels are updated.
             string notExpected = string.Empty;
             string subtotal = target.lblSubtotal.Text;
             Assert.AreNotEqual(notExpected, subtotal);
@@ -391,13 +377,9 @@ namespace ChrisUsickTest
             frmService_Accessor target = new frmService_Accessor(); // TODO: Initialize to an appropriate value
             object sender = null; // TODO: Initialize to an appropriate value
             DataGridViewRowsRemovedEventArgs e = null; // TODO: Initialize to an appropriate value
-            try
-            {
-                target.dgvServices.Rows.Add(new string[] { });
-            }
-            catch (NullReferenceException ex)
-            {
-            }
+            target.invoice = new ServiceInvoice(0, 0);
+            target.dgvServices.Rows.Add(new string[] {"1", "asfdf", "Labour", "10" });
+            
             target.dgvServices_RowsRemoved(sender, e);
             string expected = string.Empty;
             string actual = target.lblSubtotal.Text;
@@ -406,6 +388,8 @@ namespace ChrisUsickTest
 
         /// <summary>
         ///A test for dgvServices_RowsRemoved rows left
+        /// Theoretically this wouldn't happen in the application but it could happen if 
+        /// new functionality was added.
         ///</summary>
         [TestMethod()]
         [DeploymentItem("NETChrisUsick.exe")]
@@ -414,14 +398,11 @@ namespace ChrisUsickTest
             frmService_Accessor target = new frmService_Accessor(); // TODO: Initialize to an appropriate value
             object sender = null; // TODO: Initialize to an appropriate value
             DataGridViewRowsRemovedEventArgs e = null; // TODO: Initialize to an appropriate value
-            try
-            {
-                target.dgvServices.Rows.Add(new string[] { });
-                target.dgvServices.Rows.Add(new string[] { });
-            }
-            catch (NullReferenceException ex)
-            {
-            }
+            target.invoice = new ServiceInvoice(0, 0);
+
+            target.dgvServices.Rows.Add(new string[] { "1", "asfdf", "Labour", "10" });
+            target.dgvServices.Rows.Add(new string[] { "2", "attudf", "Parts", "16" });
+            
             target.dgvServices_RowsRemoved(sender, e);
             bool expected = true;
             bool actualInvoice = target.mnuServiceGenerateInvoice.Enabled;

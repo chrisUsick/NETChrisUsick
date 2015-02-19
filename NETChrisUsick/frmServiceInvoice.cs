@@ -9,6 +9,9 @@ using BusinessTier;
 
 namespace NETChrisUsick
 {
+    /// <summary>
+    /// a service invoice form. Used for having a printable summary of an invoice
+    /// </summary>
     public partial class frmServiceInvoice : NETChrisUsick.frmInvoice
     {
 
@@ -46,7 +49,9 @@ namespace NETChrisUsick
             // loop through the parallel arrays and assign values
             for (int i = 0; i < labels.Length; i++)
             {
-                labels[i].Text = values[i].ToString("c");
+                int[] currencyItems = new [] {0,3,6};
+                string formatter = (Array.IndexOf(currencyItems, i) == -1) ? "f2" : "c";
+                labels[i].Text = values[i].ToString(formatter);
             }
         }
     }

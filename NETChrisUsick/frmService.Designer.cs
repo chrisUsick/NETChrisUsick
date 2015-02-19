@@ -86,7 +86,6 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(243, 20);
             this.txtDescription.TabIndex = 2;
-            this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
             this.txtDescription.Enter += new System.EventHandler(this.textbox_Enter);
             this.txtDescription.Validating += new System.ComponentModel.CancelEventHandler(this.txtDescription_Validating);
             this.txtDescription.Validated += new System.EventHandler(this.control_Validated);

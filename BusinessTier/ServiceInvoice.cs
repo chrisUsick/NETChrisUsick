@@ -5,6 +5,9 @@ using System.Text;
 
 namespace BusinessTier
 {
+    /// <summary>
+    /// an invoice class for service invoices
+    /// </summary>
     public class ServiceInvoice : Invoice
     {
         /// <summary>
@@ -33,7 +36,7 @@ namespace BusinessTier
         public double MaterialCost { get; private set; }
 
         /// <summary>
-        /// read only propertythe PST charged on this invoice
+        /// read only property storing the PST charged on this invoice
         /// </summary>
         public override double PSTCharged
         {
@@ -44,7 +47,7 @@ namespace BusinessTier
         }
 
         /// <summary>
-        /// read only property the GST charged on this invoice
+        /// read only property storing the GST charged on this invoice
         /// </summary>
         public override double GSTCharged
         {
