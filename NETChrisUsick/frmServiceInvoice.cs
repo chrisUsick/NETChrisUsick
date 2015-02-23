@@ -46,6 +46,8 @@ namespace NETChrisUsick
             double[] values = new[] {invoice.LabourCost, invoice.PartsCost, invoice.MaterialCost, invoice.SubTotal,
                 invoice.PSTCharged, invoice.GSTCharged, invoice.Total};
             
+            // set title
+            Text = "Service Invoice";
             // loop through the parallel arrays and assign values
             for (int i = 0; i < labels.Length; i++)
             {
