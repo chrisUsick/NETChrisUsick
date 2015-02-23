@@ -53,6 +53,9 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void mnuFilePrint_Click(object sender, EventArgs e)
         {
+            // set the border to none
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+
             // open the print dialog
             printForm.Print(this, Microsoft.VisualBasic.PowerPacks.Printing.PrintForm.PrintOption.ClientAreaOnly);
         }
