@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Reflection;
+using System.IO;
+using System.Configuration;
 
 namespace NETChrisUsick
 {
@@ -81,6 +84,84 @@ namespace NETChrisUsick
         {
             // if the class is being tested return messagBoxResult, display a message box
             return isBeingTested ? messageBoxResult : MessageBox.Show(text, caption, buttons, icon, defaultButton);
+        }
+
+        /// <summary>
+        /// write an error to the error log
+        /// </summary>
+        /// <param name="exception">The exception that should be logged</param>
+        /// <param name="message">
+        /// Optional, the message to be placed before the stack trace.
+        /// Defaults the the exception message
+        /// </param>
+        public static void LogError(Exception exception, string message = null)
+        {
+            try
+            {
+                // get the assembly
+                Assembly assembly = Assembly.GetExecutingAssembly();
+
+                // get the namespace of the current assembly
+                string nameSpace = assembly.GetName().Name.ToString();
+
+                // get the log file name
+                string logName = ConfigurationManager.AppSettings.Get("logFile");
+
+                // create the stream to the file
+                Stream fileStream = assembly.GetManifestResourceStream(
+                    nameSpace + "." + logName);
+
+                // create the writer object
+                StreamWriter writer = (IsBeingTested) 
+                    ? new StreamWriter(logName)
+                    : new StreamWriter(fileStream);
+
+                // add the log
+                writer.WriteLine("Date: " + DateTime.Now.ToShortDateString());
+                writer.WriteLine("Time: " + DateTime.Now.ToShortTimeString());
+                message = (message == null) ? exception.Message : message;
+                writer.WriteLine("Message: " + message);
+                writer.WriteLine("Stack Trace: " + exception.StackTrace);
+                writer.Close();
+            }
+            catch (Exception e)
+            {
+                ShowMessage("Error writing to the error log",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        /// <summary>
+        /// log an exception and show a message box 
+        /// </summary>
+        /// <param name="exception">Exception passed to LogError</param>
+        /// <param name="message">MessageBox message</param>
+        /// <param name="caption">MessageBox caption</param>
+        /// <returns>The result of the Message box</returns>
+        public static DialogResult LogErrorWithMessage(Exception exception, string message, string caption)
+        {
+            return LogErrorWithMessage(exception, null, message, caption);
+        }
+
+        /// <summary>
+        /// log an exception and show a message box 
+        /// </summary>
+        /// <param name="exception">Exception passed to LogError</param>
+        /// <param name="logMessage">The log message, passed to LogError</param>
+        /// <param name="message">MessageBox message</param>
+        /// <param name="caption">MessageBox caption</param>
+        /// <returns>The result of the Message box</returns>
+        public static DialogResult LogErrorWithMessage(Exception exception, string logMessage, string message, string caption)
+        {
+            LogError(exception, logMessage);
+            return ShowMessage(message,
+                caption,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error,
+                MessageBoxDefaultButton.Button1);
         }
     }
 }

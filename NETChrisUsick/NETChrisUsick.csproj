@@ -50,6 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutomotiveManager.cs" />
+    <Compile Include="frmCarWash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCarWash.Designer.cs">
+      <DependentUpon>frmCarWash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCarWashInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCarWashInvoice.Designer.cs">
+      <DependentUpon>frmCarWashInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFrame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +94,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmCarWash.resx">
+      <DependentUpon>frmCarWash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCarWashInvoice.resx">
+      <DependentUpon>frmCarWashInvoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFrame.resx">
       <DependentUpon>frmFrame.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +192,18 @@
       <Project>{81F48F76-0552-4CA2-9A8F-16F9D619BC04}</Project>
       <Name>BusinessTier</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Exterior.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\FragranceData.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Interior.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\PackageData.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -61,9 +61,21 @@ namespace BusinessTier
             }
         }
 
+        /// <summary>
+        /// constructor which create an invoice with just the tax rates
+        /// </summary>
+        /// <param name="pstRate">PST rate for this invoice </param>
+        /// <param name="gstRate">GST rate for this invoice</param>
         public CarWashInvoice(double pstRate, double gstRate)
             : base(pstRate, gstRate) { }
 
+        /// <summary>
+        /// returns an invoice with the tax rates plus the item costs.
+        /// </summary>
+        /// <param name="pstRate">PST rate for this invoice</param>
+        /// <param name="gstRate">GST rate for this invoice</param>
+        /// <param name="packageCost">The package cost of the invoice</param>
+        /// <param name="fragranceCost">the Fragrance cost of the invoice</param>
         public CarWashInvoice(double pstRate, double gstRate, double packageCost, double fragranceCost)
             : this(pstRate, gstRate)
         {

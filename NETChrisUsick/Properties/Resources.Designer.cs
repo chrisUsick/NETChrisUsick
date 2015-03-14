@@ -131,6 +131,46 @@ namespace NETChrisUsick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hand Wash
+        ///Hand Wax
+        ///Check Engine Fluid
+        ///Detail Engine Compartment
+        ///.
+        /// </summary>
+        internal static string Exterior {
+            get {
+                return ResourceManager.GetString("Exterior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hawaiian Mist,2.75
+        ///Baby Powder,1.50
+        ///Pine,0.00
+        ///Country Floral,2.25
+        ///Pina Colada,0.75
+        ///Vanilla,2.00.
+        /// </summary>
+        internal static string FragranceData {
+            get {
+                return ResourceManager.GetString("FragranceData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fragrance
+        ///Shampoo Carpets
+        ///Interior Protection Coat
+        ///Shampoo Upholstery
+        ///.
+        /// </summary>
+        internal static string Interior {
+            get {
+                return ResourceManager.GetString("Interior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon invoiceicon {
@@ -157,6 +197,19 @@ namespace NETChrisUsick.Properties {
             get {
                 object obj = ResourceManager.GetObject("open", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard,7.50
+        ///Deluxe,15.00
+        ///Executive,35.00
+        ///Luxury,55.00
+        ///.
+        /// </summary>
+        internal static string PackageData {
+            get {
+                return ResourceManager.GetString("PackageData", resourceCulture);
             }
         }
         

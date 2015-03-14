@@ -111,5 +111,17 @@ namespace NETChrisUsick
             // show form
             serviceForm.Show();
         }
+
+        private void mnuFileOpenCarWash_Click(object sender, EventArgs e)
+        {
+            // create a new car wash form
+            frmCarWash carWashForm = new frmCarWash();
+
+            // set the mdi parent
+            carWashForm.MdiParent = this;
+
+            //show the form
+            carWashForm.Show();
+        }
     }
 }

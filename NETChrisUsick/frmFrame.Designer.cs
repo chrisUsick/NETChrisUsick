@@ -31,6 +31,7 @@
             this.tsMainToolbar = new System.Windows.Forms.ToolStrip();
             this.tsiOpen = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsiOpenSalesQuote = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsiOpenService = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsiTile = new System.Windows.Forms.ToolStripButton();
             this.tsiLayer = new System.Windows.Forms.ToolStripButton();
@@ -42,6 +43,8 @@
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFileOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFileOpenSalesQuote = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileOpenService = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileOpenCarWash = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuWindow = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,8 +53,6 @@
             this.mnuWindowCascade = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuFileOpenService = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsiOpenService = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMainToolbar.SuspendLayout();
             this.msMainMenu.SuspendLayout();
             this.SuspendLayout();
@@ -89,9 +90,17 @@
             // 
             this.tsiOpenSalesQuote.Image = global::NETChrisUsick.Properties.Resources.quote;
             this.tsiOpenSalesQuote.Name = "tsiOpenSalesQuote";
-            this.tsiOpenSalesQuote.Size = new System.Drawing.Size(152, 22);
+            this.tsiOpenSalesQuote.Size = new System.Drawing.Size(136, 22);
             this.tsiOpenSalesQuote.Text = "Sales Quote";
             this.tsiOpenSalesQuote.Click += new System.EventHandler(this.mnuFileOpenSalesQuote_Click);
+            // 
+            // tsiOpenService
+            // 
+            this.tsiOpenService.Image = global::NETChrisUsick.Properties.Resources.service;
+            this.tsiOpenService.Name = "tsiOpenService";
+            this.tsiOpenService.Size = new System.Drawing.Size(136, 22);
+            this.tsiOpenService.Text = "Service";
+            this.tsiOpenService.Click += new System.EventHandler(this.mnuFileOpenService_Click);
             // 
             // toolStripSeparator1
             // 
@@ -178,7 +187,8 @@
             // 
             this.mnuFileOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFileOpenSalesQuote,
-            this.mnuFileOpenService});
+            this.mnuFileOpenService,
+            this.mnuFileOpenCarWash});
             this.mnuFileOpen.Image = global::NETChrisUsick.Properties.Resources.open;
             this.mnuFileOpen.Name = "mnuFileOpen";
             this.mnuFileOpen.Size = new System.Drawing.Size(152, 22);
@@ -191,6 +201,22 @@
             this.mnuFileOpenSalesQuote.Size = new System.Drawing.Size(152, 22);
             this.mnuFileOpenSalesQuote.Text = "Sales Quote";
             this.mnuFileOpenSalesQuote.Click += new System.EventHandler(this.mnuFileOpenSalesQuote_Click);
+            // 
+            // mnuFileOpenService
+            // 
+            this.mnuFileOpenService.Image = global::NETChrisUsick.Properties.Resources.service;
+            this.mnuFileOpenService.Name = "mnuFileOpenService";
+            this.mnuFileOpenService.Size = new System.Drawing.Size(152, 22);
+            this.mnuFileOpenService.Text = "Service";
+            this.mnuFileOpenService.Click += new System.EventHandler(this.mnuFileOpenService_Click);
+            // 
+            // mnuFileOpenCarWash
+            // 
+            this.mnuFileOpenCarWash.Image = global::NETChrisUsick.Properties.Resources.carwash;
+            this.mnuFileOpenCarWash.Name = "mnuFileOpenCarWash";
+            this.mnuFileOpenCarWash.Size = new System.Drawing.Size(152, 22);
+            this.mnuFileOpenCarWash.Text = "&Car Wash";
+            this.mnuFileOpenCarWash.Click += new System.EventHandler(this.mnuFileOpenCarWash_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -254,22 +280,6 @@
             this.mnuHelpAbout.Size = new System.Drawing.Size(107, 22);
             this.mnuHelpAbout.Text = "&About";
             // 
-            // mnuFileOpenService
-            // 
-            this.mnuFileOpenService.Image = global::NETChrisUsick.Properties.Resources.service;
-            this.mnuFileOpenService.Name = "mnuFileOpenService";
-            this.mnuFileOpenService.Size = new System.Drawing.Size(152, 22);
-            this.mnuFileOpenService.Text = "Service";
-            this.mnuFileOpenService.Click += new System.EventHandler(this.mnuFileOpenService_Click);
-            // 
-            // tsiOpenService
-            // 
-            this.tsiOpenService.Image = global::NETChrisUsick.Properties.Resources.service;
-            this.tsiOpenService.Name = "tsiOpenService";
-            this.tsiOpenService.Size = new System.Drawing.Size(152, 22);
-            this.tsiOpenService.Text = "Service";
-            this.tsiOpenService.Click += new System.EventHandler(this.mnuFileOpenService_Click);
-            // 
             // frmFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,6 +328,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuHelpAbout;
         private System.Windows.Forms.ToolStripMenuItem mnuFileOpenService;
         private System.Windows.Forms.ToolStripMenuItem tsiOpenService;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileOpenCarWash;
     }
 }
 

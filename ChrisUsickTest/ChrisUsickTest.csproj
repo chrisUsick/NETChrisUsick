@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutomotiveManagerTest.cs" />
+    <Compile Include="frmCarWashTest.cs" />
     <Compile Include="frmInvoiceTest.cs" />
     <Compile Include="frmQuoteTest.cs" />
     <Compile Include="frmServiceInvoiceTest.cs" />

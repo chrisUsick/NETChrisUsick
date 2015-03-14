@@ -2,6 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Windows.Forms;
+using System.Reflection;
+using System.Configuration;
+using System.IO;
 
 namespace ChrisUsickTest
 {
@@ -112,6 +115,25 @@ namespace ChrisUsickTest
             actual = AutomotiveManager.MessageBoxResult;
             DialogResult expected = DialogResult.OK;
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for LogError
+        ///</summary>
+        [TestMethod()]
+        public void LogErrorTest()
+        {
+            AutomotiveManager_Accessor.isBeingTested = true;
+            Exception exception = new Exception(); 
+            string message = "an error message";
+            // get the log file name
+            string logName = ConfigurationManager.AppSettings.Get("logFile");
+
+            AutomotiveManager_Accessor.LogError(exception, message);
+            DateTime dt = File.GetLastWriteTime(logName);
+            // check if the file was wrote to in the last minute
+            bool condition = (dt - DateTime.Now).TotalSeconds <= 60;
+            Assert.IsTrue(condition);
         }
     }
 }
