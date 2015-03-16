@@ -99,22 +99,24 @@ namespace NETChrisUsick
             try
             {
                 // get the assembly
-                Assembly assembly = Assembly.GetExecutingAssembly();
+                //Assembly assembly = Assembly.GetExecutingAssembly();
 
                 // get the namespace of the current assembly
-                string nameSpace = assembly.GetName().Name.ToString();
+                //string nameSpace = assembly.GetName().Name.ToString();
 
                 // get the log file name
                 string logName = ConfigurationManager.AppSettings.Get("logFile");
 
                 // create the stream to the file
-                Stream fileStream = assembly.GetManifestResourceStream(
-                    nameSpace + "." + logName);
+                //Stream fileStream = assembly.GetManifestResourceStream(
+                    //nameSpace + "." + logName);
 
                 // create the writer object
-                StreamWriter writer = (IsBeingTested) 
-                    ? new StreamWriter(logName)
-                    : new StreamWriter(fileStream);
+                //StreamWriter writer = (IsBeingTested) 
+                //    ? new StreamWriter(logName)
+                //    : new StreamWriter(fileStream);
+
+                StreamWriter writer = new StreamWriter(logName, true);
 
                 // add the log
                 writer.WriteLine("Date: " + DateTime.Now.ToShortDateString());
@@ -126,7 +128,8 @@ namespace NETChrisUsick
             }
             catch (Exception e)
             {
-                ShowMessage("Error writing to the error log",
+                // show message that error logging isn't working
+                ShowMessage("Error writing to the error log: " + e.Message,
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error,
@@ -143,6 +146,7 @@ namespace NETChrisUsick
         /// <returns>The result of the Message box</returns>
         public static DialogResult LogErrorWithMessage(Exception exception, string message, string caption)
         {
+            // call the overloaded method
             return LogErrorWithMessage(exception, null, message, caption);
         }
 

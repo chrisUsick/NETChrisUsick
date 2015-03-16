@@ -5,6 +5,9 @@ using System.Text;
 
 namespace BusinessTier
 {
+    /// <summary>
+    /// Invoice for a carwash. Inlcudes package cost and fragrane cost properties.
+    /// </summary>
     public class CarWashInvoice : Invoice
     {
         /// <summary>
@@ -70,7 +73,7 @@ namespace BusinessTier
             : base(pstRate, gstRate) { }
 
         /// <summary>
-        /// returns an invoice with the tax rates plus the item costs.
+        /// returns an invoice with the tax rates plus the item costs set.
         /// </summary>
         /// <param name="pstRate">PST rate for this invoice</param>
         /// <param name="gstRate">GST rate for this invoice</param>

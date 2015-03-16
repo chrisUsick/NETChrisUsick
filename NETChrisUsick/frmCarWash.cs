@@ -12,6 +12,9 @@ using System.Configuration;
 
 namespace NETChrisUsick
 {
+    /// <summary>
+    /// a form for generating a car wash invoice
+    /// </summary>
     public partial class frmCarWash : Form
     {
         /// <summary>
@@ -136,6 +139,11 @@ namespace NETChrisUsick
             }
         }
 
+        /// <summary>
+        /// Updates a list boxes according the package and fragrance options selecteed
+        /// </summary>
+        /// <param name="listBox">Listbox to update</param>
+        /// <param name="options">list of options to chose from</param>
         private void updateListBox(ListBox listBox, List<string> options)
         {
             // clear the listbox
@@ -193,6 +201,11 @@ namespace NETChrisUsick
             comboBox.SelectedIndex = selectedIndex;
         }
 
+        /// <summary>
+        /// open the car wash invoice form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mnuGenerateInvoice_Click(object sender, EventArgs e)
         {
             // create a new invoice form
