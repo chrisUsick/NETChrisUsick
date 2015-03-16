@@ -106,7 +106,8 @@ namespace NETChrisUsick
             // trigger the control change event to update invoice and form
             control_Changed(sender, e);
 
-
+            // TODO add combobox event handlers here. This will make populateComboBoxes not cause
+            // the ComboBox.SelectedIndexChanged event to be fired
             
         }
 

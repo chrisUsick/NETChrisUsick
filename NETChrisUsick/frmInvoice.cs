@@ -58,6 +58,9 @@ namespace NETChrisUsick
 
             // open the print dialog
             printForm.Print(this, Microsoft.VisualBasic.PowerPacks.Printing.PrintForm.PrintOption.ClientAreaOnly);
+
+            // close the invoice form
+            Close();
         }
     }
 }

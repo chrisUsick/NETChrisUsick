@@ -99,8 +99,9 @@ namespace ChrisUsickTest
         [TestMethod()]
         public void IsBeingTestedTest()
         {
+            AutomotiveManager_Accessor.isBeingTested = false;
             bool actual;
-            actual = AutomotiveManager.IsBeingTested;
+            actual = AutomotiveManager_Accessor.IsBeingTested;
             bool expected = false;
             Assert.AreEqual(expected, actual);
         }
