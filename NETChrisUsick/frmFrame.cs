@@ -15,6 +15,10 @@ namespace NETChrisUsick
     /// </summary>
     public partial class frmFrame : Form
     {
+        // private fields for holding the sales staff and vehicle stock form
+        private frmSalesStaff salesStaffForm;
+        private frmVehicleStock vehicleStockForm;
+
         /// <summary>
         /// construct an isntance of this Form
         /// </summary>
@@ -112,6 +116,11 @@ namespace NETChrisUsick
             serviceForm.Show();
         }
 
+        /// <summary>
+        /// open a car wash form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mnuFileOpenCarWash_Click(object sender, EventArgs e)
         {
             // create a new car wash form
@@ -122,6 +131,64 @@ namespace NETChrisUsick
 
             //show the form
             carWashForm.Show();
+        }
+
+        /// <summary>
+        /// open the sales staff form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuDataSalesStaff_Click(object sender, EventArgs e)
+        {
+            // open or activate a sales form
+            openOrActivateForm(typeof(frmSalesStaff));
+
+        }
+
+        /// <summary>
+        /// set a form mdi parent and open it
+        /// </summary>
+        /// <param name="form"></param>
+        private void openFormToMdi(Form form)
+        {
+            //set mdi parent
+            form.MdiParent = this;
+
+            // show form
+            form.Show();
+        }
+
+        /// <summary>
+        /// handle click event for vehicle stock menu item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuDataVehicleStock_Click(object sender, EventArgs e)
+        {
+            // open or activate a vehicle stock form
+            openOrActivateForm(typeof(frmVehicleStock));
+        }
+
+        /// <summary>
+        /// only create a form when it isn't open in the mdi frame
+        /// </summary>
+        /// <param name="formType">Type of the form to create</param>
+        private void openOrActivateForm(Type formType)
+        {
+            // check for form in Mdi Parent
+            Form activeForm = MdiChildren.FirstOrDefault(form => form.GetType() == formType);
+            
+            // test if the form was found
+            if (activeForm != null)
+            {
+                // activate the form that was found
+                activeForm.Activate();
+            }
+            else
+            {
+                // use refection to create an instance of the form.
+                openFormToMdi((Form)Activator.CreateInstance(formType, false));
+            }
         }
     }
 }

@@ -62,6 +62,18 @@
     <Compile Include="frmCarWashInvoice.Designer.cs">
       <DependentUpon>frmCarWashInvoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEditSalesStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditSalesStaff.designer.cs">
+      <DependentUpon>frmEditSalesStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditVehicleStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditVehicleStock.designer.cs">
+      <DependentUpon>frmEditVehicleStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFrame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +92,12 @@
     <Compile Include="frmQuote.Designer.cs">
       <DependentUpon>frmQuote.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSalesStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSalesStaff.designer.cs">
+      <DependentUpon>frmSalesStaff.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmService.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +110,12 @@
     <Compile Include="frmServiceInvoice.Designer.cs">
       <DependentUpon>frmServiceInvoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVehicleStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVehicleStock.designer.cs">
+      <DependentUpon>frmVehicleStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmCarWash.resx">
@@ -99,6 +123,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCarWashInvoice.resx">
       <DependentUpon>frmCarWashInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditSalesStaff.resx">
+      <DependentUpon>frmEditSalesStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditVehicleStock.resx">
+      <DependentUpon>frmEditVehicleStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFrame.resx">
       <DependentUpon>frmFrame.cs</DependentUpon>
@@ -109,11 +139,17 @@
     <EmbeddedResource Include="frmQuote.resx">
       <DependentUpon>frmQuote.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSalesStaff.resx">
+      <DependentUpon>frmSalesStaff.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmService.resx">
       <DependentUpon>frmService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmServiceInvoice.resx">
       <DependentUpon>frmServiceInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVehicleStock.resx">
+      <DependentUpon>frmVehicleStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -191,6 +227,10 @@
     <ProjectReference Include="..\BusinessTier\BusinessTier.csproj">
       <Project>{81F48F76-0552-4CA2-9A8F-16F9D619BC04}</Project>
       <Name>BusinessTier</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataTier\DataTier.csproj">
+      <Project>{90A236F6-D6DF-4A42-9901-15741CBFC5A5}</Project>
+      <Name>DataTier</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

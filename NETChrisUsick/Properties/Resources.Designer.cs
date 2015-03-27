@@ -121,6 +121,15 @@ namespace NETChrisUsick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Provider=Microsoft.Jet.OLEDB.4.0;Data Source=&quot;AMDatabase.mdb&quot;.
+        /// </summary>
+        internal static string connectionString {
+            get {
+                return ResourceManager.GetString("connectionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap exit {
@@ -244,6 +253,24 @@ namespace NETChrisUsick.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT ID, FirstName, LastName, StartDate FROM SalesStaff.
+        /// </summary>
+        internal static string SalesStaffSelect {
+            get {
+                return ResourceManager.GetString("SalesStaffSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SalesStaff.
+        /// </summary>
+        internal static string SalesStaffTableName {
+            get {
+                return ResourceManager.GetString("SalesStaffTableName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap service {
@@ -270,6 +297,24 @@ namespace NETChrisUsick.Properties {
             get {
                 object obj = ResourceManager.GetObject("tile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT ID, StockNumber, Manufacturer, Make, Model, Mileage, Automatic, Colour, BasePrice, SoldBy, OptionsPrice FROM VehicleStock.
+        /// </summary>
+        internal static string VehicleStockSelect {
+            get {
+                return ResourceManager.GetString("VehicleStockSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VehicleStock.
+        /// </summary>
+        internal static string VehicleStockTableName {
+            get {
+                return ResourceManager.GetString("VehicleStockTableName", resourceCulture);
             }
         }
     }
