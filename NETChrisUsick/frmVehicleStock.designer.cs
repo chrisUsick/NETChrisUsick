@@ -35,7 +35,7 @@ namespace NETChrisUsick
             this.dgvVehicles = new System.Windows.Forms.DataGridView();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.newVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileNewVehicle = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVehicles)).BeginInit();
             this.menuStrip.SuspendLayout();
@@ -97,20 +97,21 @@ namespace NETChrisUsick
             // mnuFile
             // 
             this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newVehicleToolStripMenuItem});
+            this.mnuFileNewVehicle});
             this.mnuFile.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
             this.mnuFile.Name = "mnuFile";
             this.mnuFile.Size = new System.Drawing.Size(37, 20);
             this.mnuFile.Text = "&File";
             // 
-            // newVehicleToolStripMenuItem
+            // mnuFileNewVehicle
             // 
-            this.newVehicleToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
-            this.newVehicleToolStripMenuItem.MergeIndex = 0;
-            this.newVehicleToolStripMenuItem.Name = "newVehicleToolStripMenuItem";
-            this.newVehicleToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newVehicleToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.newVehicleToolStripMenuItem.Text = "&New Vehicle...";
+            this.mnuFileNewVehicle.MergeAction = System.Windows.Forms.MergeAction.Insert;
+            this.mnuFileNewVehicle.MergeIndex = 0;
+            this.mnuFileNewVehicle.Name = "mnuFileNewVehicle";
+            this.mnuFileNewVehicle.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.mnuFileNewVehicle.Size = new System.Drawing.Size(191, 22);
+            this.mnuFileNewVehicle.Text = "&New Vehicle...";
+            this.mnuFileNewVehicle.Click += new System.EventHandler(this.mnuFileNewVehicle_Click);
             // 
             // frmVehicleStock
             // 
@@ -126,6 +127,7 @@ namespace NETChrisUsick
             this.Name = "frmVehicleStock";
             this.ShowIcon = false;
             this.Text = "Vehicle Stock";
+            this.Shown += new System.EventHandler(this.frmVehicleStock_Shown);
             this.contextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVehicles)).EndInit();
             this.menuStrip.ResumeLayout(false);
@@ -143,6 +145,6 @@ namespace NETChrisUsick
         private System.Windows.Forms.DataGridView dgvVehicles;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem mnuFile;
-        private System.Windows.Forms.ToolStripMenuItem newVehicleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileNewVehicle;
     }
 }

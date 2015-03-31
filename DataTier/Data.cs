@@ -36,6 +36,20 @@ namespace DataTier
             commandBuilder = new OleDbCommandBuilder(adapter);
 
             adapter.Fill(dataSet, tableName);
+
+            // handle adding ID to new rows, once added to the database
+            adapter.RowUpdated += new OleDbRowUpdatedEventHandler(delegate(object sender, OleDbRowUpdatedEventArgs e)
+                {
+                    // if the command was an insert
+                    if (e.StatementType == StatementType.Insert)
+                    {
+                        // select the ID of the last added item
+                        OleDbCommand cmd = new OleDbCommand("SELECT @@IDENTITY", connection);
+
+                        // add it the the row which was updated
+                        e.Row["ID"] = (int)cmd.ExecuteScalar();
+                    }
+                });
         }
 
         public DataTable GetAllRows()
@@ -46,6 +60,11 @@ namespace DataTier
         public void Close()
         {
             connection.Close();
+        }
+
+        public void Update()
+        {
+            adapter.Update(dataSet.Tables[tableName]);
         }
     }
 }

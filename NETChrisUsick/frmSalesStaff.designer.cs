@@ -48,6 +48,7 @@ namespace NETChrisUsick
             this.dgvSalesStaff.AllowUserToResizeRows = false;
             this.dgvSalesStaff.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSalesStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSalesStaff.ContextMenuStrip = this.contextMenuStrip;
             this.dgvSalesStaff.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSalesStaff.Location = new System.Drawing.Point(0, 0);
             this.dgvSalesStaff.MultiSelect = false;
@@ -61,6 +62,7 @@ namespace NETChrisUsick
             this.dgvSalesStaff.ShowRowErrors = false;
             this.dgvSalesStaff.Size = new System.Drawing.Size(433, 368);
             this.dgvSalesStaff.TabIndex = 0;
+            this.dgvSalesStaff.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSalesStaff_CellMouseDown);
             // 
             // contextMenuStrip
             // 
@@ -68,19 +70,21 @@ namespace NETChrisUsick
             this.mnuEdit,
             this.mnuRemove});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(118, 48);
+            this.contextMenuStrip.Size = new System.Drawing.Size(153, 70);
             // 
             // mnuEdit
             // 
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(117, 22);
+            this.mnuEdit.Size = new System.Drawing.Size(152, 22);
             this.mnuEdit.Text = "Edit";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // mnuRemove
             // 
             this.mnuRemove.Name = "mnuRemove";
-            this.mnuRemove.Size = new System.Drawing.Size(117, 22);
+            this.mnuRemove.Size = new System.Drawing.Size(152, 22);
             this.mnuRemove.Text = "Remove";
+            this.mnuRemove.Click += new System.EventHandler(this.mnuRemove_Click);
             // 
             // menuStrip
             // 
@@ -110,6 +114,7 @@ namespace NETChrisUsick
             this.mnuFileNewSalesStaff.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.mnuFileNewSalesStaff.Size = new System.Drawing.Size(206, 22);
             this.mnuFileNewSalesStaff.Text = "&New Sales Staff...";
+            this.mnuFileNewSalesStaff.Click += new System.EventHandler(this.mnuFileNewSalesStaff_Click);
             // 
             // frmSalesStaff
             // 

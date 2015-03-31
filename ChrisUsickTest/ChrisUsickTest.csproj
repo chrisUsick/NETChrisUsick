@@ -59,6 +59,7 @@
     <Compile Include="AutomotiveManagerTest.cs" />
     <Compile Include="CarWashInvoiceTest.cs" />
     <Compile Include="frmCarWashTest.cs" />
+    <Compile Include="frmEditSalesStaffTest.cs" />
     <Compile Include="frmInvoiceTest.cs" />
     <Compile Include="frmQuoteTest.cs" />
     <Compile Include="frmServiceInvoiceTest.cs" />
@@ -71,6 +72,10 @@
     <ProjectReference Include="..\BusinessTier\BusinessTier.csproj">
       <Project>{81F48F76-0552-4CA2-9A8F-16F9D619BC04}</Project>
       <Name>BusinessTier</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataTier\DataTier.csproj">
+      <Project>{90A236F6-D6DF-4A42-9901-15741CBFC5A5}</Project>
+      <Name>DataTier</Name>
     </ProjectReference>
     <ProjectReference Include="..\NETChrisUsick\NETChrisUsick.csproj">
       <Project>{D2D865FA-3D52-4747-A921-D17EFD1350C7}</Project>

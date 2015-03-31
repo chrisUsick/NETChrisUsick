@@ -56,6 +56,8 @@ namespace NETChrisUsick
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(199, 20);
             this.txtFirstName.TabIndex = 1;
+            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
+            this.txtFirstName.Validated += new System.EventHandler(this.txtBox_Validated);
             // 
             // label2
             // 
@@ -73,6 +75,8 @@ namespace NETChrisUsick
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(199, 20);
             this.txtLastName.TabIndex = 3;
+            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
+            this.txtLastName.Validated += new System.EventHandler(this.txtBox_Validated);
             // 
             // label3
             // 
@@ -104,6 +108,7 @@ namespace NETChrisUsick
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmEditSalesStaff
             // 
@@ -115,16 +120,18 @@ namespace NETChrisUsick
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dtpStartDate);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtFirstName);
+            this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmEditSalesStaff";
             this.ShowIcon = false;
-            this.Text = "Edit Sales Staff";
+            this.Text = " Sales Staff Member";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditSalesStaff_FormClosing);
+            this.Load += new System.EventHandler(this.frmEditSalesStaff_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -135,8 +142,10 @@ namespace NETChrisUsick
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtFirstName;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtLastName;
+        
+        private System.Windows.Forms.Label label2;
+        
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.DateTimePicker dtpStartDate;

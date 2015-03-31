@@ -14,6 +14,15 @@ namespace NETChrisUsick
     /// </summary>
     public static class AutomotiveManager
     {
+        /// <summary>
+        /// enumeration for form type
+        /// </summary>
+        public enum FormAction
+        {
+            New,
+            Update
+        }
+
         // true if the class is being unit tested
         private static bool isBeingTested = false;
         
