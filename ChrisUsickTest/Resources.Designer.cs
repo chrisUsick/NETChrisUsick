@@ -301,7 +301,7 @@ namespace NETChrisUsick.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT ID, StockNumber, ManufacturedYear, Make, Model, Mileage, Automatic, Colour, BasePrice, SoldBy, OptionsPrice FROM VehicleStock.
+        ///   Looks up a localized string similar to SELECT ID, StockNumber, Manufacturer, Make, Model, Mileage, Automatic, Colour, BasePrice, SoldBy, OptionsPrice FROM VehicleStock.
         /// </summary>
         internal static string VehicleStockSelect {
             get {

@@ -246,7 +246,8 @@ namespace NETChrisUsick
             this.MinimizeBox = false;
             this.Name = "frmEditVehicleStock";
             this.ShowIcon = false;
-            this.Text = "Edit Vehicle";
+            this.Text = " Vehicle";
+            this.Load += new System.EventHandler(this.frmEditVehicleStock_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

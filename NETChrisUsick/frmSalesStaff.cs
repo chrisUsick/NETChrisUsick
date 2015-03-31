@@ -60,14 +60,14 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void mnuFileNewSalesStaff_Click(object sender, EventArgs e)
         {
-            openEditForm(frmEditSalesStaff.FormAction.New);
+            openEditForm(AutomotiveManager.FormAction.New);
         }
 
         /// <summary>
         /// open an edit sales staff form
         /// </summary>
         /// <param name="formAction"></param>
-        private void openEditForm(frmEditSalesStaff.FormAction formAction)
+        private void openEditForm(AutomotiveManager.FormAction formAction)
         {
             // create edit sales staff form
             frmEditSalesStaff editForm = new frmEditSalesStaff(formAction, bindingSource, salesStaffData);
@@ -100,7 +100,7 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void mnuEdit_Click(object sender, EventArgs e)
         {
-            openEditForm(frmEditSalesStaff.FormAction.Update);
+            openEditForm(AutomotiveManager.FormAction.Update);
         }
 
         /// <summary>

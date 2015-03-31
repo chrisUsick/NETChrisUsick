@@ -188,7 +188,7 @@
     <value>SalesStaff</value>
   </data>
   <data name="VehicleStockSelect" xml:space="preserve">
-    <value>SELECT ID, StockNumber, Manufacturer, Make, Model, Mileage, Automatic, Colour, BasePrice, SoldBy, OptionsPrice FROM VehicleStock</value>
+    <value>SELECT ID, StockNumber, ManufacturedYear, Make, Model, Mileage, Automatic, Colour, BasePrice, SoldBy, OptionsPrice FROM VehicleStock</value>
   </data>
   <data name="VehicleStockTableName" xml:space="preserve">
     <value>VehicleStock</value>

@@ -43,7 +43,7 @@ namespace NETChrisUsick
         /// </summary>
         /// <param name="formAction">specifies Whether to create or update a form</param>
         /// <param name="bindingSource">the binding source the form should use</param>
-        public frmEditSalesStaff(FormAction formAction, BindingSource bindingSource, SalesStaffData salesStaffData)
+        public frmEditSalesStaff(AutomotiveManager.FormAction formAction, BindingSource bindingSource, SalesStaffData salesStaffData)
             : this()
         {
             this.formAction = formAction;
@@ -56,7 +56,7 @@ namespace NETChrisUsick
         private void frmEditSalesStaff_Load(object sender, EventArgs e)
         {
             // create a new row if formAction is 'new'
-            if (formAction == FormAction.New)
+            if (formAction == AutomotiveManager.FormAction.New)
             {
                 // add a new row
                 DataRowView newStaff = (DataRowView)bindingSource.AddNew();
@@ -67,7 +67,7 @@ namespace NETChrisUsick
                 //set the title to "new"
                 Text = "New" + Text;
             }
-            else if (formAction == FormAction.Update)
+            else if (formAction == AutomotiveManager.FormAction.Update)
             {
                 Text = "Edit" + Text;
             }
@@ -159,7 +159,7 @@ namespace NETChrisUsick
             bindingSource.EndEdit();
 
             // check if record is new or modified
-            if (formAction == FormAction.New || 
+            if (formAction == AutomotiveManager.FormAction.New || 
                 ((DataRowView)bindingSource.Current).Row.RowState == DataRowState.Modified)
             {
                 // if exitChoice is none, then the user hasn't decided what to do, so show the message box
@@ -167,7 +167,7 @@ namespace NETChrisUsick
                 exitChoice = (exitChoice == DialogResult.None) ?
                     MessageBox.Show(
                         "Save Changes?",
-                        (formAction == FormAction.New) ? "New Sales Staff Member" : "Edit Sales Staff Member",
+                        (formAction == AutomotiveManager.FormAction.New) ? "New Sales Staff Member" : "Edit Sales Staff Member",
                         MessageBoxButtons.YesNoCancel,
                         MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button3)

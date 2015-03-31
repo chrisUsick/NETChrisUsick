@@ -38,8 +38,8 @@ namespace NETChrisUsick
             {
                 vehicleStockData = new VehicleStockData(
                     Properties.Resources.connectionString,
-                    Properties.Resources.SalesStaffTableName,
-                    Properties.Resources.SalesStaffSelect
+                    Properties.Resources.VehicleStockTableName,
+                    Properties.Resources.VehicleStockSelect
                 );
 
                 bindingSource = new BindingSource();
@@ -49,6 +49,7 @@ namespace NETChrisUsick
             catch (Exception ex)
             {
                 // log error fetching vehicle stock data
+                throw;
             }
 
             // bind the DGV to the bindingSource
