@@ -94,6 +94,8 @@ namespace NETChrisUsick
             this.txtStockNumber.Name = "txtStockNumber";
             this.txtStockNumber.Size = new System.Drawing.Size(100, 20);
             this.txtStockNumber.TabIndex = 0;
+            this.txtStockNumber.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxRequired_Validating);
+            this.txtStockNumber.Validated += new System.EventHandler(this.textBox_Validated);
             // 
             // txtYear
             // 
@@ -102,6 +104,8 @@ namespace NETChrisUsick
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(55, 20);
             this.txtYear.TabIndex = 1;
+            this.txtYear.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxRequired_Validating);
+            this.txtYear.Validated += new System.EventHandler(this.textBox_Validated);
             // 
             // txtMake
             // 
@@ -110,6 +114,8 @@ namespace NETChrisUsick
             this.txtMake.Name = "txtMake";
             this.txtMake.Size = new System.Drawing.Size(179, 20);
             this.txtMake.TabIndex = 2;
+            this.txtMake.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxRequired_Validating);
+            this.txtMake.Validated += new System.EventHandler(this.textBox_Validated);
             // 
             // txtModel
             // 
@@ -118,6 +124,8 @@ namespace NETChrisUsick
             this.txtModel.Name = "txtModel";
             this.txtModel.Size = new System.Drawing.Size(179, 20);
             this.txtModel.TabIndex = 3;
+            this.txtModel.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxRequired_Validating);
+            this.txtModel.Validated += new System.EventHandler(this.textBox_Validated);
             // 
             // label5
             // 
@@ -175,6 +183,8 @@ namespace NETChrisUsick
             this.txtColour.Name = "txtColour";
             this.txtColour.Size = new System.Drawing.Size(100, 20);
             this.txtColour.TabIndex = 7;
+            this.txtColour.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxRequired_Validating);
+            this.txtColour.Validated += new System.EventHandler(this.textBox_Validated);
             // 
             // txtBasePrice
             // 
@@ -184,6 +194,8 @@ namespace NETChrisUsick
             this.txtBasePrice.Size = new System.Drawing.Size(100, 20);
             this.txtBasePrice.TabIndex = 8;
             this.txtBasePrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBasePrice.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxRequired_Validating);
+            this.txtBasePrice.Validated += new System.EventHandler(this.textBox_Validated);
             // 
             // btnSave
             // 
@@ -206,6 +218,8 @@ namespace NETChrisUsick
             this.txtMileage.Name = "txtMileage";
             this.txtMileage.Size = new System.Drawing.Size(100, 20);
             this.txtMileage.TabIndex = 6;
+            this.txtMileage.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxRequired_Validating);
+            this.txtMileage.Validated += new System.EventHandler(this.textBox_Validated);
             // 
             // label8
             // 
@@ -247,6 +261,7 @@ namespace NETChrisUsick
             this.Name = "frmEditVehicleStock";
             this.ShowIcon = false;
             this.Text = " Vehicle";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditVehicleStock_FormClosing);
             this.Load += new System.EventHandler(this.frmEditVehicleStock_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

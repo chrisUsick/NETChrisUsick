@@ -64,6 +64,9 @@ namespace NETChrisUsick
                 Text = "Edit" + Text;
             }
 
+            // add some validation handlers
+            addEventHandlers();
+
             // bind controls
             try
             {
@@ -100,6 +103,60 @@ namespace NETChrisUsick
             }
         }
 
+        private void addEventHandlers()
+        {
+            txtStockNumber.Validating += new CancelEventHandler(delegate(object sender, CancelEventArgs e)
+            {
+                string stockNumber = txtStockNumber.Text.Trim();
+                // is the length is less than 1 another validating handler will handle that.
+                if (stockNumber.Length > 0 && vehicleStockData.IsDuplicateStockNumber(stockNumber))
+                {
+                    e.Cancel = true;
+                    errorProvider.SetError(txtStockNumber,
+                        "This stock number is used by another vehicle. Please enter another stock number.");
+
+                    addErrorSetFocus(txtStockNumber);
+                }
+            });
+
+            // validate a valid year
+            txtYear.Validating += new CancelEventHandler(delegate(object sender, CancelEventArgs e)
+            {
+                int year;
+                if (int.TryParse(txtYear.Text, out year) && year < 10000 && year > 999)
+                {
+                    // no error
+                }
+                else
+                {
+                    e.Cancel = true;
+                    errorProvider.SetError(txtYear, " Please enter a valid four digit year. Eg. 1977");
+                    addErrorSetFocus(txtYear);
+                }
+            });
+
+            txtMileage.Validating += new CancelEventHandler(textBoxNumeric_Validating);
+        }
+
+        /// <summary>
+        /// validate a numeric textbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void textBoxNumeric_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textbox = (TextBox)sender;
+            textbox.Text = textbox.Text.Trim();
+            // if there is no text don't validate here
+            if (textbox.Text.Length > 0 && !AutomotiveManager.IsNumeric(textbox.Text))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(textbox, "Please enter a numeric value for this field.");
+
+                addErrorSetFocus(textbox);
+            }
+        }
+
         /// <summary>
         /// bind the text properties of a control to the given columnName
         /// </summary>
@@ -108,6 +165,115 @@ namespace NETChrisUsick
         private void bindControl(Control control, string columnName = "", string property = "Text")
         {
             control.DataBindings.Add(property, bindingSource, columnName);
+        }
+
+        /// <summary>
+        /// ensure a control has a value in it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxRequired_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox textbox = (TextBox)sender;
+
+            textbox.Text = textbox.Text.Trim();
+            if (textbox.Text.Length == 0)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(textbox, "Please enter a value for this field");
+
+                addErrorSetFocus(textbox);
+            }
+            
+        }
+
+        /// <summary>
+        /// add a textbox to the controls with errors collection. if it is the first one, set focus.
+        /// </summary>
+        /// <param name="textbox"></param>
+        private void addErrorSetFocus(TextBox textbox)
+        {
+            controlsWithErrors.Add(textbox);
+            if (controlsWithErrors.IndexOf(textbox) == 0)
+            {
+                textbox.Focus();
+            }
+        }
+
+        /// <summary>
+        /// handle the closing event. if data is new or modified ask to save
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEditVehicleStock_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            if (formAction == AutomotiveManager.FormAction.New ||
+                ((DataRowView)bindingSource.Current).Row.RowState == DataRowState.Modified)
+            {
+                // if exitChoice is none, then the user hasn't decided what to do, so show the message box
+                // otherwise use whatever value is in exitChoice
+                exitChoice = (exitChoice == DialogResult.None) ?
+                    MessageBox.Show(
+                        "Save Changes?",
+                        (formAction == AutomotiveManager.FormAction.New) ? "New Sales Staff Member" : "Edit Sales Staff Member",
+                        MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button3)
+                        : exitChoice;
+
+                switch (exitChoice)
+                {
+                    case DialogResult.Yes:
+                        // cancel if save failed
+                        e.Cancel = !saveRecord();
+                        break;
+                    case DialogResult.No:
+                        // delete row
+                        ((DataRowView)bindingSource.Current).Delete();
+                        // disard changes to data
+                        ((DataTable)bindingSource.DataSource).RejectChanges();
+                        break;
+                    case DialogResult.Cancel:
+                        // cancel the event
+                        e.Cancel = true;
+                        break;
+                }   
+            }  
+            // clear exit choice
+            exitChoice = DialogResult.None;
+        }
+
+        /// <summary>
+        /// attempt to save a record to the database
+        /// </summary>
+        /// <returns>true if the save is a success.</returns>
+        private bool saveRecord()
+        {
+            
+            bool success = false;
+            if (ValidateChildren())
+            {
+                // end edit
+                bindingSource.EndEdit();
+
+                // save change to DB
+                vehicleStockData.Update();
+                success = true;
+            }
+            return success;
+        }
+
+        /// <summary>
+        /// handle validating event for textboxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBox_Validated(object sender, EventArgs e)
+        {
+            TextBox textbox = (TextBox)sender;
+            errorProvider.SetError(textbox, "");
+            controlsWithErrors.Remove(textbox);
         }
     }
 }
