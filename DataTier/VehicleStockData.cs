@@ -16,9 +16,9 @@ namespace DataTier
 
         public bool IsDuplicateStockNumber(string id)
         {
-            DataRow[] rows = GetAllRows().Select(string.Format("StockNumber = {0}", id));
+            DataRow[] rows = GetAllRows().Select(string.Format("StockNumber = '{0}'", id));
 
-            return (rows.Count() != 0);
+            return (rows.Count(row => row.RowState != DataRowState.Added) != 0);
         }
     }
 }

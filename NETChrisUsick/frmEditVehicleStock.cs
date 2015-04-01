@@ -42,6 +42,7 @@ namespace NETChrisUsick
             this.formAction = formAction;
             this.bindingSource = bindingSource;
             this.vehicleStockData = vehicleStockData;
+
         }
 
         /// <summary>
@@ -62,6 +63,9 @@ namespace NETChrisUsick
             else
             {
                 Text = "Edit" + Text;
+
+                // disable stock number
+                txtStockNumber.Enabled = false;
             }
 
             // add some validation handlers
@@ -77,7 +81,6 @@ namespace NETChrisUsick
                     txtMake,
                     txtModel,
                     radAutomatic,
-                    radManual,
                     txtMileage,
                     txtColour,
                     txtBasePrice
@@ -102,14 +105,20 @@ namespace NETChrisUsick
                 throw;
             }
         }
-
+        
+        /// <summary>
+        /// add additional validation event handlers.
+        /// </summary>
         private void addEventHandlers()
         {
+            // make sure ID isn't a duplicate
             txtStockNumber.Validating += new CancelEventHandler(delegate(object sender, CancelEventArgs e)
             {
                 string stockNumber = txtStockNumber.Text.Trim();
                 // is the length is less than 1 another validating handler will handle that.
-                if (stockNumber.Length > 0 && vehicleStockData.IsDuplicateStockNumber(stockNumber))
+                if (formAction == AutomotiveManager.FormAction.New
+                    && stockNumber.Length > 0 
+                    && vehicleStockData.IsDuplicateStockNumber(stockNumber))
                 {
                     e.Cancel = true;
                     errorProvider.SetError(txtStockNumber,
@@ -207,6 +216,7 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void frmEditVehicleStock_FormClosing(object sender, FormClosingEventArgs e)
         {
+            bindingSource.EndEdit();
 
             if (formAction == AutomotiveManager.FormAction.New ||
                 ((DataRowView)bindingSource.Current).Row.RowState == DataRowState.Modified)
@@ -261,6 +271,10 @@ namespace NETChrisUsick
                 vehicleStockData.Update();
                 success = true;
             }
+            else
+            {
+                
+            }
             return success;
         }
 
@@ -274,6 +288,17 @@ namespace NETChrisUsick
             TextBox textbox = (TextBox)sender;
             errorProvider.SetError(textbox, "");
             controlsWithErrors.Remove(textbox);
+        }
+
+        /// <summary>
+        /// handle save button clicked event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            exitChoice = DialogResult.Yes;
+            Close();
         }
     }
 }

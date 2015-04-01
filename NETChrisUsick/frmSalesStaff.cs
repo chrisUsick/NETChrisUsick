@@ -69,8 +69,18 @@ namespace NETChrisUsick
         /// <param name="formAction"></param>
         private void openEditForm(AutomotiveManager.FormAction formAction)
         {
+            // disable this form
+            Enabled = false;
+
             // create edit sales staff form
             frmEditSalesStaff editForm = new frmEditSalesStaff(formAction, bindingSource, salesStaffData);
+
+            // when the edit form is closed, re-enable the form.
+            editForm.FormClosed += new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e)
+            {
+                // renable the form
+                Enabled = true;
+            });
 
             // set parent
             editForm.MdiParent = this.MdiParent;
@@ -110,15 +120,35 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void mnuRemove_Click(object sender, EventArgs e)
         {
-            bindingSource.Remove(bindingSource.Current);
+            // get the row to delete
+            DataRowView row = ((DataRowView)bindingSource.Current);
+            // prompt user for confirmation
+            DialogResult delete = MessageBox.Show(
+                string.Format("Are you sure you want to remove {0} {1}",
+                    row["FirstName"],
+                    row["LastName"]),
+                "Remove Sales Staff Member",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2);
 
-            try
+            if (delete == DialogResult.Yes)
             {
-                salesStaffData.Update();
-            }
-            catch (Exception)
-            {
-                throw;
+                try
+                {
+                    // delete the row
+                    row.Delete();
+
+                    // update database
+                    salesStaffData.Update();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+
             }
         }        
 

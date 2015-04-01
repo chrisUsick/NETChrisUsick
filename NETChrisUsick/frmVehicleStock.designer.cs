@@ -47,19 +47,21 @@ namespace NETChrisUsick
             this.mnuEdit,
             this.mnuRemove});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(118, 48);
+            this.contextMenuStrip.Size = new System.Drawing.Size(153, 70);
             // 
             // mnuEdit
             // 
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(117, 22);
+            this.mnuEdit.Size = new System.Drawing.Size(152, 22);
             this.mnuEdit.Text = "Edit";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // mnuRemove
             // 
             this.mnuRemove.Name = "mnuRemove";
-            this.mnuRemove.Size = new System.Drawing.Size(117, 22);
+            this.mnuRemove.Size = new System.Drawing.Size(152, 22);
             this.mnuRemove.Text = "Remove";
+            this.mnuRemove.Click += new System.EventHandler(this.mnuRemove_Click);
             // 
             // dgvVehicles
             // 
@@ -70,7 +72,7 @@ namespace NETChrisUsick
             this.dgvVehicles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVehicles.ContextMenuStrip = this.contextMenuStrip;
             this.dgvVehicles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvVehicles.Location = new System.Drawing.Point(0, 24);
+            this.dgvVehicles.Location = new System.Drawing.Point(0, 0);
             this.dgvVehicles.MultiSelect = false;
             this.dgvVehicles.Name = "dgvVehicles";
             this.dgvVehicles.ReadOnly = true;
@@ -80,8 +82,9 @@ namespace NETChrisUsick
             this.dgvVehicles.ShowCellToolTips = false;
             this.dgvVehicles.ShowEditingIcon = false;
             this.dgvVehicles.ShowRowErrors = false;
-            this.dgvVehicles.Size = new System.Drawing.Size(788, 352);
+            this.dgvVehicles.Size = new System.Drawing.Size(788, 376);
             this.dgvVehicles.TabIndex = 0;
+            this.dgvVehicles.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvVehicles_CellMouseDown);
             // 
             // menuStrip
             // 
