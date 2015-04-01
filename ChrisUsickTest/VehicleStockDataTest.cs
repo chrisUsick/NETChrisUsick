@@ -73,8 +73,8 @@ namespace ChrisUsickTest
             string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\"AMDatabase.mdb\""; // TODO: Initialize to an appropriate value
             string tableName = "VehicleStock"; // TODO: Initialize to an appropriate value
             string selectQuery = "SELECT ID, StockNumber, Manufacturer, Make, Model, Mileage, Automatic, Colour, BasePrice, SoldBy, OptionsPrice FROM VehicleStock"; // TODO: Initialize to an appropriate value
-            VehicleStockData target = new VehicleStockData(connectionString, tableName, selectQuery);
-            Assert.IsNotNull(target);
+            //VehicleStockData target = new VehicleStockData(connectionString, tableName, selectQuery);
+            //Assert.IsNotNull(target);
         }
     }
 }
