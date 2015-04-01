@@ -62,6 +62,7 @@ namespace NETChrisUsick
             this.dgvSalesStaff.ShowRowErrors = false;
             this.dgvSalesStaff.Size = new System.Drawing.Size(433, 368);
             this.dgvSalesStaff.TabIndex = 0;
+            this.dgvSalesStaff.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSalesStaff_CellMouseDoubleClick);
             this.dgvSalesStaff.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSalesStaff_CellMouseDown);
             // 
             // contextMenuStrip
@@ -70,19 +71,19 @@ namespace NETChrisUsick
             this.mnuEdit,
             this.mnuRemove});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(118, 48);
             // 
             // mnuEdit
             // 
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(152, 22);
+            this.mnuEdit.Size = new System.Drawing.Size(117, 22);
             this.mnuEdit.Text = "Edit";
             this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // mnuRemove
             // 
             this.mnuRemove.Name = "mnuRemove";
-            this.mnuRemove.Size = new System.Drawing.Size(152, 22);
+            this.mnuRemove.Size = new System.Drawing.Size(117, 22);
             this.mnuRemove.Text = "Remove";
             this.mnuRemove.Click += new System.EventHandler(this.mnuRemove_Click);
             // 

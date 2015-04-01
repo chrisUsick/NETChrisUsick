@@ -263,7 +263,7 @@ namespace NETChrisUsick
             this.ShowIcon = false;
             this.Text = " Vehicle";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditVehicleStock_FormClosing);
-            this.Load += new System.EventHandler(this.frmEditVehicleStock_Load);
+            this.Shown += new System.EventHandler(this.frmEditVehicleStock_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

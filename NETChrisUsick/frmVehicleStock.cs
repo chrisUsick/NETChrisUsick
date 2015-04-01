@@ -49,7 +49,13 @@ namespace NETChrisUsick
             catch (Exception ex)
             {
                 // log error fetching vehicle stock data
-                throw;
+                AutomotiveManager.ShowMessage(
+                    "An error occurred fetching vehicle stock data.",
+                    "DataBase Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                Close();
             }
 
             // bind the DGV to the bindingSource
@@ -148,10 +154,28 @@ namespace NETChrisUsick
                 }
                 catch (Exception)
                 {
-                    
+                    // display remove error message
+                    AutomotiveManager.ShowMessage(
+                        String.Format("An error occurred removing {0} {1}, {2}",
+                            row["ManufacturedYear"],
+                            row["Make"],
+                            row["Model"]),
+                        "DataBase Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     throw;
                 }
             }
+        }
+
+        /// <summary>
+        /// open an edit form when a cell is double clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvVehicles_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            openEditForm(AutomotiveManager.FormAction.Update);
         }  
     }
 }

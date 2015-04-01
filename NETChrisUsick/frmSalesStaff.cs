@@ -46,6 +46,13 @@ namespace NETChrisUsick
             catch (Exception ex)
             {
                 // log error fetching sales staff data
+                AutomotiveManager.ShowMessage(
+                    "An error occurred fetching sales staff data.",
+                    "DataBase Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                Close();
             }
 
             // bind the DGV to the bindingSource
@@ -143,13 +150,30 @@ namespace NETChrisUsick
                     salesStaffData.Update();
                 }
                 catch (Exception)
-                {
-
-                    throw;
+                { 
+                    // display remove error message
+                    AutomotiveManager.ShowMessage(
+                        string.Format("An error occurred removing {0} {1}",
+                            row["FirstName"],
+                            row["LastName"]),
+                        "DataBase Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
 
 
             }
+        }
+
+
+        /// <summary>
+        /// open edit form on double click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvSalesStaff_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            openEditForm(AutomotiveManager.FormAction.Update);
         }        
 
     }

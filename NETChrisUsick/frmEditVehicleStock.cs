@@ -50,7 +50,7 @@ namespace NETChrisUsick
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void frmEditVehicleStock_Load(object sender, EventArgs e)
+        private void frmEditVehicleStock_Shown(object sender, EventArgs e)
         {
             if (formAction == AutomotiveManager.FormAction.New)
             {
@@ -102,6 +102,14 @@ namespace NETChrisUsick
             }
             catch (Exception)
             {
+                // show load error message
+                AutomotiveManager.ShowMessage(
+                        "Could not load record.",
+                        "DataBase Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                // close form
+                Close();
                 throw;
             }
         }
@@ -270,10 +278,6 @@ namespace NETChrisUsick
                 // save change to DB
                 vehicleStockData.Update();
                 success = true;
-            }
-            else
-            {
-                
             }
             return success;
         }

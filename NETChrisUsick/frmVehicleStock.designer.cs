@@ -47,19 +47,19 @@ namespace NETChrisUsick
             this.mnuEdit,
             this.mnuRemove});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(118, 48);
             // 
             // mnuEdit
             // 
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(152, 22);
+            this.mnuEdit.Size = new System.Drawing.Size(117, 22);
             this.mnuEdit.Text = "Edit";
             this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click);
             // 
             // mnuRemove
             // 
             this.mnuRemove.Name = "mnuRemove";
-            this.mnuRemove.Size = new System.Drawing.Size(152, 22);
+            this.mnuRemove.Size = new System.Drawing.Size(117, 22);
             this.mnuRemove.Text = "Remove";
             this.mnuRemove.Click += new System.EventHandler(this.mnuRemove_Click);
             // 
@@ -84,6 +84,7 @@ namespace NETChrisUsick
             this.dgvVehicles.ShowRowErrors = false;
             this.dgvVehicles.Size = new System.Drawing.Size(788, 376);
             this.dgvVehicles.TabIndex = 0;
+            this.dgvVehicles.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvVehicles_CellMouseDoubleClick);
             this.dgvVehicles.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvVehicles_CellMouseDown);
             // 
             // menuStrip

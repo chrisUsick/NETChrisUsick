@@ -131,7 +131,7 @@ namespace NETChrisUsick
             this.ShowIcon = false;
             this.Text = " Sales Staff Member";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEditSalesStaff_FormClosing);
-            this.Load += new System.EventHandler(this.frmEditSalesStaff_Load);
+            this.Shown += new System.EventHandler(this.frmEditSalesStaff_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

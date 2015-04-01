@@ -53,31 +53,57 @@ namespace NETChrisUsick
             
         }
 
-        private void frmEditSalesStaff_Load(object sender, EventArgs e)
+        /// <summary>
+        /// handle the shown event.
+        /// do data binding here.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEditSalesStaff_Shown(object sender, EventArgs e)
         {
-            // create a new row if formAction is 'new'
-            if (formAction == AutomotiveManager.FormAction.New)
+            try
             {
-                // add a new row
-                DataRowView newStaff = (DataRowView)bindingSource.AddNew();
+                // create a new row if formAction is 'new'
+                if (formAction == AutomotiveManager.FormAction.New)
+                {
+                    // add a new row
+                    DataRowView newStaff = (DataRowView)bindingSource.AddNew();
 
-                // must set the date of the row
-                newStaff["StartDate"] = DateTime.Now;
+                    // must set the date of the row
+                    newStaff["StartDate"] = DateTime.Now;
 
-                //set the title to "new"
-                Text = "New" + Text;
+                    //set the title to "new"
+                    Text = "New" + Text;
+                }
+                else if (formAction == AutomotiveManager.FormAction.Update)
+                {
+                    // set title text
+                    Text = "Edit" + Text;
+                }
+
+                // perform databinding
+                txtFirstName.DataBindings.Add("Text", bindingSource, "FirstName");
+                txtLastName.DataBindings.Add("Text", bindingSource, "LastName");
+                dtpStartDate.DataBindings.Add("Value", bindingSource, "StartDate");
             }
-            else if (formAction == AutomotiveManager.FormAction.Update)
+            catch (Exception)
             {
-                Text = "Edit" + Text;
+                // show load error message
+                AutomotiveManager.ShowMessage(
+                        "Could not load record.",
+                        "DataBase Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                // close form
+                Close();
             }
-
-
-            txtFirstName.DataBindings.Add("Text", bindingSource, "FirstName");
-            txtLastName.DataBindings.Add("Text", bindingSource, "LastName");
-            dtpStartDate.DataBindings.Add("Value", bindingSource, "StartDate");
         }
-
+        
+        /// <summary>
+        /// handle validation for textboxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox_Validating(object sender, CancelEventArgs e)
         {
             Control textbox = (Control)sender;
@@ -138,12 +164,33 @@ namespace NETChrisUsick
             bool success = false;
             if (ValidateChildren())
             {
-                // end editing
-                bindingSource.EndEdit();
+                DataRowView row = null;
+                try
+                {
+                    // get the current row
+                    row = (DataRowView)bindingSource.Current;
 
-                // save change to DB
-                salesStaffData.Update();
-                success = true;
+                    // end editing
+                    bindingSource.EndEdit();
+
+                    // save change to DB
+                    salesStaffData.Update();
+                    success = true;
+                }
+                catch (Exception)
+                {
+                    // leaving success = true so that form will close if there 
+                    // is a 'database' error
+                    // display remove error message
+                    AutomotiveManager.ShowMessage(
+                        string.Format(" An error occurred saving {0} {1}",
+                            row["FirstName"],
+                            row["LastName"]),
+                        "DataBase Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    throw;
+                }
             }
             return success;
         }
