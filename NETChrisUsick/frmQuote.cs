@@ -66,7 +66,6 @@ namespace NETChrisUsick
             lnkReset.TabStop = false;
 
             // add textbox specific event handlers
-            txtSalePrice.Validating += txtSalePrice_Validating;
             txtTradeIn.Validating += txtTradeIn_Validating;
 
             // set the sale tax label
@@ -112,25 +111,6 @@ namespace NETChrisUsick
             {
                 // input is numeric; remove the error message
                 errorProvider.SetError(textbox, String.Empty);
-            }
-        }
-
-        /// <summary>
-        /// make sure input is greater than 0
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtSalePrice_Validating(object sender, CancelEventArgs e)
-        {
-            // if the error on this element is empty, then the number is numeric
-            // also check that salePrice is greater than 0
-            if (errorProvider.GetError(txtSalePrice) == String.Empty  && double.Parse(txtSalePrice.Text) <= 0)
-            {
-                // show the error message
-                errorProvider.SetError(txtSalePrice, "Input must be greater than zero");
-
-                // cancel validating event
-                e.Cancel = true;
             }
         }
 
@@ -216,7 +196,7 @@ namespace NETChrisUsick
                 # region create sales quote object 
 
                 // sales quote parameters
-                double salePrice = double.Parse(txtSalePrice.Text),
+                double salePrice = 0,
                        tradeIn    = double.Parse(txtTradeIn.Text),
                        taxRate   = Double.Parse(ConfigurationManager.AppSettings.Get("salesTaxRate"));
                 SalesQuote.Accessories accessories;
@@ -250,7 +230,7 @@ namespace NETChrisUsick
                 lblAmountDue.Text = quote.AmountDue.ToString("c");
 
                 // refocus to the sales textbox
-                refocus(txtSalePrice);
+                //refocus(txtSalePrice);
 
                 // enable finance section if amount due is greater than 0
                 if (quote.AmountDue > 0)
@@ -272,16 +252,8 @@ namespace NETChrisUsick
                 clearFinanceSection();
 
                 // select the first item with an error;
-                if (errorProvider.GetError(txtSalePrice) == String.Empty)
-                {
-                    // set focus to txtTradeIn
-                    refocus(txtTradeIn);
-                }
-                else
-                {
-                    // set focus to txtSalePrice
-                    refocus(txtSalePrice);
-                }
+                refocus(txtTradeIn);
+                
             }
         }
 
@@ -442,7 +414,6 @@ namespace NETChrisUsick
                 hsbInterestRate.Value = 500;
 
                 // reset textboxes
-                txtSalePrice.Text = String.Empty;
                 txtTradeIn.Text = "0";
                 
                 // reset checkboxes

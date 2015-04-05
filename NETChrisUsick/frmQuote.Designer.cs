@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtSalePrice = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTradeIn = new System.Windows.Forms.TextBox();
             this.grpAccessories = new System.Windows.Forms.GroupBox();
@@ -69,11 +68,16 @@
             this.lblNoYears = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cboVehicleStock = new System.Windows.Forms.ComboBox();
+            this.msSalesQuote = new System.Windows.Forms.MenuStrip();
+            this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileAcceptQuote = new System.Windows.Forms.ToolStripMenuItem();
             this.grpAccessories.SuspendLayout();
             this.grpFinish.SuspendLayout();
             this.grpSummary.SuspendLayout();
             this.grpFinance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            this.msSalesQuote.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -81,22 +85,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(23, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.Size = new System.Drawing.Size(93, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Vehicle\'s S&ale Price:";
-            // 
-            // txtSalePrice
-            // 
-            this.errorProvider.SetIconPadding(this.txtSalePrice, 3);
-            this.txtSalePrice.Location = new System.Drawing.Point(132, 20);
-            this.txtSalePrice.Name = "txtSalePrice";
-            this.txtSalePrice.Size = new System.Drawing.Size(114, 20);
-            this.txtSalePrice.TabIndex = 1;
-            this.txtSalePrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtSalePrice.TextChanged += new System.EventHandler(this.textbox_TextChanged);
-            this.txtSalePrice.Enter += new System.EventHandler(this.textbox_Enter);
-            this.txtSalePrice.Validating += new System.ComponentModel.CancelEventHandler(this.textboxIsNumeric_Validating);
-            this.txtSalePrice.Validated += new System.EventHandler(this.control_Validated);
+            this.label1.Text = "Vehicle\'s S&tock #:";
             // 
             // label2
             // 
@@ -260,6 +251,7 @@
             this.grpSummary.Controls.Add(this.lblOptions);
             this.grpSummary.Controls.Add(this.label4);
             this.grpSummary.Controls.Add(this.lblSalePrice);
+            this.grpSummary.Controls.Add(this.msSalesQuote);
             this.grpSummary.Location = new System.Drawing.Point(297, 12);
             this.grpSummary.Name = "grpSummary";
             this.grpSummary.Size = new System.Drawing.Size(313, 285);
@@ -493,6 +485,40 @@
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
             // 
+            // cboVehicleStock
+            // 
+            this.cboVehicleStock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboVehicleStock.FormattingEnabled = true;
+            this.cboVehicleStock.Location = new System.Drawing.Point(133, 20);
+            this.cboVehicleStock.Name = "cboVehicleStock";
+            this.cboVehicleStock.Size = new System.Drawing.Size(113, 21);
+            this.cboVehicleStock.TabIndex = 10;
+            // 
+            // msSalesQuote
+            // 
+            this.msSalesQuote.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuFile});
+            this.msSalesQuote.Location = new System.Drawing.Point(3, 16);
+            this.msSalesQuote.Name = "msSalesQuote";
+            this.msSalesQuote.Size = new System.Drawing.Size(307, 24);
+            this.msSalesQuote.TabIndex = 14;
+            this.msSalesQuote.Text = "menuStrip1";
+            // 
+            // mnuFile
+            // 
+            this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuFileAcceptQuote});
+            this.mnuFile.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
+            this.mnuFile.Name = "mnuFile";
+            this.mnuFile.Size = new System.Drawing.Size(37, 20);
+            this.mnuFile.Text = "&File";
+            // 
+            // mnuFileAcceptQuote
+            // 
+            this.mnuFileAcceptQuote.Name = "mnuFileAcceptQuote";
+            this.mnuFileAcceptQuote.Size = new System.Drawing.Size(152, 22);
+            this.mnuFileAcceptQuote.Text = "Accept Quote";
+            // 
             // frmQuote
             // 
             this.AcceptButton = this.btnCalculate;
@@ -500,6 +526,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(636, 460);
+            this.Controls.Add(this.cboVehicleStock);
             this.Controls.Add(this.grpFinance);
             this.Controls.Add(this.grpSummary);
             this.Controls.Add(this.btnCalculate);
@@ -509,9 +536,9 @@
             this.Controls.Add(this.grpAccessories);
             this.Controls.Add(this.txtTradeIn);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtSalePrice);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.msSalesQuote;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmQuote";
@@ -526,6 +553,8 @@
             this.grpFinance.ResumeLayout(false);
             this.grpFinance.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            this.msSalesQuote.ResumeLayout(false);
+            this.msSalesQuote.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -534,7 +563,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtSalePrice;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTradeIn;
         private System.Windows.Forms.GroupBox grpAccessories;
@@ -573,6 +601,10 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblInterestRate;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.ComboBox cboVehicleStock;
+        private System.Windows.Forms.MenuStrip msSalesQuote;
+        private System.Windows.Forms.ToolStripMenuItem mnuFile;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileAcceptQuote;
 
     }
 }
