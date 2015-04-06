@@ -125,20 +125,20 @@ namespace ChrisUsickTest
         /// <summary>
         ///A test for txtSalePrice_Validating below zero
         ///</summary>
-        [TestMethod()]
-        [DeploymentItem("NETChrisUsick.exe")]
-        public void txtSalePrice_ValidatingTestBelowZero()
-        {
-            frmQuote_Accessor target = new frmQuote_Accessor(); // TODO: Initialize to an appropriate value
-            object sender = null; // TODO: Initialize to an appropriate value
-            CancelEventArgs e = new CancelEventArgs(); // TODO: Initialize to an appropriate value
-            // set text to -1
-            target.txtSalePrice.Text = "-1";
-            target.txtSalePrice_Validating(sender, e);
-            string notExpected = String.Empty;
-            string actual = target.errorProvider.GetError(target.txtSalePrice);
-            Assert.AreNotEqual(notExpected, actual);
-        }
+        //[TestMethod()]
+        //[DeploymentItem("NETChrisUsick.exe")]
+        //public void txtSalePrice_ValidatingTestBelowZero()
+        //{
+        //    frmQuote_Accessor target = new frmQuote_Accessor(); // TODO: Initialize to an appropriate value
+        //    object sender = null; // TODO: Initialize to an appropriate value
+        //    CancelEventArgs e = new CancelEventArgs(); // TODO: Initialize to an appropriate value
+        //    // set text to -1
+        //    target.txtSalePrice.Text = "-1";
+        //    target.txtSalePrice_Validating(sender, e);
+        //    string notExpected = String.Empty;
+        //    string actual = target.errorProvider.GetError(target.txtSalePrice);
+        //    Assert.AreNotEqual(notExpected, actual);
+        //}
 
         /// <summary>
         ///A test for txtSalePrice_Validating zero

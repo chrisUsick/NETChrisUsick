@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutomotiveManager.cs" />
+    <Compile Include="DatabaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCarWash.cs">
       <SubType>Form</SubType>
     </Compile>

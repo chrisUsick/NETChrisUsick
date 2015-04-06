@@ -58,6 +58,9 @@
             this.lblOptions = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblSalePrice = new System.Windows.Forms.Label();
+            this.msSalesQuote = new System.Windows.Forms.MenuStrip();
+            this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileAcceptQuote = new System.Windows.Forms.ToolStripMenuItem();
             this.grpFinance = new System.Windows.Forms.GroupBox();
             this.lblInterestRate = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -69,15 +72,12 @@
             this.label11 = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.cboVehicleStock = new System.Windows.Forms.ComboBox();
-            this.msSalesQuote = new System.Windows.Forms.MenuStrip();
-            this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuFileAcceptQuote = new System.Windows.Forms.ToolStripMenuItem();
             this.grpAccessories.SuspendLayout();
             this.grpFinish.SuspendLayout();
             this.grpSummary.SuspendLayout();
+            this.msSalesQuote.SuspendLayout();
             this.grpFinance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            this.msSalesQuote.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -386,6 +386,33 @@
             this.lblSalePrice.TabIndex = 0;
             this.lblSalePrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // msSalesQuote
+            // 
+            this.msSalesQuote.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuFile});
+            this.msSalesQuote.Location = new System.Drawing.Point(3, 16);
+            this.msSalesQuote.Name = "msSalesQuote";
+            this.msSalesQuote.Size = new System.Drawing.Size(307, 24);
+            this.msSalesQuote.TabIndex = 14;
+            this.msSalesQuote.Text = "menuStrip1";
+            // 
+            // mnuFile
+            // 
+            this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuFileAcceptQuote});
+            this.mnuFile.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
+            this.mnuFile.Name = "mnuFile";
+            this.mnuFile.Size = new System.Drawing.Size(37, 20);
+            this.mnuFile.Text = "&File";
+            // 
+            // mnuFileAcceptQuote
+            // 
+            this.mnuFileAcceptQuote.MergeAction = System.Windows.Forms.MergeAction.Insert;
+            this.mnuFileAcceptQuote.MergeIndex = 1;
+            this.mnuFileAcceptQuote.Name = "mnuFileAcceptQuote";
+            this.mnuFileAcceptQuote.Size = new System.Drawing.Size(147, 22);
+            this.mnuFileAcceptQuote.Text = "Accept Quote";
+            // 
             // grpFinance
             // 
             this.grpFinance.Controls.Add(this.lblInterestRate);
@@ -494,31 +521,6 @@
             this.cboVehicleStock.Size = new System.Drawing.Size(113, 21);
             this.cboVehicleStock.TabIndex = 10;
             // 
-            // msSalesQuote
-            // 
-            this.msSalesQuote.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuFile});
-            this.msSalesQuote.Location = new System.Drawing.Point(3, 16);
-            this.msSalesQuote.Name = "msSalesQuote";
-            this.msSalesQuote.Size = new System.Drawing.Size(307, 24);
-            this.msSalesQuote.TabIndex = 14;
-            this.msSalesQuote.Text = "menuStrip1";
-            // 
-            // mnuFile
-            // 
-            this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuFileAcceptQuote});
-            this.mnuFile.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
-            this.mnuFile.Name = "mnuFile";
-            this.mnuFile.Size = new System.Drawing.Size(37, 20);
-            this.mnuFile.Text = "&File";
-            // 
-            // mnuFileAcceptQuote
-            // 
-            this.mnuFileAcceptQuote.Name = "mnuFileAcceptQuote";
-            this.mnuFileAcceptQuote.Size = new System.Drawing.Size(152, 22);
-            this.mnuFileAcceptQuote.Text = "Accept Quote";
-            // 
             // frmQuote
             // 
             this.AcceptButton = this.btnCalculate;
@@ -544,17 +546,18 @@
             this.Name = "frmQuote";
             this.Text = " Sales Quote";
             this.Load += new System.EventHandler(this.frmQuote_Load);
+            this.Shown += new System.EventHandler(this.frmQuote_Shown);
             this.grpAccessories.ResumeLayout(false);
             this.grpAccessories.PerformLayout();
             this.grpFinish.ResumeLayout(false);
             this.grpFinish.PerformLayout();
             this.grpSummary.ResumeLayout(false);
             this.grpSummary.PerformLayout();
+            this.msSalesQuote.ResumeLayout(false);
+            this.msSalesQuote.PerformLayout();
             this.grpFinance.ResumeLayout(false);
             this.grpFinance.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            this.msSalesQuote.ResumeLayout(false);
-            this.msSalesQuote.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -9,13 +9,14 @@ using System.Windows.Forms;
 using BusinessTier;
 using System.Configuration;
 using System.Globalization;
+using DataTier;
 
 namespace NETChrisUsick
 {
     /// <summary>
     /// Sales quote form
     /// </summary>
-    public partial class frmQuote : Form
+    public partial class frmQuote : DatabaseForm
     {
         /// <summary>
         /// object to hold the sales quote
@@ -46,7 +47,10 @@ namespace NETChrisUsick
         /// <summary>
         /// constructs an instance of this form
         /// </summary>
-        public frmQuote()
+        public frmQuote() : base(typeof(VehicleStockData), new DataObjectInfo(
+            Properties.Resources.connectionString,
+            Properties.Resources.VehicleStockTableName,
+            Properties.Resources.VehicleStockSelect))
         {
             /// initialize the design
             InitializeComponent();
@@ -75,6 +79,9 @@ namespace NETChrisUsick
             // have to do this to get rid of space before percent symbol;
             tax = tax.Replace(" ", "");
             lblSalesTaxLabel.Text = String.Format(formatString, tax);
+
+            // move menu
+            msSalesQuote.Parent = this;
 
         }
 
@@ -438,6 +445,16 @@ namespace NETChrisUsick
                 // recalculate the quote
                 btnCalculate_Click(null, null);
             }
+        }
+
+        /// <summary>
+        /// populate vehicle stock list from database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmQuote_Shown(object sender, EventArgs e)
+        {
+
         }
 
         
