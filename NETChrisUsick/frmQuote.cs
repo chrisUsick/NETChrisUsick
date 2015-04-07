@@ -184,6 +184,9 @@ namespace NETChrisUsick
                     label.Text = String.Empty;
                 }
             }
+
+            // disable accept quote menu item
+            mnuFileAcceptQuote.Enabled = false;
         }
 
         /// <summary>
@@ -203,7 +206,7 @@ namespace NETChrisUsick
                 # region create sales quote object 
 
                 // sales quote parameters
-                double salePrice = 0,
+                double salePrice = double.Parse(((DataRowView)bindingSource.Current)["BasePrice"].ToString()),
                        tradeIn    = double.Parse(txtTradeIn.Text),
                        taxRate   = Double.Parse(ConfigurationManager.AppSettings.Get("salesTaxRate"));
                 SalesQuote.Accessories accessories;
@@ -228,7 +231,7 @@ namespace NETChrisUsick
                 #endregion
 
                 // set the summary labels
-                lblSalePrice.Text = salePrice.ToString("c");;
+                lblSalePrice.Text = salePrice.ToString("c");
                 lblOptions.Text = (quote.AccessoryCost + quote.FinishCost).ToString("F2");
                 lblSubtotal.Text = quote.SubTotal.ToString("c");
                 lblSaleTax.Text = quote.SalesTax.ToString("F2");
@@ -249,6 +252,9 @@ namespace NETChrisUsick
                     hsbNoYears_ValueChanged(null, null);
                     hsbInterestRate_ValueChanged(null, null);
                 }
+
+                // enable accept quote button
+                mnuFileAcceptQuote.Enabled = true;
             }
             else
             {
@@ -454,7 +460,42 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void frmQuote_Shown(object sender, EventArgs e)
         {
+            // filter out sold vehicles
+            bindingSource.Filter = "SoldBy = 0";
+            // populate vehicle stock cbo
+            cboVehicleStock.DataSource = bindingSource;
+            cboVehicleStock.DisplayMember = "StockNumber";
 
+            // add event handler to binding source to manually update the summary
+            bindingSource.CurrentChanged += new EventHandler(delegate(object target, EventArgs changeEvent)
+                {
+                    // trigger validation and summary calculation
+                    btnCalculate_Click(target, changeEvent);
+                });
+
+            // trigger calculation of the quote
+            btnCalculate_Click(null, new EventArgs());
+        }
+
+        /// <summary>
+        /// open a vehicle sale form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuFileAcceptQuote_Click(object sender, EventArgs e)
+        {
+            frmVehicleSale saleForm = new frmVehicleSale(bindingSource, quote.AccessoryCost + quote.FinishCost);
+            
+            // set mdi parent
+            saleForm.MdiParent = MdiParent;
+
+            saleForm.FormClosed += new FormClosedEventHandler(delegate(object closeSender, FormClosedEventArgs closeEvent)
+                {
+                    // close the main form
+                    Close();
+                });
+
+            saleForm.Show();
         }
 
         

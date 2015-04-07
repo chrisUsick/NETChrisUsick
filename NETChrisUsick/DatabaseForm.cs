@@ -30,9 +30,9 @@ namespace NETChrisUsick
                 this.SelectStatement = selectStatement;
             }
         }
-        private Data dataObject;
+        protected Data dataObject;
 
-        private BindingSource bindingSource;
+        protected BindingSource bindingSource;
 
         public DatabaseForm()
         {
@@ -42,6 +42,7 @@ namespace NETChrisUsick
         private void InitializeComponent()
         {
         }
+
         public DatabaseForm(Type dataClass, DataObjectInfo info)
         {
             string errorMessage = "An error occurred fetching vehicle stock data.";
@@ -54,7 +55,7 @@ namespace NETChrisUsick
                     try
                     {
                         Type stringType = typeof(string);
-                        dataObject = (Data)dataClass.GetConstructor(new Type[] {stringType, stringType, stringType})
+                        dataObject = (Data)dataClass.GetConstructor(new Type[] { stringType, stringType, stringType })
                             .Invoke(new Object[]{
                                 info.ConnectionString,
                                 info.TableName,
@@ -63,6 +64,8 @@ namespace NETChrisUsick
                         bindingSource = new BindingSource();
 
                         bindingSource.DataSource = dataObject.GetAllRows();
+
+
                     }
                     catch (InvalidCastException castEx)
                     {

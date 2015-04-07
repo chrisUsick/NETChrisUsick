@@ -407,11 +407,13 @@
             // 
             // mnuFileAcceptQuote
             // 
+            this.mnuFileAcceptQuote.Enabled = false;
             this.mnuFileAcceptQuote.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.mnuFileAcceptQuote.MergeIndex = 1;
             this.mnuFileAcceptQuote.Name = "mnuFileAcceptQuote";
-            this.mnuFileAcceptQuote.Size = new System.Drawing.Size(147, 22);
-            this.mnuFileAcceptQuote.Text = "Accept Quote";
+            this.mnuFileAcceptQuote.Size = new System.Drawing.Size(152, 22);
+            this.mnuFileAcceptQuote.Text = "&Accept Quote";
+            this.mnuFileAcceptQuote.Click += new System.EventHandler(this.mnuFileAcceptQuote_Click);
             // 
             // grpFinance
             // 
