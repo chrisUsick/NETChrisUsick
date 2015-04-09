@@ -16,12 +16,21 @@ namespace NETChrisUsick
     /// </summary>
     public partial class DatabaseForm : Form
     {
+        /// <summary>
+        /// class for holding database connection info
+        /// </summary>
         public struct DataObjectInfo
         {
             public string ConnectionString {get; set;}
             public string TableName {get; set;}
             public string SelectStatement {get; set;}
 
+            /// <summary>
+            /// construct a n DataObjectInfo object
+            /// </summary>
+            /// <param name="connectionString"></param>
+            /// <param name="tableName"></param>
+            /// <param name="selectStatement"></param>
             public DataObjectInfo(string connectionString, string tableName, string selectStatement)
                 :this()
             {
@@ -34,6 +43,10 @@ namespace NETChrisUsick
 
         protected BindingSource bindingSource;
 
+        /// <summary>
+        /// constructor required for design view
+        /// Shouldn't be used in code
+        /// </summary>
         public DatabaseForm()
         {
             InitializeComponent();
@@ -43,6 +56,11 @@ namespace NETChrisUsick
         {
         }
 
+        /// <summary>
+        /// construct a databaseForm
+        /// </summary>
+        /// <param name="dataClass">The type of class to use as the Database object. Should be a DataTier class</param>
+        /// <param name="info">object containing connection info</param>
         public DatabaseForm(Type dataClass, DataObjectInfo info)
         {
             string errorMessage = "An error occurred fetching vehicle stock data.";

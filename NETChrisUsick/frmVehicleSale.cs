@@ -11,6 +11,9 @@ using BusinessTier;
 
 namespace NETChrisUsick
 {
+    /// <summary>
+    /// form for making a vehicle sale
+    /// </summary>
     public partial class frmVehicleSale : DatabaseForm
     {
         // binding source for the vehicle
