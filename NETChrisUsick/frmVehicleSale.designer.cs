@@ -154,6 +154,7 @@ namespace NETChrisUsick
             this.btnLast.TabIndex = 5;
             this.btnLast.Text = ">>";
             this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // btnNext
             // 
@@ -163,6 +164,7 @@ namespace NETChrisUsick
             this.btnNext.TabIndex = 4;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrevious
             // 
@@ -172,6 +174,7 @@ namespace NETChrisUsick
             this.btnPrevious.TabIndex = 3;
             this.btnPrevious.Text = "<";
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // btnFirst
             // 
@@ -181,6 +184,7 @@ namespace NETChrisUsick
             this.btnFirst.TabIndex = 2;
             this.btnFirst.Text = "<<";
             this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // label8
             // 
@@ -208,6 +212,7 @@ namespace NETChrisUsick
             this.btnSell.TabIndex = 7;
             this.btnSell.Text = "Sell";
             this.btnSell.UseVisualStyleBackColor = true;
+            this.btnSell.Click += new System.EventHandler(this.btnSell_Click);
             // 
             // lblStockNumber
             // 

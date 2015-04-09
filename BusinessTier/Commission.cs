@@ -8,7 +8,7 @@ namespace BusinessTier
     /// <summary>
     /// class to calculate a commission
     /// </summary>
-    class Commission
+    public static class Commission
     {
         // rate of employee with less than 10 years experience
         private const double JUNIOR_RATE = 0.02;
@@ -29,10 +29,11 @@ namespace BusinessTier
         /// <param name="purchasePrice">price of the vehicle sale</param>
         /// <param name="optionsPrice">price of the options on the vehicle</param>
         /// <returns>price of commission</returns>
-        public double getCommission (DateTime startDate, double purchasePrice, double optionsPrice = 0)
+        public static double getCommission (DateTime startDate, double purchasePrice, double optionsPrice = 0)
         {
             double years = (DateTime.Now - startDate).TotalDays / 365.25;
             double pay = 0;
+            // list of associated experience levels to pay rates
             List<double[]> rates = new List<double[]>();
             rates.AddRange(new[] {
                 new[] {10, JUNIOR_RATE},
@@ -40,6 +41,7 @@ namespace BusinessTier
                 new[] {double.PositiveInfinity, EXECUTIVE_RATE}
             });
 
+            // loop through each rate
             foreach (double[] rate in rates)
             {
                 if (years < rate[0])

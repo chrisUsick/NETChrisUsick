@@ -484,7 +484,12 @@ namespace NETChrisUsick
         /// <param name="e"></param>
         private void mnuFileAcceptQuote_Click(object sender, EventArgs e)
         {
-            frmVehicleSale saleForm = new frmVehicleSale(bindingSource, quote.AccessoryCost + quote.FinishCost);
+            //disable this form
+            Enabled = false;
+
+            // create new salesform
+            frmVehicleSale saleForm = new frmVehicleSale(
+                bindingSource, quote.AccessoryCost + quote.FinishCost, (VehicleStockData)dataObject);
             
             // set mdi parent
             saleForm.MdiParent = MdiParent;
