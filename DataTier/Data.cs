@@ -57,6 +57,15 @@ namespace DataTier
             return dataSet.Tables[tableName];
         }
 
+        /// <summary>
+        /// get the dataset of the class
+        /// </summary>
+        /// <returns>dataset</returns>
+        public DataSet GetDataSet()
+        {
+            return dataSet;
+        }
+
         public void Close()
         {
             connection.Close();

@@ -190,5 +190,28 @@ namespace NETChrisUsick
                 openFormToMdi((Form)Activator.CreateInstance(formType, false));
             }
         }
+
+        /// <summary>
+        /// open the about form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuHelpAbout_Click(object sender, EventArgs e)
+        {
+            // create new form, set mdi parent and open the form
+            frmAbout aboutForm = new frmAbout();
+            //aboutForm.MdiParent = this;
+            aboutForm.ShowDialog(this);
+        }
+
+        /// <summary>
+        /// open or focus the report form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuReportsVehicleSold_Click(object sender, EventArgs e)
+        {
+            openOrActivateForm(typeof(frmReport));
+        }
     }
 }

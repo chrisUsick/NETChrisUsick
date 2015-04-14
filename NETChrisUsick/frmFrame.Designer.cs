@@ -54,6 +54,8 @@
             this.mnuData = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDataSalesStaff = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDataVehicleStock = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuReportsVehicleSold = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMainToolbar.SuspendLayout();
@@ -170,6 +172,7 @@
             this.mnuFile,
             this.mnuWindow,
             this.mnuData,
+            this.mnuReports,
             this.mnuHelp});
             this.msMainMenu.Location = new System.Drawing.Point(0, 0);
             this.msMainMenu.Name = "msMainMenu";
@@ -281,16 +284,31 @@
             // mnuDataSalesStaff
             // 
             this.mnuDataSalesStaff.Name = "mnuDataSalesStaff";
-            this.mnuDataSalesStaff.Size = new System.Drawing.Size(152, 22);
+            this.mnuDataSalesStaff.Size = new System.Drawing.Size(144, 22);
             this.mnuDataSalesStaff.Text = "&Sales Staff";
             this.mnuDataSalesStaff.Click += new System.EventHandler(this.mnuDataSalesStaff_Click);
             // 
             // mnuDataVehicleStock
             // 
             this.mnuDataVehicleStock.Name = "mnuDataVehicleStock";
-            this.mnuDataVehicleStock.Size = new System.Drawing.Size(152, 22);
+            this.mnuDataVehicleStock.Size = new System.Drawing.Size(144, 22);
             this.mnuDataVehicleStock.Text = "&Vehicle Stock";
             this.mnuDataVehicleStock.Click += new System.EventHandler(this.mnuDataVehicleStock_Click);
+            // 
+            // mnuReports
+            // 
+            this.mnuReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuReportsVehicleSold});
+            this.mnuReports.Name = "mnuReports";
+            this.mnuReports.Size = new System.Drawing.Size(59, 20);
+            this.mnuReports.Text = "&Reports";
+            // 
+            // mnuReportsVehicleSold
+            // 
+            this.mnuReportsVehicleSold.Name = "mnuReportsVehicleSold";
+            this.mnuReportsVehicleSold.Size = new System.Drawing.Size(152, 22);
+            this.mnuReportsVehicleSold.Text = "Vehicles Sold";
+            this.mnuReportsVehicleSold.Click += new System.EventHandler(this.mnuReportsVehicleSold_Click);
             // 
             // mnuHelp
             // 
@@ -306,6 +324,7 @@
             this.mnuHelpAbout.Name = "mnuHelpAbout";
             this.mnuHelpAbout.Size = new System.Drawing.Size(107, 22);
             this.mnuHelpAbout.Text = "&About";
+            this.mnuHelpAbout.Click += new System.EventHandler(this.mnuHelpAbout_Click);
             // 
             // frmFrame
             // 
@@ -359,6 +378,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuData;
         private System.Windows.Forms.ToolStripMenuItem mnuDataSalesStaff;
         private System.Windows.Forms.ToolStripMenuItem mnuDataVehicleStock;
+        private System.Windows.Forms.ToolStripMenuItem mnuReports;
+        private System.Windows.Forms.ToolStripMenuItem mnuReportsVehicleSold;
     }
 }
 
